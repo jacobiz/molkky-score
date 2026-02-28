@@ -18,12 +18,13 @@ export const en: Messages = {
   },
   setup: {
     title: 'Player Setup',
-    namePlaceholder: 'Player name (max 10 chars)',
+    namePlaceholder: 'Player name (max 12 chars)',
     addPlayer: 'Add',
     startGame: 'Start Game',
     errorMinPlayers: 'At least 2 players required',
+    errorMaxPlayers: 'Maximum 6 players allowed',
     errorDuplicate: 'This name is already registered',
-    errorMaxLength: 'Player name must be 10 characters or less',
+    errorMaxLength: 'Player name must be 12 characters or less',
     orderHint: 'Use buttons to change throw order',
   },
   game: {

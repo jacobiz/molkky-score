@@ -11,7 +11,11 @@ export function SetupScreen() {
 
   function handleAdd() {
     const name = inputValue.trim()
-    if (name.length > 10) {
+    if (players.length >= 6) {
+      setError(t.setup.errorMaxPlayers)
+      return
+    }
+    if (name.length > 12) {
       setError(t.setup.errorMaxLength)
       return
     }
@@ -88,7 +92,7 @@ export function SetupScreen() {
             }}
             onKeyDown={handleKeyDown}
             placeholder={t.setup.namePlaceholder}
-            maxLength={11}
+            maxLength={13}
             className="flex-1 px-4 py-3 rounded-xl border border-gray-300 bg-white text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <button

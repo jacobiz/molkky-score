@@ -9,12 +9,13 @@ export const ja = {
   },
   setup: {
     title: 'プレイヤー設定',
-    namePlaceholder: 'プレイヤー名（最大10文字）',
+    namePlaceholder: 'プレイヤー名（最大12文字）',
     addPlayer: '追加',
     startGame: 'ゲーム開始',
     errorMinPlayers: '2人以上のプレイヤーが必要です',
+    errorMaxPlayers: '最大6人まで登録できます',
     errorDuplicate: '同じ名前はすでに登録されています',
-    errorMaxLength: 'プレイヤー名は10文字以内で入力してください',
+    errorMaxLength: 'プレイヤー名は12文字以内で入力してください',
     orderHint: 'ボタンで投球順を変更',
   },
   game: {

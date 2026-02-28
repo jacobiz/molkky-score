@@ -7,7 +7,7 @@ export type PlayerStatus = 'active' | 'eliminated' | 'winner'
 export interface Player {
   /** 一意な ID（セットアップ時に生成） */
   id: string
-  /** プレイヤー名（最大10文字、同一ゲーム内で一意） */
+  /** プレイヤー名（最大12文字、同一ゲーム内で一意） */
   name: string
   /** 現在の累積スコア（0〜50） */
   score: number
