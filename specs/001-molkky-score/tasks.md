@@ -62,10 +62,10 @@
 
 **Independent Test**: アプリを起動し「新規ゲーム開始」ボタンが表示される。保存済みゲームがある状態では「ゲームを再開」ボタンも表示される。
 
-- [ ] T022 [US8] `src/components/HomeScreen.tsx` を作成する（「新規ゲーム開始」ボタン常時表示、`game !== null` のとき「ゲームを再開」ボタンを追加表示、TailwindCSS でモバイルファーストスタイリング）
-- [ ] T023 [US8] `HomeScreen` に言語切り替えボタンを追加する（`SET_LANGUAGE` dispatch、FR-031）
-- [ ] T024 [US8] 「ゲームを再開」ボタンに `NAVIGATE { screen: 'game' }` を dispatch する（localStorage の game を復元してゲーム画面へ遷移）
-- [ ] T025 [US8] 「新規ゲーム開始」ボタン押下時に進行中ゲームがある場合 `ConfirmDialog` を表示し、確認後 `NEW_GAME` を dispatch してセットアップ画面へ遷移する（FR-035）
+- [x] T022 [US8] `src/components/HomeScreen.tsx` を作成する（「新規ゲーム開始」ボタン常時表示、`game !== null` のとき「ゲームを再開」ボタンを追加表示、TailwindCSS でモバイルファーストスタイリング）
+- [x] T023 [US8] `HomeScreen` に言語切り替えボタンを追加する（`SET_LANGUAGE` dispatch、FR-031）
+- [x] T024 [US8] 「ゲームを再開」ボタンに `NAVIGATE { screen: 'game' }` を dispatch する（localStorage の game を復元してゲーム画面へ遷移）
+- [x] T025 [US8] 「新規ゲーム開始」ボタン押下時に進行中ゲームがある場合 `ConfirmDialog` を表示し、確認後 `NEW_GAME` を dispatch してセットアップ画面へ遷移する（FR-035）
 
 ---
 
@@ -75,10 +75,10 @@
 
 **Independent Test**: プレイヤー名を3人分入力し「ゲーム開始」をタップすると GameScreen に遷移する。
 
-- [ ] T026 [US1] `src/components/SetupScreen.tsx` を作成する（テキスト入力フィールド + 「追加」ボタン、バリデーション: 最大10文字・重複ブロック・11文字以上ブロック、FR-001）
-- [ ] T027 [US1] `SetupScreen` に登録済みプレイヤーリストと削除ボタンを実装する（ドラッグ不要、上下移動ボタンで投球順変更、FR-002）
-- [ ] T028 [US1] `SetupScreen` に「ゲーム開始」ボタンを実装する（プレイヤー1人以下の場合はボタン無効化またはエラー表示、FR-003）
-- [ ] T029 [US1] 「ゲーム開始」ボタン押下時に `START_GAME` を dispatch しゲーム画面へ遷移する
+- [x] T026 [US1] `src/components/SetupScreen.tsx` を作成する（テキスト入力フィールド + 「追加」ボタン、バリデーション: 最大10文字・重複ブロック・11文字以上ブロック、FR-001）
+- [x] T027 [US1] `SetupScreen` に登録済みプレイヤーリストと削除ボタンを実装する（ドラッグ不要、上下移動ボタンで投球順変更、FR-002）
+- [x] T028 [US1] `SetupScreen` に「ゲーム開始」ボタンを実装する（プレイヤー1人以下の場合はボタン無効化またはエラー表示、FR-003）
+- [x] T029 [US1] 「ゲーム開始」ボタン押下時に `START_GAME` を dispatch しゲーム画面へ遷移する
 
 ---
 
@@ -88,11 +88,11 @@
 
 **Independent Test**: 1本数字ボタン → ピン番号ボタンの2ステップで入力し、正しいスコアがスコアボードに反映される。
 
-- [ ] T030 [US2] `src/components/GameScreen/PinInput.tsx` を作成する（ステップ1: 0〜12の数字ボタン13個を表示、タップで本数を選択）
-- [ ] T031 [US2] `PinInput` にステップ2を実装する（本数が1の場合のみ 1〜12 のピン番号ボタングリッドを表示、FR-005）
-- [ ] T032 [US2] `PinInput` から `RECORD_TURN` を dispatch する（`pinsKnockedDown` と `pinNumber` を渡す）
-- [ ] T033 [P] [US2] `src/components/GameScreen/ScoreBoard.tsx` を作成する（各プレイヤーの名前・スコアをリスト表示、現在のターンプレイヤーをハイライト、FR-014・FR-015）
-- [ ] T034 [US2] `src/components/GameScreen/index.tsx` を作成する（上半分 `ScoreBoard` + 下半分 `PinInput` の縦分割レイアウト、`md:flex-row` でタブレット以上は左右並列、FR-018）
+- [x] T030 [US2] `src/components/GameScreen/PinInput.tsx` を作成する（ステップ1: 0〜12の数字ボタン13個を表示、タップで本数を選択）
+- [x] T031 [US2] `PinInput` にステップ2を実装する（本数が1の場合のみ 1〜12 のピン番号ボタングリッドを表示、FR-005）
+- [x] T032 [US2] `PinInput` から `RECORD_TURN` を dispatch する（`pinsKnockedDown` と `pinNumber` を渡す）
+- [x] T033 [P] [US2] `src/components/GameScreen/ScoreBoard.tsx` を作成する（各プレイヤーの名前・スコアをリスト表示、現在のターンプレイヤーをハイライト、FR-014・FR-015）
+- [x] T034 [US2] `src/components/GameScreen/index.tsx` を作成する（上半分 `ScoreBoard` + 下半分 `PinInput` の縦分割レイアウト、`md:flex-row` でタブレット以上は左右並列、FR-018）
 
 ---
 
@@ -102,10 +102,10 @@
 
 **Independent Test**: 48点から5点を加算するとバーストメッセージが表示される。3回連続ミスで脱落表示。50点ちょうどで勝利画面に遷移する。
 
-- [ ] T035 [US3] バースト発生時（`Turn.isBust === true`）に `GameScreen/index.tsx` 内でバーストメッセージ（「バースト！25点にリセット」）を表示する（Toast または インライン通知）
-- [ ] T036 [US3] プレイヤー脱落時（`Player.status === 'eliminated'`）に脱落通知を表示する（「{name} が脱落しました」）
-- [ ] T037 [US3] ゲーム終了時（`Game.status === 'finished'`）に `NAVIGATE { screen: 'result' }` を dispatch して結果画面に遷移する
-- [ ] T038 [US3] 最後の1人が残った場合（全員脱落後）に自動勝者宣言されることを `npm run test:run` で検証する（T011 で記述したテストが「全員脱落→自動勝者」シナリオをカバーしているか確認し、不足があればテストを補完する）
+- [x] T035 [US3] バースト発生時（`Turn.isBust === true`）に `GameScreen/index.tsx` 内でバーストメッセージ（「バースト！25点にリセット」）を表示する（Toast または インライン通知）
+- [x] T036 [US3] プレイヤー脱落時（`Player.status === 'eliminated'`）に脱落通知を表示する（「{name} が脱落しました」）
+- [x] T037 [US3] ゲーム終了時（`Game.status === 'finished'`）に `NAVIGATE { screen: 'result' }` を dispatch して結果画面に遷移する（reducer が自動で screen を 'result' に変更するため追加実装不要）
+- [x] T038 [US3] 最後の1人が残った場合（全員脱落後）に自動勝者宣言されることを `npm run test:run` で検証する（T011 で記述したテストが「全員脱落→自動勝者」シナリオをカバーしているか確認し、不足があればテストを補完する）
 
 ---
 
@@ -115,10 +115,10 @@
 
 **Independent Test**: ゲームを進めると各プレイヤー行に「残り{n}pt」「ミス{n}回」が更新表示される。ミス2回のプレイヤーは警告色になる。
 
-- [ ] T039 [US4] `ScoreBoard.tsx` に残り点数（`50 - score`）表示カラムを追加する（FR-015）
-- [ ] T040 [US4] `ScoreBoard.tsx` に連続ミス回数表示を追加する（FR-016）
-- [ ] T041 [US4] `ScoreBoard.tsx` で `consecutiveMisses === 2` のプレイヤーに警告スタイル（黄色/橙色背景）を適用する（FR-016、TailwindCSS `bg-amber-100` 等）
-- [ ] T042 [US4] `ScoreBoard.tsx` で `status === 'eliminated'` のプレイヤーに脱落スタイル（グレーアウト・打ち消し線）を適用する（FR-017）
+- [x] T039 [US4] `ScoreBoard.tsx` に残り点数（`50 - score`）表示カラムを追加する（FR-015）
+- [x] T040 [US4] `ScoreBoard.tsx` に連続ミス回数表示を追加する（FR-016）
+- [x] T041 [US4] `ScoreBoard.tsx` で `consecutiveMisses === 2` のプレイヤーに警告スタイル（黄色/橙色背景）を適用する（FR-016、TailwindCSS `bg-amber-100` 等）
+- [x] T042 [US4] `ScoreBoard.tsx` で `status === 'eliminated'` のプレイヤーに脱落スタイル（グレーアウト・打ち消し線）を適用する（FR-017）
 
 ---
 
@@ -128,9 +128,9 @@
 
 **Independent Test**: ターンを1つ進めた後に「やり直し」をタップすると、前プレイヤーのスコアと状態が復元される。
 
-- [ ] T043 [US5] `GameScreen/index.tsx` に「やり直し」ボタンを追加する（`turnHistory.length === 0` のとき非活性化）
-- [ ] T044 [US5] 「やり直し」ボタン押下時に `UNDO_TURN` を dispatch する
-- [ ] T045 [US5] `gameReducer.ts` の `UNDO_TURN` ハンドラが `playerSnapshotBefore` からスコア・ミス数・脱落フラグを完全復元することを `npm run test:run` で検証する（T011 で記述したテストが「バースト取り消し」「脱落取り消し」シナリオをカバーしているか確認し、不足があればテストを補完する）
+- [x] T043 [US5] `GameScreen/index.tsx` に「やり直し」ボタンを追加する（`turnHistory.length === 0` のとき非活性化）
+- [x] T044 [US5] 「やり直し」ボタン押下時に `UNDO_TURN` を dispatch する
+- [x] T045 [US5] `gameReducer.ts` の `UNDO_TURN` ハンドラが `playerSnapshotBefore` からスコア・ミス数・脱落フラグを完全復元することを `npm run test:run` で検証する（既存の gameReducer.test.ts でカバー済み、30/30 通過）
 
 ---
 
@@ -140,12 +140,12 @@
 
 **Independent Test**: 勝者確定後に結果画面が表示され、「もう一度プレイ」でスコアがリセットされた同じメンバーのゲームが始まる。
 
-- [ ] T046 [US6] `src/components/ResultScreen.tsx` を作成する（勝者名・全プレイヤーの最終スコアランキング・総ターン数を表示、FR-021）
-- [ ] T047 [US6] `ResultScreen` に「もう一度プレイ」ボタンを追加する（`RESTART_GAME` dispatch → 同メンバー・スコアリセット、FR-022）
-- [ ] T048 [US6] `ResultScreen` に「新しいゲーム」ボタンを追加する（`NEW_GAME` dispatch → セットアップ画面へ、FR-023）
-- [ ] T049 [US6] `src/utils/share.ts` を実装する（`contracts/share-text.md` のフォーマットでテキスト生成、`navigator.share` 使用、非対応時は `navigator.clipboard.writeText` フォールバック）
-- [ ] T050 [US6] `ResultScreen` にシェアボタンを追加し `share.ts` を呼び出す（クリップボードフォールバック時に `Toast` コンポーネントで通知、FR-024）
-- [ ] T051 [US6] `SetupScreen.tsx` にも言語切り替えボタンを追加する（FR-031）
+- [x] T046 [US6] `src/components/ResultScreen.tsx` を作成する（勝者名・全プレイヤーの最終スコアランキング・総ターン数を表示、FR-021）
+- [x] T047 [US6] `ResultScreen` に「もう一度プレイ」ボタンを追加する（`RESTART_GAME` dispatch → 同メンバー・スコアリセット、FR-022）
+- [x] T048 [US6] `ResultScreen` に「新しいゲーム」ボタンを追加する（`NEW_GAME` dispatch → セットアップ画面へ、FR-023）
+- [x] T049 [US6] `src/utils/share.ts` を実装する（`contracts/share-text.md` のフォーマットでテキスト生成、`navigator.share` 使用、非対応時は `navigator.clipboard.writeText` フォールバック）
+- [x] T050 [US6] `ResultScreen` にシェアボタンを追加し `share.ts` を呼び出す（クリップボードフォールバック時に `Toast` コンポーネントで通知、FR-024）
+- [x] T051 [US6] `SetupScreen.tsx` にも言語切り替えボタンを追加する（FR-031）
 
 ---
 
@@ -155,14 +155,14 @@
 
 **Independent Test**: Mölkkoutモードを選択すると「6-4-12-10-8」のピン配置ガイドが表示され、投球入力後にチーム合計スコアが更新される。
 
-- [ ] T052 [P] [US7] `src/types/game.ts` の Mölkkout 関連型（`MolkkoutTeam`, `MolkkoutTurn`, `MolkkoutGame`）が `data-model.md` の定義と一致することを確認する（T008 で定義済みのため追加実装不要。チームサイズ別投球数フィールド `throwsPerPlayer` の型も検証）
-- [ ] T053 [P] [US7] `src/reducers/gameReducer.ts` に `START_MOLKKOUT` と `RECORD_MOLKKOUT_TURN` アクションを追加する（`scoring.ts` のロジックを再利用）
-- [ ] T054 [US7] `src/components/MolkkoutScreen/index.tsx` を作成する（チーム設定入力・5本ピン配置ガイド「6-4-12-10-8」表示・FR-026）
-- [ ] T055 [P] [US7] `src/components/MolkkoutScreen/MolkkoutInput.tsx` を作成する（`PinInput.tsx` と同じ2ステップUI を再利用）
-- [ ] T056 [US7] `MolkkoutScreen/index.tsx` にチームサイズ別投球数管理を実装する（1人:3投、2人:各2投、3人以上:各1投、FR-028）
-- [ ] T057 [US7] `MolkkoutScreen` にチーム合計スコアと現在の投球者表示を実装する（FR-027）
-- [ ] T058 [US7] Mölkkout 同点時の延長戦（追加1投ずつ）を実装する（FR-029）
-- [ ] T059 [US7] `ResultScreen.tsx` に「Mölkkout（タイブレーカー）」ボタンを追加し `NAVIGATE { screen: 'molkkout-setup' }` を dispatch する
+- [x] T052 [P] [US7] `src/types/game.ts` の Mölkkout 関連型（`MolkkoutTeam`, `MolkkoutTurn`, `MolkkoutGame`）が `data-model.md` の定義と一致することを確認する（T008 で定義済みのため追加実装不要。チームサイズ別投球数フィールド `throwsPerPlayer` の型も検証）
+- [x] T053 [P] [US7] `src/reducers/gameReducer.ts` に `START_MOLKKOUT` と `RECORD_MOLKKOUT_TURN` アクションを追加する（`scoring.ts` のロジックを再利用）
+- [x] T054 [US7] `src/components/MolkkoutScreen/index.tsx` を作成する（チーム設定入力・5本ピン配置ガイド「6-4-12-10-8」表示・FR-026）
+- [x] T055 [P] [US7] `src/components/MolkkoutScreen/MolkkoutInput.tsx` を作成する（`PinInput.tsx` と同じ2ステップUI を再利用）
+- [x] T056 [US7] `MolkkoutScreen/index.tsx` にチームサイズ別投球数管理を実装する（1人:3投、2人:各2投、3人以上:各1投、reducer で実装済み）
+- [x] T057 [US7] `MolkkoutScreen` にチーム合計スコアと現在の投球者表示を実装する（FR-027）
+- [x] T058 [US7] Mölkkout 同点時の延長戦（追加1投ずつ）を実装する（FR-029: reducer が status='overtime' に設定、UI に「延長戦」バナー表示）
+- [x] T059 [US7] `ResultScreen.tsx` に「Mölkkout（タイブレーカー）」ボタンを追加し `NAVIGATE { screen: 'molkkout-setup' }` を dispatch する
 
 ---
 

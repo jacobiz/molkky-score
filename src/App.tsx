@@ -1,16 +1,23 @@
 import { useGame } from './context/GameContext'
-
-// コンポーネントは各フェーズで実装する（Phase 3〜10）
-// 現時点はルーティングのプレースホルダー
+import { HomeScreen } from './components/HomeScreen'
+import { SetupScreen } from './components/SetupScreen'
+import { GameScreen } from './components/GameScreen'
+import { ResultScreen } from './components/ResultScreen'
+import { MolkkoutSetupScreen } from './components/MolkkoutSetupScreen'
+import { MolkkoutScreen } from './components/MolkkoutScreen'
 
 function App() {
   const { state } = useGame()
 
   return (
-    <div className="min-h-dvh bg-gray-50">
-      {/* screen: {state.screen} */}
-      <p className="p-4 text-sm text-gray-400">screen: {state.screen}</p>
-    </div>
+    <>
+      {state.screen === 'home' && <HomeScreen />}
+      {state.screen === 'setup' && <SetupScreen />}
+      {state.screen === 'game' && <GameScreen />}
+      {state.screen === 'result' && <ResultScreen />}
+      {state.screen === 'molkkout-setup' && <MolkkoutSetupScreen />}
+      {state.screen === 'molkkout-game' && <MolkkoutScreen />}
+    </>
   )
 }
 
