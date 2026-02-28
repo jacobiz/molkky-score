@@ -3,7 +3,9 @@
     "allow": [
       "Bash(attrib:*)",
       "Bash(wsl:*)",
-      "Bash(~/workspace/molkky-score/.gitignore:*)"
+      "Bash(~/workspace/molkky-score/.gitignore:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
