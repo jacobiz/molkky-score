@@ -19,13 +19,13 @@
 
 **Purpose**: TailwindCSS v4 と Vitest を既存の Vite + React 19 + vite-plugin-pwa 構成に追加する
 
-- [ ] T001 TailwindCSS v4 をインストールする: `npm install tailwindcss @tailwindcss/vite`
-- [ ] T002 Vitest + テスト依存をインストールする: `npm install -D vitest @testing-library/react jsdom @vitest/coverage-v8`
-- [ ] T003 [P] `vite.config.ts` に `tailwindcss()` プラグインを追加する（`@tailwindcss/vite` を import、既存の `react()` と `VitePWA()` を保持）
-- [ ] T004 [P] `src/index.css` を作成し `@import "tailwindcss";` のみ記述する。`src/main.tsx` の先頭に `import './index.css'` を追加する（Tailwind を有効化するために Phase 1 で完結させる）
-- [ ] T005 [P] `vitest.config.ts` を作成する（`environment: 'jsdom'`, `globals: true`）
-- [ ] T006 `package.json` の `scripts` に `"test": "vitest"`, `"test:run": "vitest run"`, `"test:coverage": "vitest run --coverage"` を追加する
-- [ ] T007 ソースディレクトリ構造を作成する: `src/components/ui/`, `src/context/`, `src/reducers/`, `src/types/`, `src/utils/`, `src/i18n/`, `tests/unit/`
+- [x] T001 TailwindCSS v4 をインストールする: `npm install tailwindcss @tailwindcss/vite`
+- [x] T002 Vitest + テスト依存をインストールする: `npm install -D vitest @testing-library/react jsdom @vitest/coverage-v8`
+- [x] T003 [P] `vite.config.ts` に `tailwindcss()` プラグインを追加する（`@tailwindcss/vite` を import、既存の `react()` と `VitePWA()` を保持）
+- [x] T004 [P] `src/index.css` を作成し `@import "tailwindcss";` のみ記述する。`src/main.tsx` の先頭に `import './index.css'` を追加する（Tailwind を有効化するために Phase 1 で完結させる）
+- [x] T005 [P] `vitest.config.ts` を作成する（`environment: 'jsdom'`, `globals: true`）
+- [x] T006 `package.json` の `scripts` に `"test": "vitest"`, `"test:run": "vitest run"`, `"test:coverage": "vitest run --coverage"` を追加する
+- [x] T007 ソースディレクトリ構造を作成する: `src/components/ui/`, `src/context/`, `src/reducers/`, `src/types/`, `src/utils/`, `src/i18n/`, `tests/unit/`
 
 **Checkpoint**: `npm run dev` が起動し、Tailwind クラスが適用されることを確認
 
