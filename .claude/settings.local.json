@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(attrib:*)",
+      "Bash(wsl:*)",
+      "Bash(~/workspace/molkky-score/.gitignore:*)"
+    ]
+  }
+}
