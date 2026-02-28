@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { useGame } from '../../context/GameContext'
 import { useTranslation } from '../../utils/i18n'
-import { calculatePoints, applyBustRule } from '../../utils/scoring'
+import { applyBustRule } from '../../utils/scoring'
 import { Toast } from '../ui/Toast'
 import { PinInput } from './PinInput'
 import { ScoreBoard } from './ScoreBoard'
@@ -17,21 +17,20 @@ function GameScreenContent({ game }: { game: Game }) {
 
   const handleCloseToast = useCallback(() => setToastMessage(null), [])
 
-  function handlePinSubmit(pinsKnockedDown: number, pinNumber: number | null) {
+  function handlePinSubmit(points: number) {
     const player = game.players[game.currentPlayerIndex]
 
     // Determine notification based on what will happen
-    if (pinsKnockedDown === 0 && player.consecutiveMisses >= 2) {
+    if (points === 0 && player.consecutiveMisses >= 2) {
       setToastMessage(t.game.eliminatedMessage.replace('{name}', player.name))
-    } else if (pinsKnockedDown > 0) {
-      const points = calculatePoints(pinsKnockedDown, pinNumber)
+    } else if (points > 0) {
       const newScore = applyBustRule(player.score, points)
       if (newScore === 25 && player.score + points > 50) {
         setToastMessage(t.game.bustMessage)
       }
     }
 
-    dispatch({ type: 'RECORD_TURN', pinsKnockedDown, pinNumber })
+    dispatch({ type: 'RECORD_TURN', points })
   }
 
   function handleUndo() {
