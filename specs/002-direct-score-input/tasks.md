@@ -30,7 +30,7 @@ Setup 不要（既存プロジェクトへの機能変更のため）
 **⚠️ CRITICAL**: Constitution 原則 II に従い、テスト更新を型・実装変更より先に行う。
 
 - [ ] T001 [P] `tests/unit/scoring.test.ts` から `calculatePoints` の `describe` ブロックを削除し import も除く（テストが先に更新されることで実装削除後もテストが通ることを保証）
-- [ ] T002 [P] `tests/unit/gameReducer.test.ts` の全 `RECORD_TURN` ディスパッチを `{ type: 'RECORD_TURN', pinsKnockedDown: X, pinNumber: Y }` から `{ type: 'RECORD_TURN', points: P }` に更新する（得点値を直接指定: 例 `pinsKnockedDown:1, pinNumber:12` → `points:12`、`pinsKnockedDown:3` → `points:3`、`pinsKnockedDown:0` → `points:0`）
+- [ ] T002 [P] `tests/unit/gameReducer.test.ts` の全 `RECORD_TURN` ディスパッチを `{ type: 'RECORD_TURN', pinsKnockedDown: X, pinNumber: Y }` から `{ type: 'RECORD_TURN', points: P }` に更新する（得点値を直接指定: 例 `pinsKnockedDown:1, pinNumber:12` → `points:12`、`pinsKnockedDown:3` → `points:3`、`pinsKnockedDown:0` → `points:0`）。`RECORD_MOLKKOUT_TURN` ディスパッチが存在する場合も同様に `{ type: 'RECORD_MOLKKOUT_TURN', points: P }` に更新する（T001/T002 は互いに並列可だが、T003 の前提条件）
 - [ ] T003 `src/types/game.ts` の `Turn` インターフェースから `pinsKnockedDown` と `pinNumber` を削除し、`MolkkoutTurn` からも同フィールドを削除し、`GameAction` の `RECORD_TURN` を `{ type: 'RECORD_TURN'; points: number }` に・`RECORD_MOLKKOUT_TURN` を `{ type: 'RECORD_MOLKKOUT_TURN'; points: number }` に変更する
 - [ ] T004 `src/utils/scoring.ts` から `calculatePoints` 関数を削除する（`applyBustRule`・`checkWin`・`incrementMisses` は変更なし）
 - [ ] T005 `src/reducers/gameReducer.ts` の `RECORD_TURN` ケースを更新する: `calculatePoints` import と呼び出しを削除し `const points = action.points` を使用・`isMiss` を `points === 0` で判定・`turn` オブジェクトから `pinsKnockedDown`・`pinNumber` を削除。同様に `RECORD_MOLKKOUT_TURN` ケースも更新する。
@@ -47,7 +47,7 @@ Setup 不要（既存プロジェクトへの機能変更のため）
 **Independent Test**: ゲーム画面を開き 0〜12 のボタンを1タップするとスコアが更新され次のプレイヤーに移る
 
 - [ ] T007 [US1] `src/components/GameScreen/PinInput.tsx` を1タップ UI に全面変更する: Props を `{ onSubmit: (points: number) => void }` に変更・0 を全幅赤ボタン（`bg-red-500 text-white w-full py-4 rounded-2xl`）・1〜12 を `grid grid-cols-4 gap-2` の3行グリッド（`bg-green-500 text-white`・各ボタン `py-4 min-h-[44px]` で均一サイズ）・タップ即 `onSubmit(value)` 呼び出し・2ステップ State 削除
-- [ ] T008 [US1] `src/components/GameScreen/index.tsx` の `handlePinSubmit` シグネチャを `(points: number)` に変更し・`calculatePoints` 呼び出しを削除し・`isMiss` を `points === 0` で判定し・dispatch を `{ type: 'RECORD_TURN', points }` に更新する
+- [ ] T008 [US1] `src/components/GameScreen/index.tsx` の `handlePinSubmit` シグネチャを `(points: number)` に変更し・`calculatePoints` 呼び出しを削除し・`isMiss` を `points === 0` で判定し・バースト通知を `applyBustRule(player.score, points)` で判定し（`calculatePoints` 呼び出しを削除して `points` を直接渡す）・dispatch を `{ type: 'RECORD_TURN', points }` に更新する
 
 **Checkpoint**: ゲーム画面で1タップ入力が動作し、バースト・脱落・勝利・アンドゥが正常に機能すること
 
