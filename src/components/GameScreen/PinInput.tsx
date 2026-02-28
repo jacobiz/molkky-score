@@ -8,7 +8,7 @@ export function PinInput({ onSubmit }: PinInputProps) {
   const { t } = useTranslation()
 
   return (
-    <div className="flex flex-col gap-3 p-4">
+    <div className="flex flex-col gap-3 p-4 h-full">
       <p className="text-center text-base font-medium text-gray-700">
         {t.game.howMany}
       </p>
@@ -16,13 +16,13 @@ export function PinInput({ onSubmit }: PinInputProps) {
       {/* 0: full-width miss button */}
       <button
         onClick={() => onSubmit(0)}
-        className="w-full py-4 rounded-2xl bg-red-500 text-white text-xl font-bold active:bg-red-600"
+        className="shrink-0 w-full py-4 rounded-2xl bg-red-500 text-white text-xl font-bold active:bg-red-600"
       >
         0
       </button>
 
       {/* 1–12: 4×3 grid */}
-      <div className="grid grid-cols-4 gap-2">
+      <div className="flex-1 min-h-0 grid grid-cols-4 grid-rows-3 gap-2">
         {Array.from({ length: 12 }, (_, i) => i + 1).map(n => (
           <button
             key={n}
