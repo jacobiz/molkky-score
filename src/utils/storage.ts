@@ -1,7 +1,7 @@
 import type { GameState, Game, MolkkoutGame, Settings } from '../types/game'
 
-const STORAGE_KEY = 'molkky-score-v1'
-const SCHEMA_VERSION = 1
+const STORAGE_KEY = 'molkky-score-v2'
+const SCHEMA_VERSION = 2
 
 interface StoredState {
   version: typeof SCHEMA_VERSION

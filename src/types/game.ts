@@ -24,14 +24,7 @@ export interface Player {
 export interface Turn {
   /** 投球したプレイヤーの ID */
   playerId: string
-  /** 倒したピンの本数（0〜12） */
-  pinsKnockedDown: number
-  /**
-   * 1本倒した場合のピン番号（1〜12）。
-   * 0本または2本以上の場合は null。
-   */
-  pinNumber: number | null
-  /** このターンで獲得した得点 */
+  /** このターンで獲得した得点（0〜12） */
   points: number
   /** バーストが発生したか（score > 50 → reset to 25） */
   isBust: boolean
@@ -87,8 +80,6 @@ export interface MolkkoutTeam {
 export interface MolkkoutTurn {
   teamId: string
   playerName: string
-  pinsKnockedDown: number
-  pinNumber: number | null
   points: number
 }
 
@@ -155,9 +146,7 @@ export type GameAction =
   // ─ スコア入力 ─
   | {
       type: 'RECORD_TURN'
-      pinsKnockedDown: number
-      /** 1本の場合のみ指定（1〜12） */
-      pinNumber: number | null
+      points: number
     }
 
   // ─ アンドゥ ─
@@ -171,8 +160,7 @@ export type GameAction =
   | { type: 'START_MOLKKOUT'; teams: { name: string; playerNames: string[] }[] }
   | {
       type: 'RECORD_MOLKKOUT_TURN'
-      pinsKnockedDown: number
-      pinNumber: number | null
+      points: number
     }
 
   // ─ 設定 ─

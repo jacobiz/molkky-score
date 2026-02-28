@@ -14,8 +14,8 @@ export function MolkkoutScreen() {
     mg.currentPlayerInTeamIndex % currentTeam.playerNames.length
   ]
 
-  function handleSubmit(pinsKnockedDown: number, pinNumber: number | null) {
-    dispatch({ type: 'RECORD_MOLKKOUT_TURN', pinsKnockedDown, pinNumber })
+  function handleSubmit(points: number) {
+    dispatch({ type: 'RECORD_MOLKKOUT_TURN', points })
   }
 
   if (mg.status === 'finished') {

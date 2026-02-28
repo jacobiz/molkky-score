@@ -1,4 +1,4 @@
-import { calculatePoints, applyBustRule, checkWin, incrementMisses } from '../utils/scoring'
+import { applyBustRule, checkWin, incrementMisses } from '../utils/scoring'
 import type { GameState, GameAction, GameStatus, Player, PlayerStatus, Game } from '../types/game'
 
 export const initialState: GameState = {
@@ -59,12 +59,11 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       const game = state.game
       if (!game || game.status === 'finished') return state
 
-      const { pinsKnockedDown, pinNumber } = action
+      const { points } = action
       const idx = game.currentPlayerIndex
       const player = game.players[idx]
 
-      const points = calculatePoints(pinsKnockedDown, pinNumber)
-      const isMiss = pinsKnockedDown === 0
+      const isMiss = points === 0
       const newScore = applyBustRule(player.score, points)
       const isBust = !isMiss && newScore === 25 && player.score + points > 50
 
@@ -119,8 +118,6 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
       const turn = {
         playerId: player.id,
-        pinsKnockedDown,
-        pinNumber,
         points,
         isBust,
         isMiss,
@@ -234,15 +231,12 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       const mg = state.molkkoutGame
       if (!mg || mg.status === 'finished') return state
 
-      const { pinsKnockedDown, pinNumber } = action
-      const points = calculatePoints(pinsKnockedDown, pinNumber)
+      const { points } = action
       const team = mg.teams[mg.currentTeamIndex]
 
       const turn = {
         teamId: team.id,
         playerName: team.playerNames[mg.currentPlayerInTeamIndex],
-        pinsKnockedDown,
-        pinNumber,
         points,
       }
 

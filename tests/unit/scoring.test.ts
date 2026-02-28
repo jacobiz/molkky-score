@@ -1,28 +1,9 @@
 import { describe, it, expect } from 'vitest'
 import {
-  calculatePoints,
   applyBustRule,
   checkWin,
   incrementMisses,
 } from '../../src/utils/scoring'
-
-describe('calculatePoints', () => {
-  it('0本のとき 0点を返す', () => {
-    expect(calculatePoints(0, null)).toBe(0)
-  })
-
-  it('1本のときピン番号の値を返す', () => {
-    expect(calculatePoints(1, 12)).toBe(12)
-    expect(calculatePoints(1, 1)).toBe(1)
-    expect(calculatePoints(1, 7)).toBe(7)
-  })
-
-  it('2本以上のとき本数を返す（ピン番号の合計ではない）', () => {
-    expect(calculatePoints(2, null)).toBe(2)
-    expect(calculatePoints(5, null)).toBe(5)
-    expect(calculatePoints(12, null)).toBe(12)
-  })
-})
 
 describe('applyBustRule', () => {
   it('合計が50点以下のときそのまま返す', () => {

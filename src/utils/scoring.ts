@@ -5,21 +5,6 @@
  */
 
 /**
- * 投球結果から得点を計算する
- * - 0本: 0点
- * - 1本: ピン番号の値
- * - 2本以上: 倒した本数（ピン番号の合計ではない）
- */
-export function calculatePoints(
-  pinsKnockedDown: number,
-  pinNumber: number | null,
-): number {
-  if (pinsKnockedDown === 0) return 0
-  if (pinsKnockedDown === 1) return pinNumber ?? 0
-  return pinsKnockedDown
-}
-
-/**
  * バーストルールを適用する
  * - 合計が50以下: そのまま返す
  * - 合計が50超: 25にリセット
