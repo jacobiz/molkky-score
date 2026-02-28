@@ -5,7 +5,28 @@
       "Bash(wsl:*)",
       "Bash(~/workspace/molkky-score/.gitignore:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "WebSearch",
+      "WebFetch(domain:www.molkky.world)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebFetch(domain:tosscornhole.com)",
+      "WebFetch(domain:groupgames101.com)",
+      "WebFetch(domain:elakaioutdoor.com)",
+      "WebFetch(domain:www.moelkkyversum.de)",
+      "WebFetch(domain:www.thebackyardbaron.com)",
+      "WebFetch(domain:www.molkky.com)",
+      "Bash(git fetch:*)",
+      "Bash(.specify/scripts/bash/check-prerequisites.sh:*)",
+      "Bash(.specify/scripts/bash/update-agent-context.sh claude:*)",
+      "Bash(git:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npx tsc:*)",
+      "Bash(pkill:*)"
     ]
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true
   }
 }

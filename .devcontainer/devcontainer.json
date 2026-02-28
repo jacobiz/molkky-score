@@ -5,6 +5,9 @@
   "mounts": [
     "source=${localEnv:HOME}/.claude,target=/tmp/host-claude,type=bind,readonly"
   ],
+  "containerEnv": {
+    "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}"
+  },
   "postCreateCommand": "bash .devcontainer/post-create.sh",
   "customizations": {
     "vscode": {
