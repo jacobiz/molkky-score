@@ -37,20 +37,20 @@
 
 **⚠️ CRITICAL**: Constitution 原則 II（テストファースト）に従い、scoring と reducer のテストを先に記述してから実装する
 
-- [ ] T008 `src/types/game.ts` に全エンティティの TypeScript 型を定義する（`data-model.md` 参照: `Player`, `Turn`, `Game`, `MolkkoutTeam`, `MolkkoutTurn`, `MolkkoutGame`, `Settings`, `GameState`, `GameAction` — data-model.md の全型を網羅）
-- [ ] T009 `tests/unit/scoring.test.ts` にスコア計算のテストケースを記述する（実装より先に）: `calculatePoints(0本→0, 1本→ピン値, 複数→本数)`, `applyBustRule(50超→25, 50ちょうど→50)`, `checkWin(50→true, 49→false)`
-- [ ] T010 `src/utils/scoring.ts` に T009 のテストをパスするスコア計算ピュア関数を実装する: `calculatePoints`, `applyBustRule`, `checkWin`, `incrementMisses`（3回→`'eliminated'`）
-- [ ] T011 `tests/unit/gameReducer.test.ts` に reducer のテストケースを記述する（実装より先に）: `START_GAME`, `RECORD_TURN`（通常/バースト/脱落/勝利各シナリオ）, `UNDO_TURN`, `RESTART_GAME`, `SET_LANGUAGE`
-- [ ] T012 `src/reducers/gameReducer.ts` に T011 のテストをパスする reducer を実装する（`scoring.ts` を利用し全 `GameAction` を処理）
-- [ ] T013 [P] `src/utils/storage.ts` を実装する（`localStorage` キー `molkky-score-v1`, JSON 保存/読み込み/バージョン検証、`contracts/localStorage-schema.md` 準拠）
-- [ ] T014 `src/context/GameContext.tsx` を実装する（`useReducer` + `useEffect` で storage sync、`GameContext` + `useGame()` フックをエクスポート）
-- [ ] T015 [P] `src/i18n/ja.ts` に全日本語文字列を定義する（`contracts/i18n-keys.md` の `Messages` インターフェース準拠）
-- [ ] T016 [P] `src/i18n/en.ts` に全英語文字列を定義する（`contracts/i18n-keys.md` 準拠、順位接尾辞 1st/2nd/3rd/Nth 対応）
-- [ ] T017 `src/utils/i18n.ts` に `useTranslation()` フックを実装する（`useGame()` から `settings.language` を取得して ja/en を切り替え）
-- [ ] T018 [P] `src/components/ui/Toast.tsx` を作成する（トースト通知: テキストと表示時間を props で受け取り、自動消去）
-- [ ] T019 [P] `src/components/ui/ConfirmDialog.tsx` を作成する（確認ダイアログ: メッセージ・確認/キャンセルボタン・コールバック props）
-- [ ] T020 `src/App.tsx` を実装する（`GameState.screen` による画面ルーティング: `home` / `setup` / `game` / `result` / `molkkout-setup` / `molkkout-game`）
-- [ ] T021 `src/main.tsx` を更新して `GameContext.Provider` でアプリ全体をラップする（`import './index.css'` は T004 で完了済み）
+- [x] T008 `src/types/game.ts` に全エンティティの TypeScript 型を定義する（`data-model.md` 参照: `Player`, `Turn`, `Game`, `MolkkoutTeam`, `MolkkoutTurn`, `MolkkoutGame`, `Settings`, `GameState`, `GameAction` — data-model.md の全型を網羅）
+- [x] T009 `tests/unit/scoring.test.ts` にスコア計算のテストケースを記述する（実装より先に）: `calculatePoints(0本→0, 1本→ピン値, 複数→本数)`, `applyBustRule(50超→25, 50ちょうど→50)`, `checkWin(50→true, 49→false)`
+- [x] T010 `src/utils/scoring.ts` に T009 のテストをパスするスコア計算ピュア関数を実装する: `calculatePoints`, `applyBustRule`, `checkWin`, `incrementMisses`（3回→`'eliminated'`）
+- [x] T011 `tests/unit/gameReducer.test.ts` に reducer のテストケースを記述する（実装より先に）: `START_GAME`, `RECORD_TURN`（通常/バースト/脱落/勝利各シナリオ）, `UNDO_TURN`, `RESTART_GAME`, `SET_LANGUAGE`
+- [x] T012 `src/reducers/gameReducer.ts` に T011 のテストをパスする reducer を実装する（`scoring.ts` を利用し全 `GameAction` を処理）
+- [x] T013 [P] `src/utils/storage.ts` を実装する（`localStorage` キー `molkky-score-v1`, JSON 保存/読み込み/バージョン検証、`contracts/localStorage-schema.md` 準拠）
+- [x] T014 `src/context/GameContext.tsx` を実装する（`useReducer` + `useEffect` で storage sync、`GameContext` + `useGame()` フックをエクスポート）
+- [x] T015 [P] `src/i18n/ja.ts` に全日本語文字列を定義する（`contracts/i18n-keys.md` の `Messages` インターフェース準拠）
+- [x] T016 [P] `src/i18n/en.ts` に全英語文字列を定義する（`contracts/i18n-keys.md` 準拠、順位接尾辞 1st/2nd/3rd/Nth 対応）
+- [x] T017 `src/utils/i18n.ts` に `useTranslation()` フックを実装する（`useGame()` から `settings.language` を取得して ja/en を切り替え）
+- [x] T018 [P] `src/components/ui/Toast.tsx` を作成する（トースト通知: テキストと表示時間を props で受け取り、自動消去）
+- [x] T019 [P] `src/components/ui/ConfirmDialog.tsx` を作成する（確認ダイアログ: メッセージ・確認/キャンセルボタン・コールバック props）
+- [x] T020 `src/App.tsx` を実装する（`GameState.screen` による画面ルーティング: `home` / `setup` / `game` / `result` / `molkkout-setup` / `molkkout-game`）
+- [x] T021 `src/main.tsx` を更新して `GameContext.Provider` でアプリ全体をラップする（`import './index.css'` は T004 で完了済み）
 
 **Checkpoint**: `npm run test:run` が全テストパスすること
 
