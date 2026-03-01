@@ -39,9 +39,9 @@ function GameScreenContent({ game }: { game: Game }) {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col bg-gray-50 md:flex-row">
+    <div className="h-dvh flex flex-col bg-gray-50 md:flex-row">
       {/* Top / Left: header + ScoreBoard */}
-      <div className="flex-1 flex flex-col md:overflow-y-auto">
+      <div className="shrink-0 flex flex-col md:flex-1 md:min-h-0 md:overflow-y-auto">
         <header className="bg-white border-b border-gray-200 px-4 py-4 flex items-center justify-between sticky top-0 z-10">
           <p className="text-base font-semibold text-gray-900 truncate">
             {t.game.currentTurn.replace('{name}', currentPlayer?.name ?? '')}
@@ -55,14 +55,16 @@ function GameScreenContent({ game }: { game: Game }) {
           </button>
         </header>
 
-        <ScoreBoard
-          players={game.players}
-          currentPlayerIndex={game.currentPlayerIndex}
-        />
+        <div className="overflow-y-auto max-h-80 md:max-h-none md:flex-1">
+          <ScoreBoard
+            players={game.players}
+            currentPlayerIndex={game.currentPlayerIndex}
+          />
+        </div>
       </div>
 
       {/* Bottom / Right: PinInput */}
-      <div className="bg-white border-t border-gray-200 md:border-t-0 md:border-l md:w-80 md:flex md:flex-col md:justify-center">
+      <div className="flex-1 min-h-0 flex flex-col bg-white border-t border-gray-200 md:flex-none md:border-t-0 md:border-l md:w-80 md:justify-center">
         {/* Re-mount PinInput on each new turn to reset step state */}
         <PinInput key={game.totalTurns} onSubmit={handlePinSubmit} />
       </div>

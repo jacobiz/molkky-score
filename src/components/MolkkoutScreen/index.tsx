@@ -58,9 +58,9 @@ export function MolkkoutScreen() {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col bg-gray-50 md:flex-row">
+    <div className="h-dvh flex flex-col bg-gray-50 md:flex-row">
       {/* Top / Left: teams & scores */}
-      <div className="flex-1 flex flex-col">
+      <div className="shrink-0 flex flex-col md:flex-1 md:min-h-0 md:overflow-y-auto">
         <header className="bg-white border-b border-gray-200 px-4 py-4 sticky top-0 z-10">
           {mg.status === 'overtime' && (
             <p className="text-xs font-semibold text-amber-600 bg-amber-50 rounded-full px-3 py-1 text-center mb-2">
@@ -77,31 +77,33 @@ export function MolkkoutScreen() {
           </p>
         </header>
 
-        <div className="flex flex-col divide-y divide-gray-100">
-          {mg.teams.map((team, i) => (
-            <div
-              key={team.id}
-              className={`
-                flex items-center justify-between px-4 py-4
-                ${i === mg.currentTeamIndex ? 'bg-blue-50' : 'bg-white'}
-              `}
-            >
-              <div>
-                {i === mg.currentTeamIndex && (
-                  <span className="inline-block w-2 h-2 rounded-full bg-blue-500 mr-2" />
-                )}
-                <span className="text-base font-medium text-gray-900">{team.name}</span>
+        <div className="overflow-y-auto max-h-80 md:max-h-none md:flex-1">
+          <div className="flex flex-col divide-y divide-gray-100">
+            {mg.teams.map((team, i) => (
+              <div
+                key={team.id}
+                className={`
+                  flex items-center justify-between px-4 py-4
+                  ${i === mg.currentTeamIndex ? 'bg-blue-50' : 'bg-white'}
+                `}
+              >
+                <div>
+                  {i === mg.currentTeamIndex && (
+                    <span className="inline-block w-2 h-2 rounded-full bg-blue-500 mr-2" />
+                  )}
+                  <span className="text-base font-medium text-gray-900">{team.name}</span>
+                </div>
+                <span className="text-xl font-bold text-gray-900">
+                  {team.totalScore}pt
+                </span>
               </div>
-              <span className="text-xl font-bold text-gray-900">
-                {team.totalScore}pt
-              </span>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Bottom / Right: MolkkoutInput */}
-      <div className="bg-white border-t border-gray-200 md:border-t-0 md:border-l md:w-80 md:flex md:flex-col md:justify-center">
+      <div className="flex-1 min-h-0 flex flex-col bg-white border-t border-gray-200 md:flex-none md:border-t-0 md:border-l md:w-80 md:justify-center">
         <MolkkoutInput
           key={mg.turns.length}
           onSubmit={handleSubmit}
