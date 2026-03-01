@@ -69,6 +69,11 @@ export function HomeScreen() {
         </button>
       </div>
 
+      {/* Footer */}
+      <p className="mt-8 text-xs text-gray-400 text-center">
+        v{__APP_VERSION__} · MIT License · © 2026 jacobiz
+      </p>
+
       {/* Confirm dialog */}
       {showConfirm && (
         <ConfirmDialog
