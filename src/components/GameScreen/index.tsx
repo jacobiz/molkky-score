@@ -70,7 +70,7 @@ function GameScreenContent({ game }: { game: Game }) {
       </div>
 
       {/* Bottom / Right: PinInput */}
-      <div className="flex-1 min-h-0 flex flex-col bg-white border-t border-gray-200 md:flex-none md:border-t-0 md:border-l md:w-80 md:justify-center">
+      <div className="flex-1 min-h-0 flex flex-col bg-white border-t border-gray-200 md:flex-none md:border-t-0 md:border-l md:w-2/5 md:justify-center">
         {/* Re-mount PinInput on each new turn to reset step state */}
         <PinInput key={game.totalTurns} onSubmit={handlePinSubmit} />
       </div>
