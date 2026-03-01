@@ -30,9 +30,9 @@ npm test && npm run lint
 TypeScript 5.7（strict mode 有効）: Follow standard conventions
 
 ## Recent Changes
+- 008-landscape-layout: Added TypeScript 5.7（strict mode 有効） + React 19, TailwindCSS v4（`@tailwindcss/vite`）
 - 007-layout-max-players: Added TypeScript 5.7（strict mode 有効） + React 19, TailwindCSS v4（`@tailwindcss/vite`）
 - 006-fix-scoreboard-layout: Added TypeScript 5.7 (strict mode) + React 19, TailwindCSS v4 (`@tailwindcss/vite`), Vite 6.1
-- 006-fix-scoreboard-layout: Added [if applicable, e.g., PostgreSQL, CoreData, files or N/A]
 
 
 <!-- MANUAL ADDITIONS START -->
