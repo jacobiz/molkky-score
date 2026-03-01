@@ -22,7 +22,7 @@ export function PinInput({ onSubmit }: PinInputProps) {
       </button>
 
       {/* 1–12: 4×3 grid */}
-      <div className="flex-1 min-h-0 grid grid-cols-4 grid-rows-3 gap-2">
+      <div className="flex-1 min-h-0 grid grid-cols-4 grid-rows-3 gap-2 max-h-[280px]">
         {Array.from({ length: 12 }, (_, i) => i + 1).map(n => (
           <button
             key={n}
