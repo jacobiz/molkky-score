@@ -1,5 +1,4 @@
 ---
-
 description: "Task list for 006-fix-scoreboard-layout"
 ---
 
@@ -25,13 +24,13 @@ Single-project layout — `src/` at repository root.
 
 ## Phase 1: Setup
 
-*Not applicable — no project initialization or dependency changes required for this pure layout fix.*
+_Not applicable — no project initialization or dependency changes required for this pure layout fix._
 
 ---
 
 ## Phase 2: Foundational
 
-*Not applicable — changes are isolated to 3 existing component files with no shared infrastructure prerequisites.*
+_Not applicable — changes are isolated to 3 existing component files with no shared infrastructure prerequisites._
 
 ---
 
@@ -68,8 +67,8 @@ Single-project layout — `src/` at repository root.
 ## Phase 5: Polish & Cross-Cutting Concerns
 
 - [x] T005 Run `npm test && npm run lint` from project root and confirm all 27 existing unit tests pass and no TypeScript/lint errors are introduced
-- [ ] T006 [P] Manually verify desktop (`md:` breakpoint) layout is unchanged: open at ≥768px width and confirm the side-by-side layout (ScoreBoard left, PinInput right) still renders correctly
-- [ ] T007 [P] Manually verify 2–4 player mobile portrait layout: start a 2-player and 4-player game, confirm all player rows and score-input area are visible, game functions correctly (SC-003)
+- [x] T006 [P] Manually verify desktop (`md:` breakpoint) layout is unchanged: open at ≥768px width and confirm the side-by-side layout (ScoreBoard left, PinInput right) still renders correctly
+- [x] T007 [P] Manually verify 2–4 player mobile portrait layout: start a 2-player and 4-player game, confirm all player rows and score-input area are visible, game functions correctly (SC-003)
 
 ---
 
