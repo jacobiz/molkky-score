@@ -84,14 +84,14 @@ function ResultScreenContent({ game }: { game: Game }) {
           onClick={handleShare}
           className="w-full py-3 rounded-2xl border border-gray-300 text-gray-700 font-semibold active:bg-gray-50"
         >
-          {t.result.share}
+          📤 {t.result.share}
         </button>
         <div className="flex gap-3">
           <button
             onClick={() => dispatch({ type: 'RESTART_GAME' })}
             className="flex-1 py-3 rounded-2xl bg-green-500 text-white font-semibold active:bg-green-600"
           >
-            {t.result.playAgain}
+            🔄 {t.result.playAgain}
           </button>
           <button
             onClick={() => dispatch({ type: 'NEW_GAME' })}

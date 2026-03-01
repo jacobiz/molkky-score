@@ -14,6 +14,7 @@ function GameScreenContent({ game }: { game: Game }) {
 
   const currentPlayer = game.players[game.currentPlayerIndex]
   const canUndo = game.turnHistory.length > 0
+  const throwCount = game.turnHistory.filter(t => t.playerId === currentPlayer?.id).length + 1
 
   const handleCloseToast = useCallback(() => setToastMessage(null), [])
 
@@ -43,15 +44,20 @@ function GameScreenContent({ game }: { game: Game }) {
       {/* Top / Left: header + ScoreBoard */}
       <div className="shrink-0 flex flex-col md:flex-1 md:min-h-0 md:overflow-y-auto">
         <header className="bg-white border-b border-gray-200 px-4 py-4 flex items-center justify-between sticky top-0 z-10">
-          <p className="text-base font-semibold text-gray-900 truncate">
-            {t.game.currentTurn.replace('{name}', currentPlayer?.name ?? '')}
-          </p>
+          <div className="flex flex-col min-w-0">
+            <p className="text-base font-semibold text-gray-900 truncate">
+              {t.game.currentTurn.replace('{name}', currentPlayer?.name ?? '')}
+            </p>
+            <p className="text-sm text-gray-500">
+              {t.game.throwCount(throwCount)}
+            </p>
+          </div>
           <button
             onClick={handleUndo}
             disabled={!canUndo}
             className="ml-3 shrink-0 px-4 py-2 rounded-xl border border-gray-300 text-sm text-gray-600 disabled:opacity-30 active:bg-gray-100"
           >
-            {t.game.undo}
+            ↩️ {t.game.undo}
           </button>
         </header>
 

@@ -48,7 +48,7 @@ export function HomeScreen() {
             onClick={handleResumeGame}
             className="w-full py-4 rounded-2xl bg-green-500 text-white text-lg font-semibold shadow-sm active:bg-green-600"
           >
-            {t.home.resumeGame}
+            ▶️ {t.home.resumeGame}
           </button>
         )}
 
@@ -57,7 +57,7 @@ export function HomeScreen() {
           onClick={handleNewGame}
           className="w-full py-4 rounded-2xl bg-blue-500 text-white text-lg font-semibold shadow-sm active:bg-blue-600"
         >
-          {t.home.newGame}
+          ▶️ {t.home.newGame}
         </button>
 
         {/* Language toggle */}

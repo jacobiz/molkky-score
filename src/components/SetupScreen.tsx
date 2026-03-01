@@ -158,7 +158,7 @@ export function SetupScreen() {
           disabled={players.length < 2}
           className="w-full py-4 rounded-2xl bg-green-500 text-white text-lg font-semibold shadow-sm disabled:opacity-40 active:bg-green-600"
         >
-          {t.setup.startGame}
+          ▶️ {t.setup.startGame}
         </button>
         {players.length < 2 && (
           <p className="text-xs text-gray-400 text-center mt-2">
