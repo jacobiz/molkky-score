@@ -11,7 +11,9 @@
       "Bash(.specify/scripts/bash/create-new-feature.sh:*)",
       "Bash(.specify/scripts/bash/setup-plan.sh:*)",
       "Bash(.specify/scripts/bash/update-agent-context.sh claude:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(bash:*)",
+      "Bash(curl:*)"
     ]
   },
   "enabledPlugins": {
