@@ -65,4 +65,15 @@ export const fi: Messages = {
     copied: "Kopioitu leikepöydälle",
     language: "Kieli",
   },
+  install: {
+    link: "📲 Asennusohjeet",
+    title: "Asennusohjeet",
+    ios: "iOS Safari",
+    iosStep1: "Napauta jakamispainiketta (□↑) näytön alareunassa",
+    iosStep2: "Valitse \"Lisää kotinäytölle\"",
+    iosStep3: "Napauta \"Lisää\" oikeassa yläkulmassa",
+    android: "Android Chrome",
+    androidStep1: "Napauta ⋮ -valikkoa oikeassa yläkulmassa",
+    androidStep2: "Valitse \"Asenna sovellus\" tai \"Lisää kotinäytölle\"",
+  },
 }
