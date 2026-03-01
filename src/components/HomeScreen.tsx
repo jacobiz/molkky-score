@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useGame } from '../context/GameContext'
 import { useTranslation } from '../utils/i18n'
 import { ConfirmDialog } from './ui/ConfirmDialog'
+import { InstallHelpModal } from './ui/InstallHelpModal'
 import { LanguageSelector } from './ui/LanguageSelector'
 import { LicensesScreen } from './LicensesScreen'
 
@@ -9,6 +10,7 @@ export function HomeScreen() {
   const { state, dispatch } = useGame()
   const { t } = useTranslation()
   const [showConfirm, setShowConfirm] = useState(false)
+  const [showInstall, setShowInstall] = useState(false)
 
   const hasActiveGame = state.game !== null
   const [showLicenses, setShowLicenses] = useState(false)
@@ -70,8 +72,16 @@ export function HomeScreen() {
         />
       </div>
 
+      {/* Install link */}
+      <button
+        onClick={() => setShowInstall(true)}
+        className="mt-6 text-sm text-blue-500 underline"
+      >
+        {t.install.link}
+      </button>
+
       {/* Footer */}
-      <p className="mt-8 text-xs text-gray-400 text-center">
+      <p className="mt-4 text-xs text-gray-400 text-center">
         v{__APP_VERSION__} ·{' '}
         <button
           onClick={() => setShowLicenses(true)}
@@ -81,6 +91,9 @@ export function HomeScreen() {
         </button>{' '}
         · © 2026 jacobiz
       </p>
+
+      {/* Install help modal */}
+      {showInstall && <InstallHelpModal onClose={() => setShowInstall(false)} />}
 
       {/* Confirm dialog */}
       {showConfirm && (

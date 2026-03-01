@@ -59,6 +59,17 @@ export const ja = {
     copied: "クリップボードにコピーしました",
     language: "言語",
   },
+  install: {
+    link: "📲 インストール方法",
+    title: "インストール方法",
+    ios: "iOS Safari",
+    iosStep1: "画面下の共有ボタン（□↑）をタップ",
+    iosStep2: "「ホーム画面に追加」を選ぶ",
+    iosStep3: "右上の「追加」をタップ",
+    android: "Android Chrome",
+    androidStep1: "右上の ⋮ メニューをタップ",
+    androidStep2: "「アプリをインストール」または「ホーム画面に追加」を選ぶ",
+  },
 };
 
 export type Messages = typeof ja;

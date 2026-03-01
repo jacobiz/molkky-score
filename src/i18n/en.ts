@@ -68,4 +68,15 @@ export const en: Messages = {
     copied: "Copied to clipboard",
     language: "Language",
   },
+  install: {
+    link: "📲 How to Install",
+    title: "How to Install",
+    ios: "iOS Safari",
+    iosStep1: "Tap the share button (□↑) at the bottom of the screen",
+    iosStep2: "Select \"Add to Home Screen\"",
+    iosStep3: "Tap \"Add\" in the top right",
+    android: "Android Chrome",
+    androidStep1: "Tap the ⋮ menu in the top right",
+    androidStep2: "Select \"Install app\" or \"Add to Home Screen\"",
+  },
 };
