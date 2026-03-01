@@ -53,6 +53,7 @@ export const en: Messages = {
     eliminated: "eliminated",
     turns: "turns",
     rankSuffix: (n: number) => ordinal(n),
+    scoreUnit: "pt",
   },
   molkkout: {
     title: "Mölkkout (Tiebreaker)",

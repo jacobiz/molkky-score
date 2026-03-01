@@ -77,10 +77,10 @@ function ResultScreenContent({ game }: { game: Game }) {
               >
                 {player.name}
               </span>
-              <span className={`text-base ${isEliminated ? 'text-gray-400' : 'text-gray-700 font-semibold'}`}>
-                {isEliminated ? t.result.eliminated : `${player.score}pt`}
-              </span>
               {isWinner && <span className="text-xl">🏆</span>}
+              <span className={`text-base ${isEliminated ? 'text-gray-400' : 'text-gray-700 font-semibold'}`}>
+                {isEliminated ? t.result.eliminated : `${player.score}${t.result.scoreUnit}`}
+              </span>
             </div>
           )
         })}

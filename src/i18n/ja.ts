@@ -44,6 +44,7 @@ export const ja = {
     eliminated: "脱落",
     turns: "ターン",
     rankSuffix: (_n: number) => "位",
+    scoreUnit: "点",
   },
   molkkout: {
     title: "Mölkkout（タイブレーカー）",

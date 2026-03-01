@@ -24,7 +24,7 @@ export function buildShareText({ players, totalTurns, t }: ShareOptions): string
     const scoreStr =
       player.status === 'eliminated'
         ? t.result.eliminated
-        : `${player.score}pt`
+        : `${player.score}${t.result.scoreUnit}`
     const trophy = player.status === 'winner' ? ' 🏆' : ''
     return `${rank}${suffix} ${player.name} ${scoreStr}${trophy}`
   })

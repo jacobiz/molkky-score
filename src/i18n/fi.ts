@@ -50,6 +50,7 @@ export const fi: Messages = {
     eliminated: "poistettu",
     turns: "vuoroa",
     rankSuffix: (_n: number) => ".",
+    scoreUnit: "p",
   },
   molkkout: {
     title: "Mölkkout (ratkaisuheitto)",
