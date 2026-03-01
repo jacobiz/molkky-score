@@ -7,6 +7,7 @@ import { readFileSync } from 'node:fs'
 const { version } = JSON.parse(readFileSync('./package.json', 'utf-8')) as { version: string }
 
 export default defineConfig({
+  base: '/molkky-score/',
   define: {
     __APP_VERSION__: JSON.stringify(version),
   },

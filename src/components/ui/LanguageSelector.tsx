@@ -1,3 +1,4 @@
+import React from 'react'
 import type { Language } from '../../types/game'
 
 interface Props {
@@ -50,7 +51,7 @@ function FlagFI() {
   )
 }
 
-const FLAG_COMPONENTS: Record<Language, () => JSX.Element> = {
+const FLAG_COMPONENTS: Record<Language, () => React.JSX.Element> = {
   ja: FlagJP,
   en: FlagGB,
   fi: FlagFI,
