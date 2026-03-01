@@ -80,10 +80,22 @@ export function LicensesScreen({ onBack }: Props) {
         {/* This app's own license */}
         <div className="bg-white rounded-2xl p-4 shadow-sm">
           <div className="flex items-baseline justify-between mb-1">
-            <span className="font-semibold text-gray-900">Mölkky Score</span>
+            <span className="font-semibold text-gray-900">Mölkky スコア</span>
             <span className="text-xs text-gray-400">v{__APP_VERSION__}</span>
           </div>
           <p className="text-xs text-gray-500">MIT License — Copyright (c) 2026 jacobiz</p>
+        </div>
+
+        {/* Privacy policy */}
+        <div className="bg-white rounded-2xl p-4 shadow-sm">
+          <h2 className="font-semibold text-gray-900 mb-2">
+            {isJa ? 'プライバシーポリシー' : 'Privacy Policy'}
+          </h2>
+          <p className="text-xs text-gray-500 leading-relaxed">
+            {isJa
+              ? 'このアプリはユーザーのデータを外部サーバーに送信しません。スコアや設定はこのデバイスの localStorage にのみ保存されます。'
+              : 'This app does not send any user data to external servers. Scores and settings are stored only in this device\'s localStorage.'}
+          </p>
         </div>
       </div>
     </div>

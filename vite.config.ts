@@ -20,12 +20,14 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
       manifest: {
-        name: 'Molkky Score',
-        short_name: 'MolkkyScore',
-        description: 'モルック得点管理アプリ',
+        name: 'Mölkky スコア',
+        short_name: 'Mölkky',
+        description: 'モルック（Mölkky）のスコアをリアルタイムで管理する無料PWAアプリ',
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',
+        lang: 'ja',
+        categories: ['games', 'sports'],
         icons: [
           {
             src: 'pwa-192x192.png',
