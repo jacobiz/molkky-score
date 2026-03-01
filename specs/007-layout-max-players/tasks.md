@@ -35,8 +35,8 @@ ScoreBoard 内スクロールが可能なことを確認する。デスクトッ
 
 ### Implementation for User Story 1+2
 
-- [ ] T001 [US1] [US2] Update flex roles in `src/components/GameScreen/index.tsx`: ScoreBoard area `flex-1 min-h-0` → `flex-none`; ScoreBoard wrapper `flex-1 min-h-0 overflow-y-auto` → `h-[272px] overflow-y-auto md:h-auto md:flex-1 md:min-h-0`; PinInput area `shrink-0` → `flex-1 min-h-0`
-- [ ] T002 [P] [US1] Update `src/components/GameScreen/PinInput.tsx`: outer div add `h-full` to class (`flex flex-col gap-2 p-3` → `flex flex-col gap-2 p-3 h-full`); grid div add `flex-1 min-h-0` (`grid grid-cols-4 grid-rows-3 gap-2` → `flex-1 min-h-0 grid grid-cols-4 grid-rows-3 gap-2`); remove `py-2` from grid button className
+- [x] T001 [US1] [US2] Update flex roles in `src/components/GameScreen/index.tsx`: ScoreBoard area `flex-1 min-h-0` → `flex-none`; ScoreBoard wrapper `flex-1 min-h-0 overflow-y-auto` → `h-[272px] overflow-y-auto md:h-auto md:flex-1 md:min-h-0`; PinInput area `shrink-0` → `flex-1 min-h-0`
+- [x] T002 [P] [US1] Update `src/components/GameScreen/PinInput.tsx`: outer div add `h-full` to class (`flex flex-col gap-2 p-3` → `flex flex-col gap-2 p-3 h-full`); grid div add `flex-1 min-h-0` (`grid grid-cols-4 grid-rows-3 gap-2` → `flex-1 min-h-0 grid grid-cols-4 grid-rows-3 gap-2`); remove `py-2` from grid button className
 
 **Checkpoint**: 2〜4人ではスクロールなし・ボタン拡大を確認。5人以上では ScoreBoard 内
 スクロール・PinInput は常に画面内確認。デスクトップ横並びレイアウト確認。
@@ -53,7 +53,7 @@ ScoreBoard 内スクロールが可能なことを確認する。デスクトッ
 
 ### Implementation for User Story 3
 
-- [ ] T003 [P] [US3] Change `players.length >= 6` to `players.length >= 10` in `src/components/SetupScreen.tsx` (handleAddPlayer function, ~line 14)
+- [x] T003 [P] [US3] Change `players.length >= 6` to `players.length >= 10` in `src/components/SetupScreen.tsx` (handleAddPlayer function, ~line 14)
 
 **Checkpoint**: 10人まで登録可能・11人目は追加不可・10人ゲームでスコア入力正常動作確認。
 
@@ -63,8 +63,8 @@ ScoreBoard 内スクロールが可能なことを確認する。デスクトッ
 
 **Purpose**: 既存ユニットテストの継続パス確認（SC-006）と TypeScript コンパイルエラーなし確認
 
-- [ ] T004 Run `npm test` to verify all 27 existing tests still pass (SC-006; also confirms FR-006: game logic supports 10 players without reducer changes)
-- [ ] T005 [P] Run `npx tsc --noEmit` to confirm TypeScript compiles without errors
+- [x] T004 Run `npm test` to verify all 27 existing tests still pass (SC-006; also confirms FR-006: game logic supports 10 players without reducer changes)
+- [x] T005 [P] Run `npx tsc --noEmit` to confirm TypeScript compiles without errors
 
 ---
 

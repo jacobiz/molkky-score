@@ -11,7 +11,7 @@ export function SetupScreen() {
 
   function handleAdd() {
     const name = inputValue.trim()
-    if (players.length >= 6) {
+    if (players.length >= 10) {
       setError(t.setup.errorMaxPlayers)
       return
     }
