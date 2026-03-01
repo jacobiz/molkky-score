@@ -21,9 +21,12 @@ function ResultScreenContent({ game }: { game: Game }) {
 
   const winner = game.players.find(p => p.status === 'winner')
   const ranked = buildRanking(game.players)
+  const roundCount = Math.max(0, ...game.players.map(p =>
+    game.turnHistory.filter(t => t.playerId === p.id).length
+  ))
 
   async function handleShare() {
-    const text = buildShareText({ players: game.players, totalTurns: game.totalTurns, t })
+    const text = buildShareText({ players: game.players, totalTurns: roundCount, t })
     await shareResult(text, () => setToastMessage(t.common.copied))
   }
 
@@ -42,7 +45,7 @@ function ResultScreenContent({ game }: { game: Game }) {
           </p>
         )}
         <p className="text-sm text-gray-400 mt-1">
-          {t.result.totalTurns.replace('{n}', String(game.totalTurns))}
+          {t.result.totalTurns.replace('{n}', String(roundCount))}
         </p>
       </header>
 
