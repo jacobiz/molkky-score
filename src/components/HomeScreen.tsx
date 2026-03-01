@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useGame } from '../context/GameContext'
 import { useTranslation } from '../utils/i18n'
 import { ConfirmDialog } from './ui/ConfirmDialog'
+import { LicensesScreen } from './LicensesScreen'
 
 export function HomeScreen() {
   const { state, dispatch } = useGame()
@@ -9,6 +10,7 @@ export function HomeScreen() {
   const [showConfirm, setShowConfirm] = useState(false)
 
   const hasActiveGame = state.game !== null
+  const [showLicenses, setShowLicenses] = useState(false)
 
   function handleNewGame() {
     if (hasActiveGame) {
@@ -30,6 +32,10 @@ export function HomeScreen() {
   function handleToggleLanguage() {
     const next = state.settings.language === 'ja' ? 'en' : 'ja'
     dispatch({ type: 'SET_LANGUAGE', language: next })
+  }
+
+  if (showLicenses) {
+    return <LicensesScreen onBack={() => setShowLicenses(false)} />
   }
 
   return (
@@ -71,7 +77,14 @@ export function HomeScreen() {
 
       {/* Footer */}
       <p className="mt-8 text-xs text-gray-400 text-center">
-        v{__APP_VERSION__} · MIT License · © 2026 jacobiz
+        v{__APP_VERSION__} ·{' '}
+        <button
+          onClick={() => setShowLicenses(true)}
+          className="underline underline-offset-2 active:text-gray-600"
+        >
+          MIT License
+        </button>{' '}
+        · © 2026 jacobiz
       </p>
 
       {/* Confirm dialog */}
