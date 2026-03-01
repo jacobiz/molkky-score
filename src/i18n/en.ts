@@ -26,6 +26,7 @@ export const en: Messages = {
     errorDuplicate: "This name is already registered",
     errorMaxLength: "Player name must be 12 characters or less",
     orderHint: "Use buttons to change throw order",
+    shuffle: "Shuffle",
   },
   game: {
     currentTurn: "{name}'s turn",

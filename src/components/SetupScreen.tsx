@@ -50,6 +50,17 @@ export function SetupScreen() {
     })
   }
 
+  function handleShuffle() {
+    setPlayers(prev => {
+      const r = [...prev]
+      for (let i = r.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[r[i], r[j]] = [r[j], r[i]]
+      }
+      return r
+    })
+  }
+
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'Enter') handleAdd()
   }
@@ -112,7 +123,17 @@ export function SetupScreen() {
         {/* Player list */}
         {players.length > 0 && (
           <div className="flex flex-col gap-2">
-            <p className="text-xs text-gray-500 px-1">{t.setup.orderHint}</p>
+            <div className="flex items-center justify-between px-1">
+              <p className="text-xs text-gray-500">{t.setup.orderHint}</p>
+              {players.length >= 2 && (
+                <button
+                  onClick={handleShuffle}
+                  className="text-sm px-3 py-1 rounded-lg border border-gray-200 text-gray-600 bg-white active:bg-gray-100"
+                >
+                  🔀 {t.setup.shuffle}
+                </button>
+              )}
+            </div>
             {players.map((name, i) => (
               <div
                 key={i}
