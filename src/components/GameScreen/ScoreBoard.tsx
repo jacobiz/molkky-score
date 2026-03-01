@@ -10,7 +10,7 @@ export function ScoreBoard({ players, currentPlayerIndex }: ScoreBoardProps) {
   const { t } = useTranslation()
 
   return (
-    <div className="flex flex-col divide-y divide-gray-100 overflow-y-auto">
+    <div className="flex flex-col divide-y divide-gray-100">
       {players.map((player, i) => {
         const isCurrent = i === currentPlayerIndex && player.status === 'active'
         const isEliminated = player.status === 'eliminated'
@@ -23,7 +23,7 @@ export function ScoreBoard({ players, currentPlayerIndex }: ScoreBoardProps) {
           <div
             key={player.id}
             className={`
-              flex items-center gap-3 px-4 py-3 transition-colors
+              flex items-center gap-3 px-4 py-2 transition-colors
               ${isCurrent ? 'bg-blue-50' : ''}
               ${isEliminated ? 'bg-gray-50 opacity-60' : ''}
               ${isMissWarning && !isEliminated ? 'bg-amber-50' : ''}
