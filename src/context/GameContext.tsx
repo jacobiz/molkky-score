@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer, useEffect, type ReactNode } from 'react'
 import { gameReducer, initialState } from '../reducers/gameReducer'
 import { saveState, loadState } from '../utils/storage'
+import { detectLocale } from '../utils/i18n'
 import type { GameState, GameAction } from '../types/game'
 
 interface GameContextValue {
@@ -13,7 +14,7 @@ const GameContext = createContext<GameContextValue | null>(null)
 export function GameProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(gameReducer, initialState, (init) => {
     const saved = loadState()
-    if (!saved) return init
+    if (!saved) return { ...init, settings: { language: detectLocale() } }
     return { ...init, ...saved }
   })
 

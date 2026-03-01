@@ -103,7 +103,7 @@ export interface MolkkoutGame {
 // Settings
 // ─────────────────────────────────────────
 
-export type Language = 'ja' | 'en'
+export type Language = 'ja' | 'en' | 'fi'
 
 export interface Settings {
   language: Language
