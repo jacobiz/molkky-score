@@ -71,14 +71,12 @@ export function ScoreBoard({ players, currentPlayerIndex }: ScoreBoardProps) {
 
             {/* Score */}
             <div className="text-right min-w-16">
-              <p className="font-bold text-gray-900">
-                <span className="text-xl">{player.score}</span>
-                {!isEliminated && (
-                  <span className={`text-xs ml-1 font-normal ${isCloseToWin ? 'text-orange-600 font-semibold' : 'text-gray-400'}`}>
-                    /{remaining}
-                  </span>
-                )}
-              </p>
+              <p className="text-2xl font-bold text-gray-900">{player.score}</p>
+              {!isEliminated && (
+                <p className={`text-sm ${isCloseToWin ? 'text-orange-600 font-bold' : 'text-gray-400'}`}>
+                  {t.game.remaining} {remaining}
+                </p>
+              )}
             </div>
           </div>
         )
