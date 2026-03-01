@@ -88,7 +88,7 @@ function ResultScreenContent({ game }: { game: Game }) {
         </button>
         <div className="flex gap-3">
           <button
-            onClick={() => dispatch({ type: 'RESTART_GAME' })}
+            onClick={() => dispatch({ type: 'REMATCH_SETUP' })}
             className="flex-1 py-3 rounded-2xl bg-green-500 text-white font-semibold active:bg-green-600"
           >
             🔄 {t.result.playAgain}

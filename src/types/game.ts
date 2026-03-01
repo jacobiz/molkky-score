@@ -130,6 +130,7 @@ export interface GameState {
   game: Game | null
   molkkoutGame: MolkkoutGame | null
   settings: Settings
+  rematchPlayers: string[] | null
 }
 
 // ─────────────────────────────────────────
@@ -155,6 +156,7 @@ export type GameAction =
   // ─ ゲーム終了後 ─
   | { type: 'RESTART_GAME' }
   | { type: 'NEW_GAME' }
+  | { type: 'REMATCH_SETUP' }
 
   // ─ Mölkkout ─
   | { type: 'START_MOLKKOUT'; teams: { name: string; playerNames: string[] }[] }
