@@ -17,6 +17,7 @@ export const ja = {
     errorDuplicate: "同じ名前はすでに登録されています",
     errorMaxLength: "プレイヤー名は12文字以内で入力してください",
     orderHint: "ボタンで投球順を変更",
+    shuffle: "シャッフル",
   },
   game: {
     currentTurn: "{name} のターン",
