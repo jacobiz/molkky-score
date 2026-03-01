@@ -1,42 +1,63 @@
 # molkky-score Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-02-28
+Last updated: 2026-03-01
 
-## Active Technologies
-- TypeScript 5.7（strict mode 有効） + React 19, TailwindCSS v4（`@tailwindcss/vite`）, Vite 6.1, vite-plugin-pwa 0.21 (002-direct-score-input)
-- TypeScript 5.7 (strict mode) + React 19 + TailwindCSS v4 (utility classes のみ、追加ライブラリなし) (003-game-layout-optimize)
-- N/A（UI レイアウト変更のみ） (003-game-layout-optimize)
-- TypeScript 5.7（strict mode） + React 19, TailwindCSS v4（`@tailwindcss/vite`） (004-game-ui-polish)
-- localStorage（既存） (004-game-ui-polish)
-- TypeScript 5.7（strict mode 有効） + React 19, TailwindCSS v4（追加ライブラリなし） (005-shuffle-order)
-- TypeScript 5.7 (strict mode) + React 19, TailwindCSS v4 (`@tailwindcss/vite`), Vite 6.1 (006-fix-scoreboard-layout)
-- N/A（ゲームロジック・型定義への変更なし） (007-layout-max-players)
-- localStorage（既存 `SCHEMA_VERSION=2` 変更なし） (009-rematch-setup)
-- TypeScript 5.7 (strict mode) + React 19, TailwindCSS v4 (`@tailwindcss/vite`), Vite 6.1, vite-plugin-pwa 0.21 (010-add-finnish-lang)
-- localStorage — key `molkky-score-v2`, `SCHEMA_VERSION=2` (unchanged) (010-add-finnish-lang)
+## Tech Stack
 
-- TypeScript 5.7（strict mode 有効） + React 19, TailwindCSS v4 (`@tailwindcss/vite`), Vite 6.1, vite-plugin-pwa 0.21 (001-molkky-score)
+- **Runtime**: TypeScript 5.7 (strict mode) + React 19
+- **Styling**: TailwindCSS v4 (`@tailwindcss/vite`)
+- **Build**: Vite 6.1
+- **PWA**: vite-plugin-pwa 0.21
+- **State**: React Context + `useReducer` (no external libraries)
+- **Persistence**: `localStorage` — key `molkky-score-v2`, `SCHEMA_VERSION=2`
+- **Testing**: Vitest + @testing-library/react
 
 ## Project Structure
 
 ```text
 src/
-tests/
+├── components/
+│   ├── GameScreen/         # ゲーム画面（スコアボード + ピン入力）
+│   ├── MolkkoutScreen/     # Mölkkout 画面
+│   ├── ui/                 # 共通UIコンポーネント
+│   │   ├── ScreenHeader.tsx
+│   │   ├── ConfirmDialog.tsx
+│   │   ├── LanguageSelector.tsx
+│   │   ├── Toast.tsx
+│   │   └── InstallHelpModal.tsx
+│   ├── HomeScreen.tsx
+│   ├── SetupScreen.tsx
+│   ├── MolkkoutSetupScreen.tsx
+│   └── ResultScreen.tsx
+├── context/GameContext.tsx
+├── reducers/gameReducer.ts
+├── types/game.ts
+├── utils/
+│   ├── scoring.ts
+│   ├── storage.ts
+│   ├── i18n.ts
+│   └── share.ts
+└── i18n/
+    ├── ja.ts   # Messages 型定義ソース
+    ├── en.ts
+    └── fi.ts
+tests/unit/
 ```
 
 ## Commands
 
-npm test && npm run lint
+```bash
+npm test        # Vitest unit tests
+npm run build   # Production build
+npm run dev     # Dev server
+```
 
 ## Code Style
 
-TypeScript 5.7（strict mode 有効）: Follow standard conventions
-
-## Recent Changes
-- 010-add-finnish-lang: Added TypeScript 5.7 (strict mode) + React 19, TailwindCSS v4 (`@tailwindcss/vite`), Vite 6.1, vite-plugin-pwa 0.21
-- 009-rematch-setup: Added TypeScript 5.7（strict mode 有効） + React 19, TailwindCSS v4（`@tailwindcss/vite`）
-- 008-landscape-layout: Added TypeScript 5.7（strict mode 有効） + React 19, TailwindCSS v4（`@tailwindcss/vite`）
-
+- TypeScript strict mode: no `any`, explicit types at boundaries
+- i18n: `ja.ts` defines the `Messages` type; `en.ts` and `fi.ts` implement it via `import type { Messages }`
+- Navigation: `dispatch({ type: 'NAVIGATE', screen: '...' })` via `gameReducer.ts`
+- All non-home screens use `<ScreenHeader>` for consistent back-to-home navigation
 
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->

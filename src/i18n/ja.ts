@@ -20,6 +20,7 @@ export const ja = {
     shuffle: "シャッフル",
   },
   game: {
+    title: "ゲーム中",
     currentTurn: "{name} のターン",
     score: "スコア",
     remaining: "残り",
@@ -43,6 +44,7 @@ export const ja = {
     eliminated: "脱落",
     turns: "ターン",
     rankSuffix: (_n: number) => "位",
+    scoreUnit: "点",
   },
   molkkout: {
     title: "Mölkkout（タイブレーカー）",
@@ -58,6 +60,8 @@ export const ja = {
     cancel: "キャンセル",
     copied: "クリップボードにコピーしました",
     language: "言語",
+    backToHome: "ホームへ戻る",
+    backToHomeConfirm: "ホームへ戻りますか？",
   },
   install: {
     link: "📲 インストール方法",

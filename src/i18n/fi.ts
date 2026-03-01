@@ -26,6 +26,7 @@ export const fi: Messages = {
     shuffle: "Sekoita",
   },
   game: {
+    title: "Peli",
     currentTurn: "{name}'s vuoro",
     score: "Pisteet",
     remaining: "Jäljellä",
@@ -49,6 +50,7 @@ export const fi: Messages = {
     eliminated: "poistettu",
     turns: "vuoroa",
     rankSuffix: (_n: number) => ".",
+    scoreUnit: "p",
   },
   molkkout: {
     title: "Mölkkout (ratkaisuheitto)",
@@ -64,6 +66,8 @@ export const fi: Messages = {
     cancel: "Peruuta",
     copied: "Kopioitu leikepöydälle",
     language: "Kieli",
+    backToHome: "Palaa kotiin",
+    backToHomeConfirm: "Palata etusivulle?",
   },
   install: {
     link: "📲 Asennusohjeet",

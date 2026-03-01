@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react'
 import { useGame } from '../../context/GameContext'
 import { useTranslation } from '../../utils/i18n'
 import { applyBustRule } from '../../utils/scoring'
+import { ScreenHeader } from '../ui/ScreenHeader'
 import { Toast } from '../ui/Toast'
 import { PinInput } from './PinInput'
 import { ScoreBoard } from './ScoreBoard'
@@ -40,8 +41,14 @@ function GameScreenContent({ game }: { game: Game }) {
   }
 
   return (
-    <div className="h-dvh flex flex-col bg-gray-50 md:flex-row">
+    <div className="h-dvh flex flex-col">
+      <ScreenHeader
+        title={t.game.title}
+        requireConfirm={true}
+        onGoHome={() => dispatch({ type: 'NAVIGATE', screen: 'home' })}
+      />
       {/* Top / Left: header + ScoreBoard */}
+      <div className="flex-1 min-h-0 flex flex-col bg-gray-50 md:flex-row">
       <div className="flex-none flex flex-col md:flex-1 md:min-h-0 md:overflow-y-auto">
         <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between sticky top-0 z-10">
           <div className="flex flex-col min-w-0">
@@ -75,10 +82,11 @@ function GameScreenContent({ game }: { game: Game }) {
         <PinInput key={game.totalTurns} onSubmit={handlePinSubmit} />
       </div>
 
-      {/* Toast notification */}
-      {toastMessage && (
-        <Toast message={toastMessage} onClose={handleCloseToast} />
-      )}
+        {/* Toast notification */}
+        {toastMessage && (
+          <Toast message={toastMessage} onClose={handleCloseToast} />
+        )}
+      </div>
     </div>
   )
 }

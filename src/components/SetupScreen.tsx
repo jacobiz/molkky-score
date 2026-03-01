@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useGame } from '../context/GameContext'
 import { useTranslation } from '../utils/i18n'
 import { LanguageSelector } from './ui/LanguageSelector'
+import { ScreenHeader } from './ui/ScreenHeader'
 
 export function SetupScreen() {
   const { state, dispatch } = useGame()
@@ -76,14 +77,17 @@ export function SetupScreen() {
 
   return (
     <div className="min-h-dvh bg-gray-50 flex flex-col">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-4 py-4 flex items-center justify-between">
-        <h1 className="text-xl font-bold text-gray-900">{t.setup.title}</h1>
-        <LanguageSelector
-          current={state.settings.language}
-          onSelect={(lang) => dispatch({ type: 'SET_LANGUAGE', language: lang })}
-        />
-      </header>
+      <ScreenHeader
+        title={t.setup.title}
+        requireConfirm={true}
+        onGoHome={() => dispatch({ type: 'NAVIGATE', screen: 'home' })}
+        rightContent={
+          <LanguageSelector
+            current={state.settings.language}
+            onSelect={(lang) => dispatch({ type: 'SET_LANGUAGE', language: lang })}
+          />
+        }
+      />
 
       <div className="flex-1 flex flex-col gap-4 p-4">
         {/* Input row */}

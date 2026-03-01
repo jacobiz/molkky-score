@@ -29,6 +29,7 @@ export const en: Messages = {
     shuffle: "Shuffle",
   },
   game: {
+    title: "Game",
     currentTurn: "{name}'s turn",
     score: "Score",
     remaining: "Remaining",
@@ -52,6 +53,7 @@ export const en: Messages = {
     eliminated: "eliminated",
     turns: "turns",
     rankSuffix: (n: number) => ordinal(n),
+    scoreUnit: "pt",
   },
   molkkout: {
     title: "Mölkkout (Tiebreaker)",
@@ -67,6 +69,8 @@ export const en: Messages = {
     cancel: "Cancel",
     copied: "Copied to clipboard",
     language: "Language",
+    backToHome: "Back to Home",
+    backToHomeConfirm: "Return to home?",
   },
   install: {
     link: "📲 How to Install",

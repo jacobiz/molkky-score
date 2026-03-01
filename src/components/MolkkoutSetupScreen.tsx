@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useGame } from '../context/GameContext'
 import { useTranslation } from '../utils/i18n'
+import { ScreenHeader } from './ui/ScreenHeader'
 
 interface Team {
   name: string
@@ -70,12 +71,14 @@ export function MolkkoutSetupScreen() {
 
   return (
     <div className="min-h-dvh flex flex-col bg-gray-50">
-      <header className="bg-white border-b border-gray-200 px-4 py-4">
-        <h1 className="text-xl font-bold text-gray-900">{t.molkkout.title}</h1>
-        <p className="text-sm text-gray-500 mt-1">{t.molkkout.pinSetupGuide}</p>
-      </header>
+      <ScreenHeader
+        title={t.molkkout.title}
+        requireConfirm={false}
+        onGoHome={() => dispatch({ type: 'NAVIGATE', screen: 'home' })}
+      />
 
       <div className="flex-1 flex flex-col gap-4 p-4 overflow-y-auto">
+        <p className="text-sm text-gray-500 px-1">{t.molkkout.pinSetupGuide}</p>
         {teams.map((team, teamIdx) => (
           <div
             key={teamIdx}
