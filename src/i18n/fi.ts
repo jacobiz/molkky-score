@@ -1,0 +1,68 @@
+import type { Messages } from "./ja";
+
+function ordinal(n: number): string {
+  return `${n}.`
+}
+
+export const fi: Messages = {
+  home: {
+    title: "Mölkky Pisteet",
+    newGame: "Uusi peli",
+    resumeGame: "Jatka peliä",
+    overwriteConfirm: "Nykyinen peli menetetään. Haluatko jatkaa?",
+    confirmYes: "Jatka",
+    confirmNo: "Peruuta",
+  },
+  setup: {
+    title: "Pelaaja-asetukset",
+    namePlaceholder: "Pelaajan nimi (max 12 merkkiä)",
+    addPlayer: "Lisää",
+    startGame: "Aloita peli",
+    errorMinPlayers: "Vähintään 2 pelaajaa tarvitaan",
+    errorMaxPlayers: "Enintään 10 pelaajaa sallittu",
+    errorDuplicate: "Tämä nimi on jo rekisteröity",
+    errorMaxLength: "Pelaajan nimi saa olla enintään 12 merkkiä",
+    orderHint: "Muuta heittojärjestystä painikkeilla",
+    shuffle: "Sekoita",
+  },
+  game: {
+    currentTurn: "{name}'s vuoro",
+    score: "Pisteet",
+    remaining: "Jäljellä",
+    misses: "Hutit",
+    eliminated: "Poistettu",
+    undo: "Kumoa",
+    throwCount: (n: number) => `${ordinal(n)} heitto`,
+    howMany: "Pisteet?",
+    bustMessage: "💥 Ylitys! Nollataan 25:een",
+    eliminatedMessage: "❌ {name} on poistettu",
+    winnerMessage: "{name} voittaa!",
+  },
+  result: {
+    title: "Peli ohi",
+    winner: "Voittaja: {name}",
+    totalTurns: "{n} vuoroa",
+    playAgain: "Pelaa uudelleen",
+    newGame: "Uusi peli",
+    share: "Jaa tulokset",
+    sharePrefix: "🎯 Mölkky-tulokset",
+    eliminated: "poistettu",
+    turns: "vuoroa",
+    rankSuffix: (_n: number) => ".",
+  },
+  molkkout: {
+    title: "Mölkkout (ratkaisuheitto)",
+    pinSetupGuide: "Aseta keilat tässä järjestyksessä: 6-4-12-10-8",
+    start: "Aloita",
+    teamTurn: "{team}'s vuoro ({player})",
+    totalScore: "Yhteensä: {score}pt",
+    winner: "{team} voittaa!",
+    overtime: "Tasapeli! Jatkoaika",
+  },
+  common: {
+    ok: "OK",
+    cancel: "Peruuta",
+    copied: "Kopioitu leikepöydälle",
+    language: "Kieli",
+  },
+}

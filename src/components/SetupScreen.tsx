@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useGame } from '../context/GameContext'
 import { useTranslation } from '../utils/i18n'
+import { LanguageSelector } from './ui/LanguageSelector'
 
 export function SetupScreen() {
   const { state, dispatch } = useGame()
@@ -73,22 +74,15 @@ export function SetupScreen() {
     dispatch({ type: 'START_GAME', playerNames: players })
   }
 
-  function handleToggleLanguage() {
-    const next = state.settings.language === 'ja' ? 'en' : 'ja'
-    dispatch({ type: 'SET_LANGUAGE', language: next })
-  }
-
   return (
     <div className="min-h-dvh bg-gray-50 flex flex-col">
       {/* Header */}
       <header className="bg-white border-b border-gray-200 px-4 py-4 flex items-center justify-between">
         <h1 className="text-xl font-bold text-gray-900">{t.setup.title}</h1>
-        <button
-          onClick={handleToggleLanguage}
-          className="px-3 py-1.5 rounded-full border border-gray-300 text-sm text-gray-600"
-        >
-          {state.settings.language === 'ja' ? 'EN' : 'JA'}
-        </button>
+        <LanguageSelector
+          current={state.settings.language}
+          onSelect={(lang) => dispatch({ type: 'SET_LANGUAGE', language: lang })}
+        />
       </header>
 
       <div className="flex-1 flex flex-col gap-4 p-4">

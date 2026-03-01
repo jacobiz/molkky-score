@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useGame } from '../context/GameContext'
 import { useTranslation } from '../utils/i18n'
 import { ConfirmDialog } from './ui/ConfirmDialog'
+import { LanguageSelector } from './ui/LanguageSelector'
 import { LicensesScreen } from './LicensesScreen'
 
 export function HomeScreen() {
@@ -27,11 +28,6 @@ export function HomeScreen() {
 
   function handleResumeGame() {
     dispatch({ type: 'NAVIGATE', screen: 'game' })
-  }
-
-  function handleToggleLanguage() {
-    const next = state.settings.language === 'ja' ? 'en' : 'ja'
-    dispatch({ type: 'SET_LANGUAGE', language: next })
   }
 
   if (showLicenses) {
@@ -66,13 +62,12 @@ export function HomeScreen() {
           ▶️ {t.home.newGame}
         </button>
 
-        {/* Language toggle */}
-        <button
-          onClick={handleToggleLanguage}
-          className="self-center px-5 py-2 rounded-full border border-gray-300 text-sm text-gray-600 bg-white"
-        >
-          {state.settings.language === 'ja' ? 'English' : '日本語'}
-        </button>
+        {/* Language selector */}
+        <LanguageSelector
+          current={state.settings.language}
+          onSelect={(lang) => dispatch({ type: 'SET_LANGUAGE', language: lang })}
+          className="self-center"
+        />
       </div>
 
       {/* Footer */}
