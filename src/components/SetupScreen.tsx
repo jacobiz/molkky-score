@@ -7,7 +7,7 @@ export function SetupScreen() {
   const { t } = useTranslation()
   const [inputValue, setInputValue] = useState('')
   const [error, setError] = useState<string | null>(null)
-  const [players, setPlayers] = useState<string[]>([])
+  const [players, setPlayers] = useState<string[]>(state.rematchPlayers ?? [])
 
   function handleAdd() {
     const name = inputValue.trim()

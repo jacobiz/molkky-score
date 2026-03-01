@@ -1,10 +1,10 @@
 import type { Messages } from "./ja";
 
 function ordinal(n: number): string {
-  if (n === 1) return "1st";
-  if (n === 2) return "2nd";
-  if (n === 3) return "3rd";
-  return `${n}th`;
+  if (n === 1) return "st";
+  if (n === 2) return "nd";
+  if (n === 3) return "rd";
+  return `th`;
 }
 
 export const en: Messages = {
@@ -22,7 +22,7 @@ export const en: Messages = {
     addPlayer: "Add",
     startGame: "Start Game",
     errorMinPlayers: "At least 2 players required",
-    errorMaxPlayers: "Maximum 6 players allowed",
+    errorMaxPlayers: "Maximum 10 players allowed",
     errorDuplicate: "This name is already registered",
     errorMaxLength: "Player name must be 12 characters or less",
     orderHint: "Use buttons to change throw order",
@@ -35,7 +35,7 @@ export const en: Messages = {
     misses: "Misses",
     eliminated: "Eliminated",
     undo: "Undo",
-    throwCount: (n: number) => `${ordinal(n)} throw`,
+    throwCount: (n: number) => `${n}${ordinal(n)} throw`,
     howMany: "Score?",
     bustMessage: "💥 Bust! Reset to 25",
     eliminatedMessage: "❌ {name} is eliminated",

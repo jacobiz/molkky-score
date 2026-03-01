@@ -6,6 +6,7 @@ export const initialState: GameState = {
   game: null,
   molkkoutGame: null,
   settings: { language: 'ja' },
+  rematchPlayers: null,
 }
 
 // ─── helpers ───────────────────────────────────────────────
@@ -52,7 +53,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         totalTurns: 0,
         turnHistory: [],
       }
-      return { ...state, screen: 'game', game }
+      return { ...state, screen: 'game', game, rematchPlayers: null }
     }
 
     case 'RECORD_TURN': {
@@ -198,6 +199,16 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
     case 'NEW_GAME':
       return { ...state, screen: 'setup', game: null }
+
+    case 'REMATCH_SETUP': {
+      const game = state.game
+      if (!game) return state
+      return {
+        ...state,
+        screen: 'setup',
+        rematchPlayers: game.players.map(p => p.name),
+      }
+    }
 
     case 'START_MOLKKOUT': {
       const teams = action.teams.map(t => ({
