@@ -39,9 +39,10 @@ interface Messages {
     misses: string           // "ミス"
     eliminated: string       // "脱落"
     undo: string             // "やり直し"
+    throwCount: (n: number) => string  // "N投目"（ja）/ "Nth throw"（en）
     howMany: string          // "何点？"
-    bustMessage: string      // "バースト！25点にリセット"
-    eliminatedMessage: string // "{name} が脱落しました"
+    bustMessage: string      // "💥 バースト！25点にリセット"
+    eliminatedMessage: string // "❌ {name} が脱落しました"
     winnerMessage: string    // "{name} の勝利！"
   }
 

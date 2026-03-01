@@ -16,6 +16,8 @@ export function ScoreBoard({ players, currentPlayerIndex }: ScoreBoardProps) {
         const isEliminated = player.status === 'eliminated'
         const isWinner = player.status === 'winner'
         const isMissWarning = player.consecutiveMisses === 2
+        const remaining = 50 - player.score
+        const isCloseToWin = remaining <= 12 && !isEliminated && !isWinner
 
         return (
           <div
@@ -38,7 +40,7 @@ export function ScoreBoard({ players, currentPlayerIndex }: ScoreBoardProps) {
             {/* Name */}
             <span
               className={`
-                flex-1 text-base font-medium truncate
+                flex-1 text-lg font-medium truncate
                 ${isEliminated ? 'line-through text-gray-400' : 'text-gray-900'}
                 ${isWinner ? 'font-bold text-green-700' : ''}
               `}
@@ -48,8 +50,8 @@ export function ScoreBoard({ players, currentPlayerIndex }: ScoreBoardProps) {
 
             {/* Eliminated badge */}
             {isEliminated && (
-              <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
-                {t.game.eliminated}
+              <span className="text-sm text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
+                ❌ {t.game.eliminated}
               </span>
             )}
 
@@ -57,7 +59,7 @@ export function ScoreBoard({ players, currentPlayerIndex }: ScoreBoardProps) {
             {!isEliminated && (
               <span
                 className={`
-                  text-xs px-2 py-0.5 rounded-full
+                  text-sm px-2 py-0.5 rounded-full
                   ${isMissWarning
                     ? 'bg-amber-100 text-amber-700 font-semibold'
                     : 'bg-gray-100 text-gray-500'}
@@ -69,10 +71,10 @@ export function ScoreBoard({ players, currentPlayerIndex }: ScoreBoardProps) {
 
             {/* Score */}
             <div className="text-right min-w-16">
-              <p className="text-xl font-bold text-gray-900">{player.score}</p>
+              <p className="text-2xl font-bold text-gray-900">{player.score}</p>
               {!isEliminated && (
-                <p className="text-xs text-gray-400">
-                  {t.game.remaining} {50 - player.score}
+                <p className={`text-sm ${isCloseToWin ? 'text-orange-600 font-bold' : 'text-gray-400'}`}>
+                  {t.game.remaining} {remaining}
                 </p>
               )}
             </div>
