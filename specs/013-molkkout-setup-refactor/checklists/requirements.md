@@ -1,34 +1,34 @@
-# Specification Quality Checklist: Mölkkout Setup Refactor
+# 仕様品質チェックリスト: Mölkkout セットアップ改修
 
-**Purpose**: Validate specification completeness and quality before proceeding to planning
-**Created**: 2026-03-02
-**Feature**: [spec.md](../spec.md)
+**目的**: 計画フェーズに進む前に仕様の完全性と品質を検証する
+**作成日**: 2026-03-02
+**フィーチャー**: [spec.md](../spec.md)
 
-## Content Quality
+## コンテンツ品質
 
-- [X] No implementation details (languages, frameworks, APIs)
-- [X] Focused on user value and business needs
-- [X] Written for non-technical stakeholders
-- [X] All mandatory sections completed
+- [X] 実装の詳細（言語・フレームワーク・API）が含まれていない
+- [X] ユーザー価値とビジネスニーズに焦点を当てている
+- [X] 非技術者向けに記述されている
+- [X] 必須セクションがすべて完成している
 
-## Requirement Completeness
+## 要件の完全性
 
-- [X] No [NEEDS CLARIFICATION] markers remain
-- [X] Requirements are testable and unambiguous
-- [X] Success criteria are measurable
-- [X] Success criteria are technology-agnostic (no implementation details)
-- [X] All acceptance scenarios are defined
-- [X] Edge cases are identified
-- [X] Scope is clearly bounded
-- [X] Dependencies and assumptions identified
+- [X] [NEEDS CLARIFICATION] マーカーが残っていない
+- [X] 要件がテスト可能で曖昧でない
+- [X] 成功基準が測定可能である
+- [X] 成功基準が技術スタックに依存していない
+- [X] すべての受け入れシナリオが定義されている
+- [X] エッジケースが識別されている
+- [X] スコープが明確に区切られている
+- [X] 依存関係と前提・仮定が識別されている
 
-## Feature Readiness
+## フィーチャー準備状況
 
-- [X] All functional requirements have clear acceptance criteria
-- [X] User scenarios cover primary flows
-- [X] Feature meets measurable outcomes defined in Success Criteria
-- [X] No implementation details leak into specification
+- [X] すべての機能要件に明確な受け入れ基準がある
+- [X] ユーザーシナリオが主要フローをカバーしている
+- [X] フィーチャーが成功基準で定義された測定可能なアウトカムを満たしている
+- [X] 仕様に実装の詳細が漏れていない
 
-## Notes
+## 備考
 
-- All items pass. Ready for `/speckit.plan`.
+- 全項目が合格。`/speckit.plan` に進める。

@@ -1,87 +1,87 @@
-# Feature Specification: Mölkkout Setup Refactor
+# 機能仕様: Mölkkout セットアップ改修
 
-**Feature Branch**: `013-molkkout-setup-refactor`
-**Created**: 2026-03-02
-**Status**: Draft
-**Input**: User description: "モルックアウト機能を改修する。セッティングで入力するのはチーム名のみ(プレイヤーは入力しない。投球順はルールによるため、ユーザ側に委ねる)。代わりに総投球数を入力できるようにする(前提:全チームの投球数は同じ。1人チーム同士の場合は3投、2人チーム同士の場合は2*2=4投になる)"
+**フィーチャーブランチ**: `013-molkkout-setup-refactor`
+**作成日**: 2026-03-02
+**ステータス**: ドラフト
+**入力**: "モルックアウト機能を改修する。セッティングで入力するのはチーム名のみ(プレイヤーは入力しない。投球順はルールによるため、ユーザ側に委ねる)。代わりに総投球数を入力できるようにする(前提:全チームの投球数は同じ。1人チーム同士の場合は3投、2人チーム同士の場合は2*2=4投になる)"
 
-## User Scenarios & Testing *(mandatory)*
+## ユーザーシナリオとテスト *(必須)*
 
-### User Story 1 - Mölkkout Setup with Team Names and Total Throws (Priority: P1)
+### ユーザーストーリー1 - チーム名と総投球数を設定してMölkkoutを開始 (優先度: P1)
 
-A group of players wants to start a Mölkkout tiebreaker. They enter team names (without listing individual players) and specify how many total throws each team gets. The throwing order within each team is determined physically by the players themselves following the official rules—the app does not track this.
+プレイヤーグループがタイブレーカーとしてMölkkoutを始めたい。セットアップ画面でチーム名を入力し（プレイヤー名は入力しない）、各チームの総投球数を指定してゲームを開始する。チーム内の投球順は公式ルールに基づきプレイヤー自身が物理的に管理し、アプリはこれを追跡しない。
 
-**Why this priority**: This is the entry point to the entire Mölkkout feature. Without a working setup screen, no game can start. Simplifying setup by removing player name input reduces friction and aligns with how the rules actually work (throwing order is the players' responsibility).
+**この優先度の理由**: Mölkkout機能全体のエントリーポイントであり、セットアップ画面が機能しなければゲームを開始できない。プレイヤー名入力を削除してセットアップを簡素化することで操作の手間を減らし、実際のルール（投球順はプレイヤーの責任）と整合させる。
 
-**Independent Test**: Can be fully tested by opening the Mölkkout setup screen, entering 2 team names and a throw count, tapping Start, and confirming the game screen shows those team names with the correct throw count.
+**単独テスト**: Mölkkoutセットアップ画面を開き、2チームの名前と投球数を入力して「開始」をタップし、ゲーム画面にチーム名と正しい投球数が表示されることを確認することで単独でテストできる。
 
-**Acceptance Scenarios**:
+**受け入れシナリオ**:
 
-1. **Given** the Mölkkout setup screen is open, **When** the user enters names for 2 teams and sets total throws to 3, **Then** tapping Start launches the Mölkkout game with 2 teams each having 3 throws.
-2. **Given** the setup screen is open, **When** the user tries to start without filling in all team names, **Then** an error message is shown and the game does not start.
-3. **Given** the setup screen is open, **When** the user adds a third team and fills all names, **Then** the game starts with 3 teams all sharing the same throw count.
-4. **Given** the setup screen is open, **When** the user sets total throws to 4 (for 2-player teams), **Then** the game tracks exactly 4 throws per team with no player name display.
-
----
-
-### User Story 2 - Mölkkout Game Screen Without Player Tracking (Priority: P2)
-
-During the Mölkkout game, the score screen shows which team is currently throwing and how many throws have been used (e.g., "Throw 2 of 3"), without displaying or tracking individual player names. Players physically determine their own rotation.
-
-**Why this priority**: The game screen must reflect the simplified data model—no player name display since the setup no longer collects it. Without this, the refactored setup produces a broken game screen.
-
-**Independent Test**: Can be tested by starting a Mölkkout game and verifying the game screen shows "Team A — Throw N of M" format without any player name fields, and advances correctly after each throw entry.
-
-**Acceptance Scenarios**:
-
-1. **Given** a Mölkkout game is active, **When** it is Team A's turn, **Then** the screen shows Team A's name and the current throw number out of total throws (e.g., "Throw 1 of 3") with no player name shown.
-2. **Given** Team A has completed all their throws, **When** turns are exhausted for that team, **Then** the screen advances to Team B's first throw.
-3. **Given** all teams have completed all throws, **When** one team has the highest score, **Then** the winner is declared.
-4. **Given** all teams complete throws with equal scores, **When** overtime begins, **Then** each team gets one additional throw (same as current overtime rules).
+1. **Given** Mölkkoutセットアップ画面が開いている, **When** 2チームの名前を入力し総投球数を3に設定して開始する, **Then** 各チームが3投を持つ2チームでMölkkoutゲームが開始される。
+2. **Given** セットアップ画面が開いている, **When** チーム名をすべて入力せずに開始しようとする, **Then** エラーメッセージが表示されゲームは開始されない。
+3. **Given** セットアップ画面が開いている, **When** 3チーム目を追加してすべての名前を入力する, **Then** 同じ投球数を共有する3チームでゲームが開始される。
+4. **Given** セットアップ画面が開いている, **When** 総投球数を4（2人チーム想定）に設定する, **Then** プレイヤー名表示なしで各チームがちょうど4投を追跡してゲームが進行する。
 
 ---
 
-### Edge Cases
+### ユーザーストーリー2 - プレイヤー追跡なしのMölkkoutゲーム画面 (優先度: P2)
 
-- What happens when the user sets total throws to 0 or leaves it blank? → The app must require a positive integer (minimum 1).
-- What happens when only 1 team name is entered? → The app must require at least 2 teams.
-- What happens when total throws is very large (e.g., 99)? → The app should cap throws at a reasonable maximum (e.g., 10 per team).
-- What happens to previously saved Mölkkout game state (with player names) after this change? → Saved games with the old schema should be gracefully discarded or migrated; a stale game with player names must not crash the new game screen.
+Mölkkoutゲーム中、スコア画面は現在投球中のチームと投球進捗（例:「3投中2投目」）を表示し、個々のプレイヤー名の表示や追跡は行わない。プレイヤーは自分たちで物理的に投球順を管理する。
 
-## Requirements *(mandatory)*
+**この優先度の理由**: ゲーム画面は簡素化されたデータモデルを反映しなければならない。セットアップでプレイヤー名を収集しなくなった以上、ゲーム画面にもプレイヤー名表示があってはならない。この対応なしには改修後のセットアップがゲーム画面を壊す。
 
-### Functional Requirements
+**単独テスト**: Mölkkoutゲームを開始し、ゲーム画面に「チームA — N/M投目」形式が表示され、プレイヤー名フィールドがなく、投球入力後に正しく進行することを確認することでテストできる。
 
-- **FR-001**: The Mölkkout setup screen MUST allow users to enter team names only; individual player name fields are removed.
-- **FR-002**: The setup screen MUST provide a single input for total throws per team, shared by all teams.
-- **FR-003**: The total throws input MUST accept positive integers from 1 to 10 (inclusive); values outside this range are rejected with an error message.
-- **FR-004**: The setup screen MUST require at least 2 teams and allow up to 6 teams (same as current limit).
-- **FR-005**: The setup screen MUST require all team names to be non-empty before allowing the game to start.
-- **FR-006**: The Mölkkout game screen MUST display the current team name and throw progress (e.g., "Throw 2 of 4") without any player name.
-- **FR-007**: The Mölkkout game screen MUST advance to the next team after the current team exhausts their total throws.
-- **FR-008**: Winner determination and overtime rules MUST remain unchanged from the current implementation.
-- **FR-009**: The app MUST handle existing saved Mölkkout game data (old schema with player names) without crashing; stale data is discarded and the user is returned to the home screen.
+**受け入れシナリオ**:
 
-### Key Entities
+1. **Given** Mölkkoutゲームが進行中, **When** チームAのターンになる, **Then** 画面にチームAの名前と総投球数に対する現在の投球番号（例:「3投中1投目」）が表示され、プレイヤー名は表示されない。
+2. **Given** チームAがすべての投球を完了した, **When** そのチームのターンが尽きる, **Then** 画面はチームBの最初の投球に進む。
+3. **Given** 全チームが全投球を完了した, **When** 1チームが最高スコアを持つ, **Then** そのチームが勝者として宣言される。
+4. **Given** 全チームが同点で全投球を完了した, **When** 延長戦が始まる, **Then** 各チームが追加1投を得る（現行の延長戦ルールと同じ）。
 
-- **MölkkoutTeam**: Represents a competing team. Attributes: name (string), total score (number). Player names are removed.
-- **MölkkoutGame**: Represents an active Mölkkout session. Attributes: teams list, current team index, current throw index within team, total throws per team (shared), turns history, game status, winner.
-- **MölkkoutTurn**: Records a single throw outcome. Attributes: team identifier, points scored. Player name field is removed.
+---
 
-## Success Criteria *(mandatory)*
+### エッジケース
 
-### Measurable Outcomes
+- 総投球数を0に設定したり空白のままにした場合は？ → アプリは正の整数（最小1）を必須とする。
+- チーム名が1つしか入力されていない場合は？ → アプリは最低2チームを必須とする。
+- 総投球数が非常に大きい場合（例: 99）は？ → アプリは妥当な上限（最大10投）でキャップする。
+- この改修後に旧スキーマ（プレイヤー名あり）で保存されたMölkkoutゲームデータはどうなるか？ → 旧データは適切に破棄またはマイグレーションし、プレイヤー名付きの古いゲームデータが新しいゲーム画面をクラッシュさせてはならない。
 
-- **SC-001**: Users can complete Mölkkout setup in under 30 seconds with 2 teams.
-- **SC-002**: 100% of Mölkkout setups succeed without error when at least 2 team names are entered and a valid throw count is provided.
-- **SC-003**: The game screen correctly advances team turns for all valid combinations of 2–6 teams with 1–10 throws per team.
-- **SC-004**: No crash or data corruption occurs when launching the app with old Mölkkout game data saved in storage.
+## 要件 *(必須)*
 
-## Assumptions
+### 機能要件
 
-- All teams always have the same total throws (as stated by user). A heterogeneous throw count per team is out of scope.
-- The total throws value represents the total count for the whole team (not per player). E.g., 3 means the team as a whole throws 3 times.
-- Maximum teams remain 6, same as current implementation.
-- The suggested default for total throws in the UI is 3 (the 1-player-team standard), but users can freely change it.
-- Throw count capped at 10 to prevent UI overflow; this can be revisited if needed.
-- i18n keys for the new UI elements will be added to all three languages (ja, en, fi).
+- **FR-001**: Mölkkoutセットアップ画面はチーム名のみの入力を許可しなければならない（MUST）。個別プレイヤー名フィールドは削除する。
+- **FR-002**: セットアップ画面は全チームで共通の「1チームあたりの総投球数」入力フィールドを1つ提供しなければならない（MUST）。
+- **FR-003**: 総投球数入力は1〜10（両端含む）の正の整数のみ受け付けなければならない（MUST）。範囲外の値はエラーメッセージで拒否する。
+- **FR-004**: セットアップ画面は最低2チームを必須とし、最大6チームまで許可しなければならない（MUST）（現行の上限と同じ）。
+- **FR-005**: セットアップ画面はゲーム開始前にすべてのチーム名が空でないことを必須とする（MUST）。
+- **FR-006**: Mölkkoutゲーム画面は現在のチーム名と投球進捗（例:「4投中2投目」）をプレイヤー名なしで表示しなければならない（MUST）。
+- **FR-007**: Mölkkoutゲーム画面は現在のチームが総投球数を使い切った後に次のチームへ進まなければならない（MUST）。
+- **FR-008**: 勝者判定と延長戦のルールは現行実装から変更してはならない（MUST）。
+- **FR-009**: アプリは旧スキーマ（プレイヤー名あり）で保存された既存のMölkkoutゲームデータをクラッシュなしに処理しなければならない（MUST）。古いデータは破棄しユーザーをホーム画面に戻す。
+
+### 主要エンティティ
+
+- **MölkkoutTeam**: 競技チームを表す。属性: 名前（文字列）、合計スコア（数値）。プレイヤー名は削除。
+- **MölkkoutGame**: アクティブなMölkkoutセッションを表す。属性: チームリスト、現在チームインデックス、チーム内現在投球インデックス、共通の総投球数、ターン履歴、ゲームステータス、勝者。
+- **MölkkoutTurn**: 1回の投球結果を記録する。属性: チーム識別子、得点。プレイヤー名フィールドは削除。
+
+## 成功基準 *(必須)*
+
+### 測定可能なアウトカム
+
+- **SC-001**: ユーザーは2チームのMölkkoutセットアップを30秒以内に完了できる。
+- **SC-002**: 2チーム以上の名前が入力され有効な投球数が設定されている場合、100%のセットアップがエラーなしに成功する。
+- **SC-003**: ゲーム画面が2〜6チーム × 1〜10投のすべての有効な組み合わせでチームのターンを正しく進行させる。
+- **SC-004**: ストレージに旧Mölkkoutゲームデータが保存された状態でアプリを起動してもクラッシュやデータ破損が発生しない。
+
+## 前提・仮定
+
+- すべてのチームの総投球数は常に同じ（ユーザー指定の通り）。チームごとに異なる投球数は対象外。
+- 総投球数はチーム全体の合計（1人あたりではない）を表す。例: 3 = チームとして合計3回投げる。
+- 最大チーム数は現行実装と同じ6チームのまま。
+- UIでの総投球数のデフォルト値は3（1人チーム標準）とするが、ユーザーが自由に変更できる。
+- UIのオーバーフローを防ぐため投球数は10を上限とする（必要に応じて見直し可）。
+- 新UIの i18n キーは3言語すべて（ja / en / fi）に追加する。
