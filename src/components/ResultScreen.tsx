@@ -1,23 +1,16 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useGame } from '../context/GameContext'
 import { useTranslation } from '../utils/i18n'
-import { buildShareText, shareResult } from '../utils/share'
+import { buildShareText, shareResult, buildRanking } from '../utils/share'
 import { ScreenHeader } from './ui/ScreenHeader'
 import { Toast } from './ui/Toast'
-import type { Game, Player } from '../types/game'
-
-function buildRanking(players: Player[]): Player[] {
-  const active = players
-    .filter(p => p.status !== 'eliminated')
-    .sort((a, b) => b.score - a.score)
-  const eliminated = players.filter(p => p.status === 'eliminated')
-  return [...active, ...eliminated]
-}
+import type { Game } from '../types/game'
 
 function ResultScreenContent({ game }: { game: Game }) {
   const { dispatch } = useGame()
   const { t } = useTranslation()
   const [toastMessage, setToastMessage] = useState<string | null>(null)
+  const handleCloseToast = useCallback(() => setToastMessage(null), [])
 
   const winner = game.players.find(p => p.status === 'winner')
   const ranked = buildRanking(game.players)
@@ -117,7 +110,7 @@ function ResultScreenContent({ game }: { game: Game }) {
       </div>
 
       {toastMessage && (
-        <Toast message={toastMessage} onClose={() => setToastMessage(null)} />
+        <Toast message={toastMessage} onClose={handleCloseToast} />
       )}
     </div>
   )

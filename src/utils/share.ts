@@ -7,7 +7,7 @@ interface ShareOptions {
   t: Messages
 }
 
-function buildRanking(players: Player[]): Player[] {
+export function buildRanking(players: Player[]): Player[] {
   const active = players
     .filter(p => p.status !== 'eliminated')
     .sort((a, b) => b.score - a.score)

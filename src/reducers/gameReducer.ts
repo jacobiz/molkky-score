@@ -1,4 +1,4 @@
-import { applyBustRule, checkWin, incrementMisses } from '../utils/scoring'
+import { applyBustRule, checkWin, incrementMisses, isBustThrow } from '../utils/scoring'
 import type { GameState, GameAction, GameStatus, Player, PlayerStatus, Game } from '../types/game'
 
 export const initialState: GameState = {
@@ -66,7 +66,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
       const isMiss = points === 0
       const newScore = applyBustRule(player.score, points)
-      const isBust = !isMiss && newScore === 25 && player.score + points > 50
+      const isBust = isBustThrow(player.score, points)
 
       // ミスカウンタ
       let newMisses = player.consecutiveMisses

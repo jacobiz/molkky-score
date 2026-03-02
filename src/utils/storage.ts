@@ -24,19 +24,27 @@ export function saveState(state: GameState): void {
   }
 }
 
+function isValidStoredState(value: unknown): value is StoredState {
+  if (typeof value !== 'object' || value === null) return false
+  const v = value as Record<string, unknown>
+  if (v.version !== SCHEMA_VERSION) return false
+  if (typeof v.settings !== 'object' || v.settings === null) return false
+  return true
+}
+
 export function loadState(): Pick<GameState, 'game' | 'molkkoutGame' | 'settings'> | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) return null
-    const parsed = JSON.parse(raw) as StoredState
-    if (parsed.version !== SCHEMA_VERSION) {
+    const parsed: unknown = JSON.parse(raw)
+    if (!isValidStoredState(parsed)) {
       localStorage.removeItem(STORAGE_KEY)
       return null
     }
     return {
       game: parsed.game ?? null,
       molkkoutGame: parsed.molkkoutGame ?? null,
-      settings: parsed.settings ?? { language: 'ja' },
+      settings: parsed.settings,
     }
   } catch {
     localStorage.removeItem(STORAGE_KEY)

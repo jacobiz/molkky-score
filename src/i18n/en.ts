@@ -27,6 +27,9 @@ export const en: Messages = {
     errorMaxLength: "Player name must be 12 characters or less",
     orderHint: "Use buttons to change throw order",
     shuffle: "Shuffle",
+    moveUp: "Move up",
+    moveDown: "Move down",
+    removePlayer: "Remove",
   },
   game: {
     title: "Game",
@@ -63,6 +66,7 @@ export const en: Messages = {
     totalScore: "Total: {score}pt",
     winner: "{team} wins!",
     overtime: "Tie! Overtime",
+    errorRequiredFields: "Please fill in all team and player names",
   },
   common: {
     ok: "OK",
@@ -82,5 +86,12 @@ export const en: Messages = {
     android: "Android Chrome",
     androidStep1: "Tap the ⋮ menu in the top right",
     androidStep2: "Select \"Install app\" or \"Add to Home Screen\"",
+  },
+  licenses: {
+    title: "Open Source Licenses",
+    backLabel: "Back",
+    showFullText: "Show full license text",
+    privacyTitle: "Privacy Policy",
+    privacyBody: "This app does not send any user data to external servers. Scores and settings are stored only in this device's localStorage.",
   },
 };

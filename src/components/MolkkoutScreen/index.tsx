@@ -49,7 +49,7 @@ export function MolkkoutScreen() {
                 >
                   <span className="font-medium text-gray-900">{team.name}</span>
                   <span className="text-lg font-bold text-gray-700">
-                    {team.totalScore}pt
+                    {team.totalScore}{t.result.scoreUnit}
                   </span>
                 </div>
               ))}
@@ -102,7 +102,7 @@ export function MolkkoutScreen() {
                   <span className="text-base font-medium text-gray-900">{team.name}</span>
                 </div>
                 <span className="text-xl font-bold text-gray-900">
-                  {team.totalScore}pt
+                  {team.totalScore}{t.result.scoreUnit}
                 </span>
               </div>
             ))}

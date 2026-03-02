@@ -18,6 +18,9 @@ export const ja = {
     errorMaxLength: "プレイヤー名は12文字以内で入力してください",
     orderHint: "ボタンで投球順を変更",
     shuffle: "シャッフル",
+    moveUp: "上へ",
+    moveDown: "下へ",
+    removePlayer: "削除",
   },
   game: {
     title: "ゲーム中",
@@ -54,6 +57,7 @@ export const ja = {
     totalScore: "合計: {score}点",
     winner: "{team} の勝利！",
     overtime: "同点！延長戦",
+    errorRequiredFields: "チーム名とプレイヤー名をすべて入力してください",
   },
   common: {
     ok: "OK",
@@ -73,6 +77,13 @@ export const ja = {
     android: "Android Chrome",
     androidStep1: "右上の ⋮ メニューをタップ",
     androidStep2: "「アプリをインストール」または「ホーム画面に追加」を選ぶ",
+  },
+  licenses: {
+    title: "オープンソースライセンス",
+    backLabel: "戻る",
+    showFullText: "ライセンス全文を表示",
+    privacyTitle: "プライバシーポリシー",
+    privacyBody: "このアプリはユーザーのデータを外部サーバーに送信しません。スコアや設定はこのデバイスの localStorage にのみ保存されます。",
   },
 };
 

@@ -30,3 +30,11 @@ export function incrementMisses(count: number): number | 'eliminated' {
   if (count >= 2) return 'eliminated'
   return count + 1
 }
+
+/**
+ * バーストが発生するかどうかを返す
+ * - currentScore + points > 50 のとき true
+ */
+export function isBustThrow(currentScore: number, points: number): boolean {
+  return points > 0 && currentScore + points > 50
+}

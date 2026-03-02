@@ -61,3 +61,10 @@ npm run dev     # Dev server
 
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->
+
+## Active Technologies
+- TypeScript 5.7 (strict mode) + React 19, Vite 6.1, vite-plugin-pwa 0.21, TailwindCSS v4 (012-fix-review-issues)
+- localStorage (key: `molkky-score-v2`, SCHEMA_VERSION=2) (012-fix-review-issues)
+
+## Recent Changes
+- 012-fix-review-issues: Added TypeScript 5.7 (strict mode) + React 19, Vite 6.1, vite-plugin-pwa 0.21, TailwindCSS v4
