@@ -1,18 +1,15 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version change: N/A → 1.0.0 (初回策定)
-Modified principles: N/A（初回）
+Version change: 1.0.0 → 1.1.0 (MINOR: コミュニケーション言語ガイドライン追加)
+Modified principles: なし（原則の廃止・再定義なし）
 Added sections:
-  - Core Principles（3原則）: シンプルさ優先 / テストファースト / モバイルファースト・PWA
-  - 開発標準（技術スタック定義）
-  - 品質ゲート（リリース前チェックリスト）
-  - Governance（改定手続き）
-Removed sections: N/A
+  - 開発標準に「AI応答言語」ルール追加（日本語で応対）
+Removed sections: なし
 Templates requiring updates:
-  - .specify/templates/plan-template.md   ✅ Constitution Check セクション存在・互換
-  - .specify/templates/spec-template.md   ✅ 構造互換・変更不要
-  - .specify/templates/tasks-template.md  ✅ テストOPTIONAL注記済・原則II と整合
+  - .specify/templates/plan-template.md   ✅ 変更不要（影響なし）
+  - .specify/templates/spec-template.md   ✅ 変更不要（影響なし）
+  - .specify/templates/tasks-template.md  ✅ 変更不要（影響なし）
 Follow-up TODOs: なし
 -->
 
@@ -70,6 +67,7 @@ Wi-Fi が利用できない環境でも動作することが重要。
 - **PWA**: vite-plugin-pwa
 - **UI 言語**: 日本語（ユーザー向け文字列はすべて日本語）
 - **コード**: 変数名・コメントは英語を基本とする
+- **AI 応答言語**: Claude などの AI アシスタントはこのプロジェクトにおいて基本的に日本語で応対すること（MUST）
 
 ## 品質ゲート
 
@@ -94,4 +92,4 @@ Wi-Fi が利用できない環境でも動作することが重要。
   - PATCH: 文言の明確化・誤字修正
 - 開発ガイダンスについては本コンスティテューションを参照すること
 
-**Version**: 1.0.0 | **Ratified**: 2026-02-28 | **Last Amended**: 2026-02-28
+**Version**: 1.1.0 | **Ratified**: 2026-02-28 | **Last Amended**: 2026-03-02
