@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { useGame } from '../../context/GameContext'
 import { useTranslation } from '../../utils/i18n'
-import { applyBustRule } from '../../utils/scoring'
+import { isBustThrow } from '../../utils/scoring'
 import { ScreenHeader } from '../ui/ScreenHeader'
 import { Toast } from '../ui/Toast'
 import { PinInput } from './PinInput'
@@ -25,11 +25,8 @@ function GameScreenContent({ game }: { game: Game }) {
     // Determine notification based on what will happen
     if (points === 0 && player.consecutiveMisses >= 2) {
       setToastMessage(t.game.eliminatedMessage.replace('{name}', player.name))
-    } else if (points > 0) {
-      const newScore = applyBustRule(player.score, points)
-      if (newScore === 25 && player.score + points > 50) {
-        setToastMessage(t.game.bustMessage)
-      }
+    } else if (isBustThrow(player.score, points)) {
+      setToastMessage(t.game.bustMessage)
     }
 
     dispatch({ type: 'RECORD_TURN', points })
