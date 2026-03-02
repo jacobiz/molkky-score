@@ -1,4 +1,4 @@
-import { useGame } from '../context/GameContext'
+import { useTranslation } from '../utils/i18n'
 
 interface Library {
   name: string
@@ -36,8 +36,7 @@ interface Props {
 }
 
 export function LicensesScreen({ onBack }: Props) {
-  const { state } = useGame()
-  const isJa = state.settings.language === 'ja'
+  const { t } = useTranslation()
 
   return (
     <div className="min-h-dvh flex flex-col bg-gray-50">
@@ -46,12 +45,12 @@ export function LicensesScreen({ onBack }: Props) {
         <button
           onClick={onBack}
           className="p-2 -ml-2 rounded-lg text-gray-500 active:bg-gray-100"
-          aria-label={isJa ? '戻る' : 'Back'}
+          aria-label={t.licenses.backLabel}
         >
           ←
         </button>
         <h1 className="text-lg font-semibold text-gray-900">
-          {isJa ? 'オープンソースライセンス' : 'Open Source Licenses'}
+          {t.licenses.title}
         </h1>
       </div>
 
@@ -66,7 +65,7 @@ export function LicensesScreen({ onBack }: Props) {
             <p className="text-xs text-gray-500 mb-3">MIT License — {lib.copyright}</p>
             <details className="group">
               <summary className="text-xs text-blue-500 cursor-pointer select-none">
-                {isJa ? 'ライセンス全文を表示' : 'Show full license text'}
+                {t.licenses.showFullText}
               </summary>
               <pre className="mt-2 text-xs text-gray-500 whitespace-pre-wrap leading-relaxed font-sans">
                 {lib.copyright}
@@ -89,12 +88,10 @@ export function LicensesScreen({ onBack }: Props) {
         {/* Privacy policy */}
         <div className="bg-white rounded-2xl p-4 shadow-sm">
           <h2 className="font-semibold text-gray-900 mb-2">
-            {isJa ? 'プライバシーポリシー' : 'Privacy Policy'}
+            {t.licenses.privacyTitle}
           </h2>
           <p className="text-xs text-gray-500 leading-relaxed">
-            {isJa
-              ? 'このアプリはユーザーのデータを外部サーバーに送信しません。スコアや設定はこのデバイスの localStorage にのみ保存されます。'
-              : 'This app does not send any user data to external servers. Scores and settings are stored only in this device\'s localStorage.'}
+            {t.licenses.privacyBody}
           </p>
         </div>
       </div>

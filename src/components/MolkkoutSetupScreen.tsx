@@ -57,7 +57,7 @@ export function MolkkoutSetupScreen() {
         team.playerNames.every(p => p.trim() !== ''),
     )
     if (!valid) {
-      setError('チーム名とプレイヤー名をすべて入力してください')
+      setError(t.molkkout.errorRequiredFields)
       return
     }
     dispatch({

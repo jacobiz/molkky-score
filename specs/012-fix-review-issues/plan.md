@@ -17,7 +17,7 @@
 **Project Type**: Mobile-first PWA
 **Performance Goals**: 主要操作 100ms 以内（Constitution III）
 **Constraints**: オフライン動作必須、外部ライブラリ追加なし（Constitution I）
-**Scale/Scope**: 3言語 × 新規i18nキー12件、新規ファイル4件、既存ファイル変更11件
+**Scale/Scope**: 3言語 × 新規i18nキー9件、新規ファイル4件、既存ファイル変更11件
 
 ## Constitution Check
 

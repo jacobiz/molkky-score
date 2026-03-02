@@ -24,6 +24,9 @@ export const fi: Messages = {
     errorMaxLength: "Pelaajan nimi saa olla enintään 12 merkkiä",
     orderHint: "Muuta heittojärjestystä painikkeilla",
     shuffle: "Sekoita",
+    moveUp: "Siirrä ylös",
+    moveDown: "Siirrä alas",
+    removePlayer: "Poista",
   },
   game: {
     title: "Peli",
@@ -60,6 +63,7 @@ export const fi: Messages = {
     totalScore: "Yhteensä: {score}p",
     winner: "{team} voittaa!",
     overtime: "Tasapeli! Jatkoaika",
+    errorRequiredFields: "Täytä kaikki tiimi- ja pelaajanimi",
   },
   common: {
     ok: "OK",
@@ -79,5 +83,12 @@ export const fi: Messages = {
     android: "Android Chrome",
     androidStep1: "Napauta ⋮ -valikkoa oikeassa yläkulmassa",
     androidStep2: "Valitse \"Asenna sovellus\" tai \"Lisää kotinäytölle\"",
+  },
+  licenses: {
+    title: "Avoimen lähdekoodin lisenssit",
+    backLabel: "Takaisin",
+    showFullText: "Näytä koko lisenssiteksti",
+    privacyTitle: "Tietosuojakäytäntö",
+    privacyBody: "Tämä sovellus ei lähetä käyttäjätietoja ulkoisille palvelimille. Pisteet ja asetukset tallennetaan vain tämän laitteen localStorageen.",
   },
 }

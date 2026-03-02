@@ -34,20 +34,12 @@ export function SetupScreen() {
     setPlayers(prev => prev.filter((_, i) => i !== index))
   }
 
-  function handleMoveUp(index: number) {
-    if (index === 0) return
+  function handleMove(index: number, direction: -1 | 1) {
+    const target = index + direction
+    if (target < 0 || target >= players.length) return
     setPlayers(prev => {
       const next = [...prev]
-      ;[next[index - 1], next[index]] = [next[index], next[index - 1]]
-      return next
-    })
-  }
-
-  function handleMoveDown(index: number) {
-    if (index === players.length - 1) return
-    setPlayers(prev => {
-      const next = [...prev]
-      ;[next[index], next[index + 1]] = [next[index + 1], next[index]]
+      ;[next[index], next[target]] = [next[target], next[index]]
       return next
     })
   }
@@ -101,7 +93,7 @@ export function SetupScreen() {
             }}
             onKeyDown={handleKeyDown}
             placeholder={t.setup.namePlaceholder}
-            maxLength={13}
+            maxLength={12}
             className="flex-1 px-4 py-3 rounded-xl border border-gray-300 bg-white text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <button
@@ -141,18 +133,18 @@ export function SetupScreen() {
                 <span className="flex-1 text-base font-medium text-gray-800">{name}</span>
                 {/* Move buttons */}
                 <button
-                  onClick={() => handleMoveUp(i)}
+                  onClick={() => handleMove(i, -1)}
                   disabled={i === 0}
                   className="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-gray-500 disabled:opacity-30"
-                  aria-label="上へ"
+                  aria-label={t.setup.moveUp}
                 >
                   ↑
                 </button>
                 <button
-                  onClick={() => handleMoveDown(i)}
+                  onClick={() => handleMove(i, 1)}
                   disabled={i === players.length - 1}
                   className="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-gray-500 disabled:opacity-30"
-                  aria-label="下へ"
+                  aria-label={t.setup.moveDown}
                 >
                   ↓
                 </button>
@@ -160,7 +152,7 @@ export function SetupScreen() {
                 <button
                   onClick={() => handleRemove(i)}
                   className="w-9 h-9 flex items-center justify-center rounded-lg bg-red-50 text-red-400 active:bg-red-100"
-                  aria-label="削除"
+                  aria-label={t.setup.removePlayer}
                 >
                   ✕
                 </button>
