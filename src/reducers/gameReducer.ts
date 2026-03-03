@@ -214,23 +214,16 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       const teams = action.teams.map(t => ({
         id: generateId(),
         name: t.name,
-        playerNames: t.playerNames,
         totalScore: 0,
       }))
-      const throwsPerPlayer =
-        action.teams[0].playerNames.length === 1
-          ? 3
-          : action.teams[0].playerNames.length === 2
-            ? 2
-            : 1
       return {
         ...state,
         screen: 'molkkout-game',
         molkkoutGame: {
           teams,
           currentTeamIndex: 0,
-          currentPlayerInTeamIndex: 0,
-          throwsPerPlayer,
+          currentThrowIndex: 0,
+          totalThrows: action.totalThrows,
           turns: [],
           status: 'active',
           winnerId: null,
@@ -247,8 +240,10 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
       const turn = {
         teamId: team.id,
-        playerName: team.playerNames[mg.currentPlayerInTeamIndex],
         points,
+        teamIndex: mg.currentTeamIndex,
+        throwIndex: mg.currentThrowIndex,
+        prevStatus: mg.status as 'active' | 'overtime',
       }
 
       const updatedTeams = mg.teams.map(t =>
@@ -257,14 +252,15 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
       const updatedTurns = [...mg.turns, turn]
 
-      // 次の投球者を決定
-      const nextPlayerIdx = mg.currentPlayerInTeamIndex + 1
-      const isTeamDone = nextPlayerIdx >= team.playerNames.length * mg.throwsPerPlayer
-      const nextTeamIdx = isTeamDone ? (mg.currentTeamIndex + 1) % mg.teams.length : mg.currentTeamIndex
-      const nextPlayerInTeam = isTeamDone ? 0 : nextPlayerIdx
+      // 1投ごとに次のチームへ移るラウンドロビン方式
+      const nextTeamIdx = (mg.currentTeamIndex + 1) % mg.teams.length
+      const completedRound = nextTeamIdx === 0  // 全チームが1投完了 = 1ラウンド終了
+      const nextThrowIdx = completedRound
+        ? mg.currentThrowIndex + 1
+        : mg.currentThrowIndex
 
-      // 全チームが投球完了したか
-      const allDone = isTeamDone && nextTeamIdx === 0
+      // 全ラウンド完了したか（totalThrows ラウンド × 全チーム）
+      const allDone = completedRound && nextThrowIdx >= mg.totalThrows
 
       let newStatus: 'active' | 'finished' | 'overtime' = mg.status
       let winnerId = mg.winnerId
@@ -286,10 +282,37 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
           ...mg,
           teams: updatedTeams,
           currentTeamIndex: nextTeamIdx,
-          currentPlayerInTeamIndex: nextPlayerInTeam,
+          currentThrowIndex: nextThrowIdx,
           turns: updatedTurns,
           status: newStatus,
           winnerId,
+        },
+      }
+    }
+
+    case 'UNDO_MOLKKOUT_TURN': {
+      const mg = state.molkkoutGame
+      if (!mg || mg.turns.length === 0) return state
+
+      const history = [...mg.turns]
+      const lastTurn = history.pop()!
+
+      const restoredTeams = mg.teams.map(t =>
+        t.id === lastTurn.teamId
+          ? { ...t, totalScore: t.totalScore - lastTurn.points }
+          : t,
+      )
+
+      return {
+        ...state,
+        molkkoutGame: {
+          ...mg,
+          teams: restoredTeams,
+          currentTeamIndex: lastTurn.teamIndex,
+          currentThrowIndex: lastTurn.throwIndex,
+          status: lastTurn.prevStatus,
+          winnerId: null,
+          turns: history,
         },
       }
     }

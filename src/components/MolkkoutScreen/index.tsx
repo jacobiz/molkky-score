@@ -11,12 +11,13 @@ export function MolkkoutScreen() {
   if (!mg) return null
 
   const currentTeam = mg.teams[mg.currentTeamIndex]
-  const currentPlayerName = currentTeam.playerNames[
-    mg.currentPlayerInTeamIndex % currentTeam.playerNames.length
-  ]
 
   function handleSubmit(points: number) {
     dispatch({ type: 'RECORD_MOLKKOUT_TURN', points })
+  }
+
+  function handleUndo() {
+    dispatch({ type: 'UNDO_MOLKKOUT_TURN' })
   }
 
   if (mg.status === 'finished') {
@@ -54,6 +55,13 @@ export function MolkkoutScreen() {
                 </div>
               ))}
           </div>
+          <button
+            onClick={() => dispatch({ type: 'UNDO_MOLKKOUT_TURN' })}
+            disabled={mg.turns.length === 0}
+            className="text-sm text-gray-500 underline disabled:opacity-30"
+          >
+            {t.game.undo}
+          </button>
         </div>
       </div>
     )
@@ -76,12 +84,10 @@ export function MolkkoutScreen() {
             </p>
           )}
           <p className="text-base font-semibold text-gray-900 text-center">
-            {t.molkkout.teamTurn
-              .replace('{team}', currentTeam.name)
-              .replace('{player}', currentPlayerName)}
+            {t.molkkout.teamTurnLabel.replace('{team}', currentTeam.name)}
           </p>
-          <p className="text-xs text-gray-400 text-center mt-1">
-            {t.molkkout.pinSetupGuide}
+          <p className="text-xs text-gray-400 text-center mt-0.5">
+            {t.molkkout.throwProgress(mg.currentThrowIndex + 1, mg.totalThrows)}
           </p>
         </header>
 
@@ -110,12 +116,21 @@ export function MolkkoutScreen() {
         </div>
       </div>
 
-      {/* Bottom / Right: MolkkoutInput */}
+      {/* Bottom / Right: MolkkoutInput + Undo */}
       <div className="flex-1 min-h-0 flex flex-col bg-white border-t border-gray-200 md:flex-none md:border-t-0 md:border-l md:w-80 md:justify-center">
         <MolkkoutInput
           key={mg.turns.length}
           onSubmit={handleSubmit}
         />
+        <div className="px-4 pb-4">
+          <button
+            onClick={handleUndo}
+            disabled={mg.turns.length === 0}
+            className="w-full py-2 rounded-xl border border-gray-200 text-sm text-gray-500 disabled:opacity-30 active:bg-gray-50"
+          >
+            ↩ {t.game.undo}
+          </button>
+        </div>
       </div>
       </div>
     </div>

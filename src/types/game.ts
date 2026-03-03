@@ -71,29 +71,29 @@ export const MOLKKOUT_PINS = [6, 4, 12, 10, 8] as const
 export interface MolkkoutTeam {
   id: string
   name: string
-  /** 各プレイヤーのスロット（名前リスト） */
-  playerNames: string[]
   /** 合計スコア */
   totalScore: number
 }
 
 export interface MolkkoutTurn {
   teamId: string
-  playerName: string
   points: number
+  /** Undo 用: このターン時点の currentTeamIndex */
+  teamIndex: number
+  /** Undo 用: このターン時点の currentThrowIndex */
+  throwIndex: number
+  /** Undo 用: このターン適用前のゲームステータス */
+  prevStatus: 'active' | 'overtime'
 }
 
 export interface MolkkoutGame {
   teams: MolkkoutTeam[]
   /** チームの投球順インデックス */
   currentTeamIndex: number
-  /** 現在チーム内の投球者インデックス */
-  currentPlayerInTeamIndex: number
-  /**
-   * チームサイズ別の1人あたり投球数。
-   * 1人: 3投、2人: 2投ずつ、3人以上: 1投ずつ
-   */
-  throwsPerPlayer: number
+  /** 現在チーム内の投球インデックス（0 始まり） */
+  currentThrowIndex: number
+  /** 全チーム共通の総投球数（ユーザー指定: 1〜10） */
+  totalThrows: number
   turns: MolkkoutTurn[]
   status: 'active' | 'finished' | 'overtime'
   winnerId: string | null
@@ -159,11 +159,12 @@ export type GameAction =
   | { type: 'REMATCH_SETUP' }
 
   // ─ Mölkkout ─
-  | { type: 'START_MOLKKOUT'; teams: { name: string; playerNames: string[] }[] }
+  | { type: 'START_MOLKKOUT'; teams: { name: string }[]; totalThrows: number }
   | {
       type: 'RECORD_MOLKKOUT_TURN'
       points: number
     }
+  | { type: 'UNDO_MOLKKOUT_TURN' }
 
   // ─ 設定 ─
   | { type: 'SET_LANGUAGE'; language: Language }
