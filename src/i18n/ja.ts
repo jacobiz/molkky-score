@@ -86,6 +86,23 @@ export const ja = {
     androidStep1: "右上の ⋮ メニューをタップ",
     androidStep2: "「アプリをインストール」または「ホーム画面に追加」を選ぶ",
   },
+  pinGuide: {
+    title: 'ピン配置ガイド',
+    closeButton: '閉じる',
+    buttonAriaLabel: 'ピン配置ガイドを開く',
+    regular: {
+      heading: '通常ゲーム（12ピン）',
+      layoutCaption: '配置図（スロワー側から）',
+      distanceLabel: '投球ラインから最前列まで: 3.5m',
+    },
+    molkkout: {
+      heading: 'Mölkkout（5ピン）',
+      layoutCaption: '配置図（左から）',
+      distanceLabel: '投球ラインから先頭ピンまで: 3.5m',
+      spacingLabel: 'ピン間隔: Mölkky スティック1本分',
+      resetNote: '倒れたピンは元の位置に戻す',
+    },
+  },
   licenses: {
     title: "オープンソースライセンス",
     backLabel: "戻る",

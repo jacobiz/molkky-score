@@ -92,6 +92,23 @@ export const fi: Messages = {
     androidStep1: "Napauta ⋮ -valikkoa oikeassa yläkulmassa",
     androidStep2: "Valitse \"Asenna sovellus\" tai \"Lisää kotinäytölle\"",
   },
+  pinGuide: {
+    title: 'Keilojen asetusopas',
+    closeButton: 'Sulje',
+    buttonAriaLabel: 'Avaa keilojen asetusopas',
+    regular: {
+      heading: 'Peruspeli (12 keilaa)',
+      layoutCaption: 'Asettelu (heittäjän suunnasta)',
+      distanceLabel: 'Heittoviivalta eturiviin: 3,5m',
+    },
+    molkkout: {
+      heading: 'Mölkkout (5 keilaa)',
+      layoutCaption: 'Asettelu (vasemmalta oikealle)',
+      distanceLabel: 'Heittoviivalta ensimmäiseen keilaan: 3,5m',
+      spacingLabel: 'Keilojen väli: 1 Mölkky-keilan pituus',
+      resetNote: 'Aseta kaatuneet keilat takaisin alkuperäiselle paikalle',
+    },
+  },
   licenses: {
     title: "Avoimen lähdekoodin lisenssit",
     backLabel: "Takaisin",

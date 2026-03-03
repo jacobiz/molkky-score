@@ -7,6 +7,7 @@ import { ConfirmDialog } from '../ui/ConfirmDialog'
 import { Toast } from '../ui/Toast'
 import { PinInput } from './PinInput'
 import { ScoreBoard } from './ScoreBoard'
+import { PinSetupGuideModal } from '../ui/PinSetupGuideModal'
 import type { Game } from '../../types/game'
 
 function GameScreenContent({ game }: { game: Game }) {
@@ -14,6 +15,7 @@ function GameScreenContent({ game }: { game: Game }) {
   const { t } = useTranslation()
   const [toastMessage, setToastMessage] = useState<string | null>(null)
   const [showEarlySettlementConfirm, setShowEarlySettlementConfirm] = useState(false)
+  const [showPinGuide, setShowPinGuide] = useState(false)
 
   const currentPlayer = game.players[game.currentPlayerIndex]
   const canUndo = game.turnHistory.length > 0
@@ -51,6 +53,15 @@ function GameScreenContent({ game }: { game: Game }) {
         title={t.game.title}
         requireConfirm={true}
         onGoHome={() => dispatch({ type: 'NAVIGATE', screen: 'home' })}
+        rightContent={
+          <button
+            onClick={() => setShowPinGuide(true)}
+            className="text-gray-500 hover:text-gray-700 p-1"
+            aria-label={t.pinGuide.buttonAriaLabel}
+          >
+            🎯
+          </button>
+        }
       />
       {/* Top / Left: header + ScoreBoard */}
       <div className="flex-1 min-h-0 flex flex-col bg-gray-50 md:flex-row">
@@ -111,6 +122,9 @@ function GameScreenContent({ game }: { game: Game }) {
           onConfirm={handleEarlySettlementConfirm}
           onCancel={() => setShowEarlySettlementConfirm(false)}
         />
+      )}
+      {showPinGuide && (
+        <PinSetupGuideModal mode="regular" onClose={() => setShowPinGuide(false)} />
       )}
     </div>
   )

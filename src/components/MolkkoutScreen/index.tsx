@@ -3,12 +3,14 @@ import { useGame } from '../../context/GameContext'
 import { useTranslation } from '../../utils/i18n'
 import { ScreenHeader } from '../ui/ScreenHeader'
 import { ConfirmDialog } from '../ui/ConfirmDialog'
+import { PinSetupGuideModal } from '../ui/PinSetupGuideModal'
 import { MolkkoutInput } from './MolkkoutInput'
 
 export function MolkkoutScreen() {
   const { state, dispatch } = useGame()
   const { t } = useTranslation()
   const [showEarlySettlementConfirm, setShowEarlySettlementConfirm] = useState(false)
+  const [showPinGuide, setShowPinGuide] = useState(false)
 
   const mg = state.molkkoutGame
   if (!mg) return null
@@ -40,6 +42,15 @@ export function MolkkoutScreen() {
           title={t.molkkout.title}
           requireConfirm={false}
           onGoHome={() => dispatch({ type: 'NAVIGATE', screen: 'home' })}
+          rightContent={
+            <button
+              onClick={() => setShowPinGuide(true)}
+              className="text-gray-500 hover:text-gray-700 p-1"
+              aria-label={t.pinGuide.buttonAriaLabel}
+            >
+              🎯
+            </button>
+          }
         />
         <div className="flex-1 flex flex-col items-center justify-center px-6 gap-6">
           <div className="text-center">
@@ -92,6 +103,15 @@ export function MolkkoutScreen() {
         title={t.molkkout.title}
         requireConfirm={mg.status === 'active' || mg.status === 'overtime'}
         onGoHome={() => dispatch({ type: 'NAVIGATE', screen: 'home' })}
+        rightContent={
+          <button
+            onClick={() => setShowPinGuide(true)}
+            className="text-gray-500 hover:text-gray-700 p-1"
+            aria-label={t.pinGuide.buttonAriaLabel}
+          >
+            🎯
+          </button>
+        }
       />
       <div className="flex-1 min-h-0 flex flex-col bg-gray-50 md:flex-row">
       {/* Top / Left: teams & scores */}
@@ -169,6 +189,9 @@ export function MolkkoutScreen() {
           onConfirm={handleEarlySettlementConfirm}
           onCancel={() => setShowEarlySettlementConfirm(false)}
         />
+      )}
+      {showPinGuide && (
+        <PinSetupGuideModal mode="molkkout" onClose={() => setShowPinGuide(false)} />
       )}
     </div>
   )

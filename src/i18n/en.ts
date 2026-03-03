@@ -95,6 +95,23 @@ export const en: Messages = {
     androidStep1: "Tap the ⋮ menu in the top right",
     androidStep2: "Select \"Install app\" or \"Add to Home Screen\"",
   },
+  pinGuide: {
+    title: 'Pin Setup Guide',
+    closeButton: 'Close',
+    buttonAriaLabel: 'Open pin setup guide',
+    regular: {
+      heading: 'Regular Game (12 pins)',
+      layoutCaption: 'Layout (viewed from thrower)',
+      distanceLabel: 'Throwing line to front row: 3.5m',
+    },
+    molkkout: {
+      heading: 'Mölkkout (5 pins)',
+      layoutCaption: 'Layout (left to right)',
+      distanceLabel: 'Throwing line to first pin: 3.5m',
+      spacingLabel: 'Pin spacing: 1 Mölkky stick length',
+      resetNote: 'Stand fallen pins back at their original position',
+    },
+  },
   licenses: {
     title: "Open Source Licenses",
     backLabel: "Back",
