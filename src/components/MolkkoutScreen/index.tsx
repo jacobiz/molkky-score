@@ -1,16 +1,20 @@
+import { useState } from 'react'
 import { useGame } from '../../context/GameContext'
 import { useTranslation } from '../../utils/i18n'
 import { ScreenHeader } from '../ui/ScreenHeader'
+import { ConfirmDialog } from '../ui/ConfirmDialog'
 import { MolkkoutInput } from './MolkkoutInput'
 
 export function MolkkoutScreen() {
   const { state, dispatch } = useGame()
   const { t } = useTranslation()
+  const [showEarlySettlementConfirm, setShowEarlySettlementConfirm] = useState(false)
 
   const mg = state.molkkoutGame
   if (!mg) return null
 
   const currentTeam = mg.teams[mg.currentTeamIndex]
+  const canEarlySettle = mg.teams.some(tm => tm.totalScore > 0) && mg.status !== 'finished'
 
   function handleSubmit(points: number) {
     dispatch({ type: 'RECORD_MOLKKOUT_TURN', points })
@@ -20,8 +24,16 @@ export function MolkkoutScreen() {
     dispatch({ type: 'UNDO_MOLKKOUT_TURN' })
   }
 
+  function handleEarlySettlementConfirm() {
+    setShowEarlySettlementConfirm(false)
+    dispatch({ type: 'EARLY_MOLKKOUT_SETTLEMENT' })
+  }
+
   if (mg.status === 'finished') {
-    const winner = mg.teams.find(t => t.id === mg.winnerId)
+    const maxScore = Math.max(...mg.teams.map(tm => tm.totalScore))
+    const topTeams = mg.teams.filter(tm => tm.totalScore === maxScore)
+    const isDraw = mg.winnerId === null
+    const winner = isDraw ? null : mg.teams.find(tm => tm.id === mg.winnerId)
     return (
       <div className="min-h-dvh flex flex-col bg-gray-50">
         <ScreenHeader
@@ -31,9 +43,16 @@ export function MolkkoutScreen() {
         />
         <div className="flex-1 flex flex-col items-center justify-center px-6 gap-6">
           <div className="text-center">
-            <p className="text-5xl mb-4">🏆</p>
+            {mg.finishReason === 'timeout' && (
+              <p className="text-xs font-semibold text-amber-600 bg-amber-50 rounded-full px-3 py-1 inline-block mb-3">
+                {t.result.timeoutBadge}
+              </p>
+            )}
+            <p className="text-5xl mb-4">{isDraw ? '🤝' : '🏆'}</p>
             <p className="text-2xl font-bold text-gray-900">
-              {winner ? t.molkkout.winner.replace('{team}', winner.name) : ''}
+              {isDraw
+                ? `${t.result.drawWinners}: ${topTeams.map(tm => tm.name).join(' · ')}`
+                : winner ? t.molkkout.winner.replace('{team}', winner.name) : ''}
             </p>
           </div>
           <div className="w-full max-w-sm flex flex-col gap-3">
@@ -116,13 +135,13 @@ export function MolkkoutScreen() {
         </div>
       </div>
 
-      {/* Bottom / Right: MolkkoutInput + Undo */}
+      {/* Bottom / Right: MolkkoutInput + Undo + Early Settlement */}
       <div className="flex-1 min-h-0 flex flex-col bg-white border-t border-gray-200 md:flex-none md:border-t-0 md:border-l md:w-80 md:justify-center">
         <MolkkoutInput
           key={mg.turns.length}
           onSubmit={handleSubmit}
         />
-        <div className="px-4 pb-4">
+        <div className="px-4 pb-4 flex flex-col gap-2">
           <button
             onClick={handleUndo}
             disabled={mg.turns.length === 0}
@@ -130,9 +149,27 @@ export function MolkkoutScreen() {
           >
             ↩ {t.game.undo}
           </button>
+          {canEarlySettle && (
+            <button
+              onClick={() => setShowEarlySettlementConfirm(true)}
+              className="w-full py-2 rounded-xl border border-amber-400 text-sm text-amber-700 bg-amber-50 active:bg-amber-100"
+            >
+              ⏱ {t.game.earlySettlement}
+            </button>
+          )}
         </div>
       </div>
       </div>
+
+      {showEarlySettlementConfirm && (
+        <ConfirmDialog
+          message={t.game.earlySettlementConfirm}
+          confirmLabel={t.game.earlySettlement}
+          cancelLabel={t.common.cancel}
+          onConfirm={handleEarlySettlementConfirm}
+          onCancel={() => setShowEarlySettlementConfirm(false)}
+        />
+      )}
     </div>
   )
 }

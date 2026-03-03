@@ -35,6 +35,8 @@ export const ja = {
     bustMessage: "💥 バースト！25点にリセット",
     eliminatedMessage: "❌ {name} が脱落しました",
     winnerMessage: "{name} の勝利！",
+    earlySettlement: "途中決着",
+    earlySettlementConfirm: "時間切れで途中決着しますか？現在のスコアで勝敗を決定します。",
   },
   result: {
     title: "ゲーム終了",
@@ -48,6 +50,9 @@ export const ja = {
     turns: "ターン",
     rankSuffix: (_n: number) => "位",
     scoreUnit: "点",
+    timeoutBadge: "⏱ 時間切れ",
+    draw: "引き分け",
+    drawWinners: "同点優勝",
   },
   molkkout: {
     title: "Mölkkout（タイブレーカー）",

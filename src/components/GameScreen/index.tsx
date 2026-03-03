@@ -3,6 +3,7 @@ import { useGame } from '../../context/GameContext'
 import { useTranslation } from '../../utils/i18n'
 import { isBustThrow } from '../../utils/scoring'
 import { ScreenHeader } from '../ui/ScreenHeader'
+import { ConfirmDialog } from '../ui/ConfirmDialog'
 import { Toast } from '../ui/Toast'
 import { PinInput } from './PinInput'
 import { ScoreBoard } from './ScoreBoard'
@@ -12,10 +13,12 @@ function GameScreenContent({ game }: { game: Game }) {
   const { dispatch } = useGame()
   const { t } = useTranslation()
   const [toastMessage, setToastMessage] = useState<string | null>(null)
+  const [showEarlySettlementConfirm, setShowEarlySettlementConfirm] = useState(false)
 
   const currentPlayer = game.players[game.currentPlayerIndex]
   const canUndo = game.turnHistory.length > 0
   const throwCount = game.turnHistory.filter(t => t.playerId === currentPlayer?.id).length + 1
+  const canEarlySettle = game.players.some(p => p.status === 'active' && p.score > 0)
 
   const handleCloseToast = useCallback(() => setToastMessage(null), [])
 
@@ -37,6 +40,11 @@ function GameScreenContent({ game }: { game: Game }) {
     dispatch({ type: 'UNDO_TURN' })
   }
 
+  function handleEarlySettlementConfirm() {
+    setShowEarlySettlementConfirm(false)
+    dispatch({ type: 'EARLY_SETTLEMENT' })
+  }
+
   return (
     <div className="h-dvh flex flex-col">
       <ScreenHeader
@@ -56,13 +64,23 @@ function GameScreenContent({ game }: { game: Game }) {
               {t.game.throwCount(throwCount)}
             </p>
           </div>
-          <button
-            onClick={handleUndo}
-            disabled={!canUndo}
-            className="ml-3 shrink-0 px-4 py-2 rounded-xl border border-gray-300 text-sm text-gray-600 disabled:opacity-30 active:bg-gray-100"
-          >
-            ↩️ {t.game.undo}
-          </button>
+          <div className="flex gap-2 ml-3 shrink-0">
+            {canEarlySettle && (
+              <button
+                onClick={() => setShowEarlySettlementConfirm(true)}
+                className="px-3 py-2 rounded-xl border border-amber-400 text-sm text-amber-700 bg-amber-50 active:bg-amber-100"
+              >
+                ⏱ {t.game.earlySettlement}
+              </button>
+            )}
+            <button
+              onClick={handleUndo}
+              disabled={!canUndo}
+              className="px-4 py-2 rounded-xl border border-gray-300 text-sm text-gray-600 disabled:opacity-30 active:bg-gray-100"
+            >
+              ↩️ {t.game.undo}
+            </button>
+          </div>
         </header>
 
         <div className="h-[272px] overflow-y-auto md:h-auto md:flex-1 md:min-h-0">
@@ -84,6 +102,16 @@ function GameScreenContent({ game }: { game: Game }) {
           <Toast message={toastMessage} onClose={handleCloseToast} />
         )}
       </div>
+
+      {showEarlySettlementConfirm && (
+        <ConfirmDialog
+          message={t.game.earlySettlementConfirm}
+          confirmLabel={t.game.earlySettlement}
+          cancelLabel={t.common.cancel}
+          onConfirm={handleEarlySettlementConfirm}
+          onCancel={() => setShowEarlySettlementConfirm(false)}
+        />
+      )}
     </div>
   )
 }

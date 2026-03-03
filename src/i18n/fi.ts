@@ -41,6 +41,8 @@ export const fi: Messages = {
     bustMessage: "💥 Ylitys! Nollataan 25:een",
     eliminatedMessage: "❌ {name} on poistettu",
     winnerMessage: "{name} voittaa!",
+    earlySettlement: "Ennenaikainen päätös",
+    earlySettlementConfirm: "Lopetetaanko peli ennenaikaisesti aikarajoituksen vuoksi? Voittaja määräytyy nykyisten pisteiden perusteella.",
   },
   result: {
     title: "Peli ohi",
@@ -54,6 +56,9 @@ export const fi: Messages = {
     turns: "vuoroa",
     rankSuffix: (_n: number) => ".",
     scoreUnit: "p",
+    timeoutBadge: "⏱ Aikaraja",
+    draw: "Tasapeli",
+    drawWinners: "Tasavoittajat",
   },
   molkkout: {
     title: "Mölkkout (ratkaisuheitto)",

@@ -43,6 +43,8 @@ export interface Turn {
 
 export type GameStatus = 'active' | 'finished'
 
+export type FinishReason = 'normal' | 'timeout'
+
 export interface Game {
   /** プレイヤーリスト（投球順） */
   players: Player[]
@@ -50,8 +52,10 @@ export interface Game {
   currentPlayerIndex: number
   /** ゲームの状態 */
   status: GameStatus
-  /** 勝者のプレイヤー ID（status が 'finished' の場合のみ設定） */
+  /** 勝者のプレイヤー ID（status が 'finished' かつ単独勝者の場合のみ設定。引き分けは null） */
   winnerId: string | null
+  /** 終了理由（'normal': 50点到達、'timeout': 時間切れ途中決着） */
+  finishReason: FinishReason
   /** 総ターン数（表示・シェア用） */
   totalTurns: number
   /**
@@ -97,6 +101,8 @@ export interface MolkkoutGame {
   turns: MolkkoutTurn[]
   status: 'active' | 'finished' | 'overtime'
   winnerId: string | null
+  /** 終了理由（'normal': 通常終了、'timeout': 時間切れ途中決着） */
+  finishReason: FinishReason
 }
 
 // ─────────────────────────────────────────
@@ -165,6 +171,10 @@ export type GameAction =
       points: number
     }
   | { type: 'UNDO_MOLKKOUT_TURN' }
+
+  // ─ 途中決着 ─
+  | { type: 'EARLY_SETTLEMENT' }
+  | { type: 'EARLY_MOLKKOUT_SETTLEMENT' }
 
   // ─ 設定 ─
   | { type: 'SET_LANGUAGE'; language: Language }

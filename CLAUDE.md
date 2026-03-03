@@ -65,6 +65,10 @@ npm run dev     # Dev server
 ## Active Technologies
 - TypeScript 5.7 (strict mode) + React 19, Vite 6.1, vite-plugin-pwa 0.21, TailwindCSS v4 (012-fix-review-issues)
 - localStorage (key: `molkky-score-v2`, SCHEMA_VERSION=2) (012-fix-review-issues)
+- TypeScript 5.7 (strict mode) + React 19 + React 19, Vite 6.1, TailwindCSS v4, vite-plugin-pwa 0.21 (013-molkkout-setup-refactor)
+- localStorage — key `molkky-score-v2`, `SCHEMA_VERSION: 2 → 3` (013-molkkout-setup-refactor)
+- TypeScript 5.7 (strict mode) + React 19 + React Context + useReducer、TailwindCSS v4、Vite 6.1、vite-plugin-pwa 0.21 (014-timeout-settlement)
+- localStorage（key: `molkky-score-v2`、SCHEMA_VERSION: 3 → 4） (014-timeout-settlement)
 
 ## Recent Changes
 - 012-fix-review-issues: Added TypeScript 5.7 (strict mode) + React 19, Vite 6.1, vite-plugin-pwa 0.21, TailwindCSS v4

@@ -2,8 +2,9 @@ import type { GameState, Game, MolkkoutGame, Settings } from '../types/game'
 
 const STORAGE_KEY = 'molkky-score-v2'
 // SCHEMA_VERSION: 2 → 3 (MolkkoutGame の shape 変更 — playerNames/throwsPerPlayer 廃止)
+// SCHEMA_VERSION: 3 → 4 (Game・MolkkoutGame に finishReason フィールド追加)
 // STORAGE_KEY は変更しない（バージョンフィールドで十分, research.md 参照）
-const SCHEMA_VERSION = 3
+const SCHEMA_VERSION = 4
 
 interface StoredState {
   version: typeof SCHEMA_VERSION

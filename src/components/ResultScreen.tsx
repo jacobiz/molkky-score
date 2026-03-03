@@ -12,7 +12,9 @@ function ResultScreenContent({ game }: { game: Game }) {
   const [toastMessage, setToastMessage] = useState<string | null>(null)
   const handleCloseToast = useCallback(() => setToastMessage(null), [])
 
-  const winner = game.players.find(p => p.status === 'winner')
+  const winners = game.players.filter(p => p.status === 'winner')
+  const winner = winners.length === 1 ? winners[0] : null
+  const isDraw = winners.length > 1
   const ranked = buildRanking(game.players)
   const roundCount = Math.max(0, ...game.players.map(p =>
     game.turnHistory.filter(t => t.playerId === p.id).length
@@ -32,7 +34,16 @@ function ResultScreenContent({ game }: { game: Game }) {
       />
       {/* Winner summary */}
       <header className="bg-white border-b border-gray-200 px-4 py-4 text-center">
-        {winner && (
+        {game.finishReason === 'timeout' && (
+          <p className="text-xs font-semibold text-amber-600 bg-amber-50 rounded-full px-3 py-1 inline-block mb-2">
+            {t.result.timeoutBadge}
+          </p>
+        )}
+        {isDraw ? (
+          <p className="text-2xl font-bold text-gray-900 mt-1">
+            {t.result.drawWinners}: {winners.map(w => w.name).join(' · ')}
+          </p>
+        ) : winner && (
           <p className="text-2xl font-bold text-gray-900 mt-1">
             {t.result.winner.replace('{name}', winner.name)}
           </p>

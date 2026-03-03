@@ -50,6 +50,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         currentPlayerIndex: 0,
         status: 'active',
         winnerId: null,
+        finishReason: 'normal',
         totalTurns: 0,
         turnHistory: [],
       }
@@ -191,6 +192,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         currentPlayerIndex: 0,
         status: 'active',
         winnerId: null,
+        finishReason: 'normal',
         totalTurns: 0,
         turnHistory: [],
       }
@@ -227,6 +229,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
           turns: [],
           status: 'active',
           winnerId: null,
+          finishReason: 'normal',
         },
       }
     }
@@ -313,6 +316,56 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
           status: lastTurn.prevStatus,
           winnerId: null,
           turns: history,
+        },
+      }
+    }
+
+    case 'EARLY_SETTLEMENT': {
+      const game = state.game
+      if (!game || game.status !== 'active') return state
+      // 全員スコア 0 の場合は no-op（FR-007）
+      if (!game.players.some(p => p.status === 'active' && p.score > 0)) return state
+
+      const activePlayers = game.players.filter(p => p.status === 'active')
+      const maxScore = Math.max(...activePlayers.map(p => p.score))
+      const topPlayers = activePlayers.filter(p => p.score === maxScore)
+      const isDraw = topPlayers.length > 1
+
+      const updatedPlayers = game.players.map(p =>
+        topPlayers.some(w => w.id === p.id) ? { ...p, status: 'winner' as const } : p,
+      )
+      const winnerId = isDraw ? null : topPlayers[0].id
+
+      return {
+        ...state,
+        screen: 'result',
+        game: {
+          ...game,
+          players: updatedPlayers,
+          status: 'finished',
+          finishReason: 'timeout',
+          winnerId,
+        },
+      }
+    }
+
+    case 'EARLY_MOLKKOUT_SETTLEMENT': {
+      const mg = state.molkkoutGame
+      if (!mg || mg.status === 'finished') return state
+      if (!mg.teams.some(t => t.totalScore > 0)) return state
+
+      const maxScore = Math.max(...mg.teams.map(t => t.totalScore))
+      const topTeams = mg.teams.filter(t => t.totalScore === maxScore)
+      const isDraw = topTeams.length > 1
+      const winnerId = isDraw ? null : topTeams[0].id
+
+      return {
+        ...state,
+        molkkoutGame: {
+          ...mg,
+          status: 'finished',
+          finishReason: 'timeout',
+          winnerId,
         },
       }
     }

@@ -44,6 +44,8 @@ export const en: Messages = {
     bustMessage: "💥 Bust! Reset to 25",
     eliminatedMessage: "❌ {name} is eliminated",
     winnerMessage: "{name} wins!",
+    earlySettlement: "Early Settlement",
+    earlySettlementConfirm: "End the game early due to time limit? The current scores will determine the winner.",
   },
   result: {
     title: "Game Over",
@@ -57,6 +59,9 @@ export const en: Messages = {
     turns: "turns",
     rankSuffix: (n: number) => ordinal(n),
     scoreUnit: "pt",
+    timeoutBadge: "⏱ Time Limit",
+    draw: "Draw",
+    drawWinners: "Joint Winners",
   },
   molkkout: {
     title: "Mölkkout (Tiebreaker)",
