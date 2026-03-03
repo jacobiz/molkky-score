@@ -18,12 +18,12 @@ describe('loadState — バージョン不一致', () => {
 
 describe('loadState — 破損データ', () => {
   test('settings が文字列のデータは null を返す', () => {
-    localStorage.setItem('molkky-score-v2', JSON.stringify({ version: 2, settings: 'INVALID' }))
+    localStorage.setItem('molkky-score-v2', JSON.stringify({ version: 3, settings: 'INVALID' }))
     expect(loadState()).toBeNull()
   })
 
   test('settings が文字列のデータは localStorage から削除される', () => {
-    localStorage.setItem('molkky-score-v2', JSON.stringify({ version: 2, settings: 'BAD' }))
+    localStorage.setItem('molkky-score-v2', JSON.stringify({ version: 3, settings: 'BAD' }))
     loadState()
     expect(localStorage.getItem('molkky-score-v2')).toBeNull()
   })
@@ -37,7 +37,7 @@ describe('loadState — 破損データ', () => {
 describe('loadState — 正常データ', () => {
   test('正常データは正しく復元できる', () => {
     const data = {
-      version: 2,
+      version: 3,
       game: null,
       molkkoutGame: null,
       settings: { language: 'ja' },
