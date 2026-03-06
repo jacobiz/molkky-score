@@ -1,5 +1,7 @@
 import { useTranslation } from '../../utils/i18n'
 
+const PIN_NUMBERS = Array.from({ length: 12 }, (_, i) => i + 1)
+
 interface NumberInputProps {
   onSubmit: (points: number) => void
   variant?: 'game' | 'molkkout'
@@ -25,7 +27,7 @@ export function NumberInput({ onSubmit, variant = 'game' }: NumberInputProps) {
 
       {/* 1–12: 4×3 grid */}
       <div className={`flex-1 min-h-0 grid grid-cols-4 grid-rows-3 gap-2 ${isMolkkout ? 'max-h-[280px]' : ''}`}>
-        {Array.from({ length: 12 }, (_, i) => i + 1).map(n => (
+        {PIN_NUMBERS.map(n => (
           <button
             key={n}
             onClick={() => onSubmit(n)}

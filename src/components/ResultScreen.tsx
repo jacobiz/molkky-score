@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { useGame } from '../context/GameContext'
 import { useTranslation } from '../utils/i18n'
 import { buildShareText, shareResult, buildRanking } from '../utils/share'
@@ -14,14 +14,14 @@ function ResultScreenContent({ game }: { game: Game }) {
   const [toastMessage, setToastMessage] = useState<string | null>(null)
   const [showScoreSheet, setShowScoreSheet] = useState(false)
   const handleCloseToast = useCallback(() => setToastMessage(null), [])
-  const latestRecord = loadHistory()[0] ?? null
+  const latestRecord = useMemo(() => loadHistory()[0] ?? null, [])
 
   const winners = game.players.filter(p => p.status === 'winner')
   const winner = winners.length === 1 ? winners[0] : null
   const isDraw = winners.length > 1
   const ranked = buildRanking(game.players)
   const roundCount = Math.max(0, ...game.players.map(p =>
-    game.turnHistory.filter(t => t.playerId === p.id).length
+    game.turnHistory.filter(turn => turn.playerId === p.id).length
   ))
 
   async function handleShare() {

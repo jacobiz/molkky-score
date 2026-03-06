@@ -4,7 +4,7 @@ import { useTranslation } from '../../utils/i18n'
 import { ScreenHeader } from '../ui/ScreenHeader'
 import { ConfirmDialog } from '../ui/ConfirmDialog'
 import { PinSetupGuideModal } from '../ui/PinSetupGuideModal'
-import { MolkkoutInput } from './MolkkoutInput'
+import { NumberInput } from '../ui/NumberInput'
 
 export function MolkkoutScreen() {
   const { state, dispatch } = useGame()
@@ -157,9 +157,10 @@ export function MolkkoutScreen() {
 
       {/* Bottom / Right: MolkkoutInput + Undo + Early Settlement */}
       <div className="flex-1 min-h-0 flex flex-col bg-white border-t border-gray-200 md:flex-none md:border-t-0 md:border-l md:w-80 md:justify-center">
-        <MolkkoutInput
+        <NumberInput
           key={mg.turns.length}
           onSubmit={handleSubmit}
+          variant="molkkout"
         />
         <div className="px-4 pb-4 flex flex-col gap-2">
           <button

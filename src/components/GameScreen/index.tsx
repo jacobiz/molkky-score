@@ -5,7 +5,7 @@ import { isBustThrow } from '../../utils/scoring'
 import { ScreenHeader } from '../ui/ScreenHeader'
 import { ConfirmDialog } from '../ui/ConfirmDialog'
 import { Toast } from '../ui/Toast'
-import { PinInput } from './PinInput'
+import { NumberInput } from '../ui/NumberInput'
 import { ScoreBoard } from './ScoreBoard'
 import { PinSetupGuideModal } from '../ui/PinSetupGuideModal'
 import type { Game } from '../../types/game'
@@ -19,7 +19,7 @@ function GameScreenContent({ game }: { game: Game }) {
 
   const currentPlayer = game.players[game.currentPlayerIndex]
   const canUndo = game.turnHistory.length > 0
-  const throwCount = game.turnHistory.filter(t => t.playerId === currentPlayer?.id).length + 1
+  const throwCount = game.turnHistory.filter(turn => turn.playerId === currentPlayer?.id).length + 1
   const canEarlySettle = game.players.some(p => p.status === 'active' && p.score > 0)
 
   const handleCloseToast = useCallback(() => setToastMessage(null), [])
@@ -102,10 +102,10 @@ function GameScreenContent({ game }: { game: Game }) {
         </div>
       </div>
 
-      {/* Bottom / Right: PinInput */}
+      {/* Bottom / Right: NumberInput */}
       <div className="flex-1 min-h-0 flex flex-col bg-white border-t border-gray-200 md:flex-none md:border-t-0 md:border-l md:w-2/5 md:justify-center">
-        {/* Re-mount PinInput on each new turn to reset step state */}
-        <PinInput key={game.totalTurns} onSubmit={handlePinSubmit} />
+        {/* Re-mount on each new turn to reset step state */}
+        <NumberInput key={game.totalTurns} onSubmit={handlePinSubmit} variant="game" />
       </div>
 
         {/* Toast notification */}

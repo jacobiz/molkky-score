@@ -21,7 +21,7 @@ export function HistoryScreen() {
   function confirmDelete() {
     if (!deleteTargetId) return
     removeRecord(deleteTargetId)
-    setRecords(loadHistory())
+    setRecords(prev => prev.filter(r => r.id !== deleteTargetId))
     setDeleteTargetId(null)
   }
 

@@ -213,9 +213,9 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     }
 
     case 'START_MOLKKOUT': {
-      const teams = action.teams.map(t => ({
+      const teams = action.teams.map(team => ({
         id: generateId(),
-        name: t.name,
+        name: team.name,
         totalScore: 0,
       }))
       return {
@@ -249,8 +249,8 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         prevStatus: mg.status as 'active' | 'overtime',
       }
 
-      const updatedTeams = mg.teams.map(t =>
-        t.id === team.id ? { ...t, totalScore: t.totalScore + points } : t,
+      const updatedTeams = mg.teams.map(tm =>
+        tm.id === team.id ? { ...tm, totalScore: tm.totalScore + points } : tm,
       )
 
       const updatedTurns = [...mg.turns, turn]
@@ -269,8 +269,8 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       let winnerId = mg.winnerId
 
       if (allDone) {
-        const maxScore = Math.max(...updatedTeams.map(t => t.totalScore))
-        const winners = updatedTeams.filter(t => t.totalScore === maxScore)
+        const maxScore = Math.max(...updatedTeams.map(tm => tm.totalScore))
+        const winners = updatedTeams.filter(tm => tm.totalScore === maxScore)
         if (winners.length === 1) {
           newStatus = 'finished'
           winnerId = winners[0].id
@@ -300,10 +300,10 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       const history = [...mg.turns]
       const lastTurn = history.pop()!
 
-      const restoredTeams = mg.teams.map(t =>
-        t.id === lastTurn.teamId
-          ? { ...t, totalScore: t.totalScore - lastTurn.points }
-          : t,
+      const restoredTeams = mg.teams.map(tm =>
+        tm.id === lastTurn.teamId
+          ? { ...tm, totalScore: tm.totalScore - lastTurn.points }
+          : tm,
       )
 
       return {
@@ -352,10 +352,10 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     case 'EARLY_MOLKKOUT_SETTLEMENT': {
       const mg = state.molkkoutGame
       if (!mg || mg.status === 'finished') return state
-      if (!mg.teams.some(t => t.totalScore > 0)) return state
+      if (!mg.teams.some(tm => tm.totalScore > 0)) return state
 
-      const maxScore = Math.max(...mg.teams.map(t => t.totalScore))
-      const topTeams = mg.teams.filter(t => t.totalScore === maxScore)
+      const maxScore = Math.max(...mg.teams.map(tm => tm.totalScore))
+      const topTeams = mg.teams.filter(tm => tm.totalScore === maxScore)
       const isDraw = topTeams.length > 1
       const winnerId = isDraw ? null : topTeams[0].id
 

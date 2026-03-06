@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useTranslation } from '../../utils/i18n'
 import type { GameHistoryRecord } from '../../types/history'
 
@@ -25,23 +25,27 @@ export function ScoreSheetModal({ record, onClose }: ScoreSheetModalProps) {
   // ラウンドごとに各プレイヤーの投球データをマッピング
   // ラウンド = 各プレイヤーがそれぞれ何投目か（プレイヤーの投球順ではなく投球回数で集約）
   type CellData = { points: number; scoreAfter: number; isBust: boolean; isMiss: boolean; isEliminated: boolean }
-  const roundMap = new Map<number, Map<string, CellData>>() // roundNum → Map<playerId, data>
-  const playerThrowCounts = new Map<string, number>()
 
-  for (const turn of record.turns) {
-    const count = (playerThrowCounts.get(turn.playerId) ?? 0) + 1
-    playerThrowCounts.set(turn.playerId, count)
-    if (!roundMap.has(count)) roundMap.set(count, new Map())
-    roundMap.get(count)!.set(turn.playerId, {
-      points: turn.points,
-      scoreAfter: turn.scoreAfter,
-      isBust: turn.isBust,
-      isMiss: turn.isMiss,
-      isEliminated: turn.isEliminated,
-    })
-  }
+  const { roundMap, roundNumbers } = useMemo(() => {
+    const roundMap = new Map<number, Map<string, CellData>>()
+    const playerThrowCounts = new Map<string, number>()
 
-  const roundNumbers = Array.from(roundMap.keys()).sort((a, b) => a - b)
+    for (const turn of record.turns) {
+      const count = (playerThrowCounts.get(turn.playerId) ?? 0) + 1
+      playerThrowCounts.set(turn.playerId, count)
+      if (!roundMap.has(count)) roundMap.set(count, new Map())
+      roundMap.get(count)!.set(turn.playerId, {
+        points: turn.points,
+        scoreAfter: turn.scoreAfter,
+        isBust: turn.isBust,
+        isMiss: turn.isMiss,
+        isEliminated: turn.isEliminated,
+      })
+    }
+
+    const roundNumbers = Array.from(roundMap.keys()).sort((a, b) => a - b)
+    return { roundMap, roundNumbers }
+  }, [record.id])
 
   // 脱落済みプレイヤーを追跡（ラウンドごとに累積）
   const eliminatedByRound = new Map<string, number>() // playerId → 脱落したroundNum

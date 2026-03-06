@@ -7,23 +7,20 @@ import { Toast } from './ui/Toast'
 export function MolkkoutSetupScreen() {
   const { dispatch } = useGame()
   const { t } = useTranslation()
-  const [teams, setTeams] = useState<{ name: string }[]>([
-    { name: '' },
-    { name: '' },
-  ])
+  const [teams, setTeams] = useState<string[]>(['', ''])
   const [totalThrows, setTotalThrows] = useState(3)
   const [toast, setToast] = useState<string | null>(null)
 
   function addTeam() {
-    setTeams(prev => [...prev, { name: '' }])
+    setTeams(prev => [...prev, ''])
   }
 
   function updateTeamName(idx: number, name: string) {
-    setTeams(prev => prev.map((t, i) => (i === idx ? { name } : t)))
+    setTeams(prev => prev.map((v, i) => (i === idx ? name : v)))
   }
 
   function handleStart() {
-    const names = teams.map(t => t.name.trim())
+    const names = teams.map(name => name.trim())
 
     if (names.some(n => n === '')) {
       setToast(t.molkkout.errorTeamRequired)
@@ -55,14 +52,14 @@ export function MolkkoutSetupScreen() {
         <p className="text-sm text-gray-500 px-1">{t.molkkout.pinSetupGuide}</p>
 
         {/* チーム名入力 */}
-        {teams.map((team, idx) => (
+        {teams.map((name, idx) => (
           <div
             key={idx}
             className="bg-white rounded-2xl border border-gray-200 p-4"
           >
             <input
               type="text"
-              value={team.name}
+              value={name}
               onChange={e => updateTeamName(idx, e.target.value)}
               placeholder={`チーム ${idx + 1} の名前`}
               maxLength={12}
