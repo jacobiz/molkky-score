@@ -75,6 +75,8 @@ npm run dev     # Dev server
 - N/A（表示専用、永続データなし） (016-rotate-pin-layout)
 - TypeScript 5.7 (strict mode) + React 19 + React Context + useReducer（追加ライブラリなし）、TailwindCSS v4 (017-game-history)
 - localStorage — 新規キー `molkky-score-history`（既存 `molkky-score-v2` は変更なし） (017-game-history)
+- TypeScript 5.7 (strict mode) + React 19 + TailwindCSS v4（`@tailwindcss/vite`）、既存コンポーネント流用 (018-scoresheet-print)
+- N/A（印刷は表示専用、永続データなし） (018-scoresheet-print)
 
 ## Recent Changes
 - 012-fix-review-issues: Added TypeScript 5.7 (strict mode) + React 19, Vite 6.1, vite-plugin-pwa 0.21, TailwindCSS v4

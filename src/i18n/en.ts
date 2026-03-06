@@ -122,6 +122,8 @@ export const en: Messages = {
     turns: 'Turn',
     timeoutBadge: '⏱ Time Limit',
     drawLabel: 'Draw',
+    printButton: 'Print',
+    printScoreSheet: 'Print Score Sheet',
   },
   licenses: {
     title: "Open Source Licenses",

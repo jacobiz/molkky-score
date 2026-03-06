@@ -113,6 +113,8 @@ export const ja = {
     turns: 'ターン',
     timeoutBadge: '⏱ 時間切れ',
     drawLabel: '引き分け',
+    printButton: '印刷',
+    printScoreSheet: 'スコアシートを印刷',
   },
   licenses: {
     title: "オープンソースライセンス",
