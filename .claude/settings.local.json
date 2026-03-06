@@ -13,7 +13,16 @@
       "Bash(.specify/scripts/bash/update-agent-context.sh claude:*)",
       "WebSearch",
       "Bash(bash:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(node:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh issue:*)",
+      "Bash(npx vitest:*)",
+      "Bash(wait:*)",
+      "Bash(gh release:*)",
+      "Bash(git fetch:*)"
     ]
   },
   "enabledPlugins": {

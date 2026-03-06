@@ -73,6 +73,8 @@ npm run dev     # Dev server
 - N/A（このモーダルは表示専用。永続データなし） (015-pin-setup-guide)
 - TypeScript 5.7 (strict mode) + React 19 + TailwindCSS v4 (016-rotate-pin-layout)
 - N/A（表示専用、永続データなし） (016-rotate-pin-layout)
+- TypeScript 5.7 (strict mode) + React 19 + React Context + useReducer（追加ライブラリなし）、TailwindCSS v4 (017-game-history)
+- localStorage — 新規キー `molkky-score-history`（既存 `molkky-score-v2` は変更なし） (017-game-history)
 
 ## Recent Changes
 - 012-fix-review-issues: Added TypeScript 5.7 (strict mode) + React 19, Vite 6.1, vite-plugin-pwa 0.21, TailwindCSS v4
