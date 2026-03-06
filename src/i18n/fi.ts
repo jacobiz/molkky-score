@@ -103,7 +103,7 @@ export const fi: Messages = {
     },
     molkkout: {
       heading: 'Mölkkout (5 keilaa)',
-      layoutCaption: 'Asettelu (vasemmalta oikealle)',
+      layoutCaption: 'Asettelu (heittäjän suunnasta)',
       distanceLabel: 'Heittoviivalta ensimmäiseen keilaan: 3,5m',
       spacingLabel: 'Keilojen väli: 1 Mölkky-keilan pituus',
       resetNote: 'Aseta kaatuneet keilat takaisin alkuperäiselle paikalle',
