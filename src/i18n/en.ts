@@ -106,7 +106,7 @@ export const en: Messages = {
     },
     molkkout: {
       heading: 'Mölkkout (5 pins)',
-      layoutCaption: 'Layout (left to right)',
+      layoutCaption: 'Layout (viewed from thrower)',
       distanceLabel: 'Throwing line to first pin: 3.5m',
       spacingLabel: 'Pin spacing: 1 Mölkky stick length',
       resetNote: 'Stand fallen pins back at their original position',

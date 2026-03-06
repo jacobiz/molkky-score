@@ -103,17 +103,19 @@ function MolkkoutLayout() {
       <h3 className="font-semibold text-gray-800">{t.pinGuide.molkkout.heading}</h3>
       <p className="text-xs text-gray-500">{t.pinGuide.molkkout.layoutCaption}</p>
 
-      {/* 直線配置図 */}
-      <div className="flex items-center justify-center gap-1 py-2 flex-wrap select-none">
-        <Pin n={6} />
-        <span className="text-gray-400 text-sm">—</span>
-        <Pin n={4} />
-        <span className="text-gray-400 text-sm">—</span>
-        <Pin n={12} />
-        <span className="text-gray-400 text-sm">—</span>
-        <Pin n={10} />
-        <span className="text-gray-400 text-sm">—</span>
+      {/* 直線配置図（縦向き・スロワー視点） */}
+      <div className="flex flex-col items-center gap-1 py-2 select-none">
         <Pin n={8} />
+        <Pin n={10} />
+        <Pin n={12} />
+        <Pin n={4} />
+        <Pin n={6} />
+        {/* 投球ライン */}
+        <div className="mt-3 w-full border-t-2 border-dashed border-gray-400 relative">
+          <span className="absolute left-1/2 -translate-x-1/2 -top-2.5 bg-white px-2 text-xs text-gray-500">
+            ▽
+          </span>
+        </div>
       </div>
 
       <div className="flex flex-col gap-1.5 text-sm text-gray-600">

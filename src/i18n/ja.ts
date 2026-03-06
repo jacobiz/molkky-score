@@ -97,7 +97,7 @@ export const ja = {
     },
     molkkout: {
       heading: 'Mölkkout（5ピン）',
-      layoutCaption: '配置図（左から）',
+      layoutCaption: '配置図（スロワー側から）',
       distanceLabel: '投球ラインから先頭ピンまで: 3.5m',
       spacingLabel: 'ピン間隔: Mölkky スティック1本分',
       resetNote: '倒れたピンは元の位置に戻す',

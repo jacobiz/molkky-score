@@ -69,6 +69,10 @@ npm run dev     # Dev server
 - localStorage — key `molkky-score-v2`, `SCHEMA_VERSION: 2 → 3` (013-molkkout-setup-refactor)
 - TypeScript 5.7 (strict mode) + React 19 + React Context + useReducer、TailwindCSS v4、Vite 6.1、vite-plugin-pwa 0.21 (014-timeout-settlement)
 - localStorage（key: `molkky-score-v2`、SCHEMA_VERSION: 3 → 4） (014-timeout-settlement)
+- TypeScript 5.7 (strict mode) + React 19, TailwindCSS v4, Vite 6.1 (015-pin-setup-guide)
+- N/A（このモーダルは表示専用。永続データなし） (015-pin-setup-guide)
+- TypeScript 5.7 (strict mode) + React 19 + TailwindCSS v4 (016-rotate-pin-layout)
+- N/A（表示専用、永続データなし） (016-rotate-pin-layout)
 
 ## Recent Changes
 - 012-fix-review-issues: Added TypeScript 5.7 (strict mode) + React 19, Vite 6.1, vite-plugin-pwa 0.21, TailwindCSS v4
