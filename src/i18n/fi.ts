@@ -109,6 +109,17 @@ export const fi: Messages = {
       resetNote: 'Aseta kaatuneet keilat takaisin alkuperäiselle paikalle',
     },
   },
+  history: {
+    title: 'Historia',
+    empty: 'Ei pelihistoriaa vielä',
+    deleteButton: 'Poista',
+    deleteConfirm: 'Poistetaanko tämä historia?',
+    scoreSheet: 'Pistetaulukko',
+    closeButton: 'Sulje',
+    turns: 'Vuoro',
+    timeoutBadge: '⏱ Aikaraja',
+    drawLabel: 'Tasapeli',
+  },
   licenses: {
     title: "Avoimen lähdekoodin lisenssit",
     backLabel: "Takaisin",

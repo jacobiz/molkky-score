@@ -103,6 +103,17 @@ export const ja = {
       resetNote: '倒れたピンは元の位置に戻す',
     },
   },
+  history: {
+    title: '履歴',
+    empty: 'まだゲーム履歴がありません',
+    deleteButton: '削除',
+    deleteConfirm: 'この履歴を削除しますか？',
+    scoreSheet: 'スコアシート',
+    closeButton: '閉じる',
+    turns: 'ターン',
+    timeoutBadge: '⏱ 時間切れ',
+    drawLabel: '引き分け',
+  },
   licenses: {
     title: "オープンソースライセンス",
     backLabel: "戻る",

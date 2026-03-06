@@ -64,6 +64,14 @@ export function HomeScreen() {
           ▶️ {t.home.newGame}
         </button>
 
+        {/* History */}
+        <button
+          onClick={() => dispatch({ type: 'NAVIGATE', screen: 'history' })}
+          className="w-full py-3 rounded-2xl bg-gray-100 text-gray-700 text-base font-medium shadow-sm active:bg-gray-200"
+        >
+          📋 {t.history.title}
+        </button>
+
         {/* Language selector */}
         <LanguageSelector
           current={state.settings.language}
