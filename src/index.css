@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+@page {
+  size: A4 landscape;
+  margin: 1cm;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .scoresheet-print-area,
+  .scoresheet-print-area * {
+    visibility: visible;
+  }
+
+  .scoresheet-print-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .print-hide {
+    visibility: hidden !important;
+  }
+}

@@ -119,6 +119,8 @@ export const fi: Messages = {
     turns: 'Vuoro',
     timeoutBadge: '⏱ Aikaraja',
     drawLabel: 'Tasapeli',
+    printButton: 'Tulosta',
+    printScoreSheet: 'Tulosta pistelomake',
   },
   licenses: {
     title: "Avoimen lähdekoodin lisenssit",

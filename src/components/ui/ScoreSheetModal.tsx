@@ -52,7 +52,7 @@ export function ScoreSheetModal({ record, onClose }: ScoreSheetModalProps) {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-t-2xl sm:rounded-2xl shadow-xl w-full max-w-lg max-h-[85dvh] flex flex-col"
+        className="bg-white rounded-t-2xl sm:rounded-2xl shadow-xl w-full max-w-lg max-h-[85dvh] flex flex-col scoresheet-print-area"
         onClick={e => e.stopPropagation()}
       >
         {/* ヘッダー */}
@@ -65,14 +65,26 @@ export function ScoreSheetModal({ record, onClose }: ScoreSheetModalProps) {
                 <span className="ml-2 text-amber-600">{t.history.timeoutBadge}</span>
               )}
             </p>
+            <p className="text-xs text-gray-400">
+              {new Date(record.finishedAt).toLocaleString()} &nbsp;·&nbsp; {record.players.map(p => p.name).join(' → ')}
+            </p>
           </div>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-xl leading-none ml-4"
-            aria-label={t.history.closeButton}
-          >
-            ✕
-          </button>
+          <div className="flex items-center gap-1 ml-4 shrink-0">
+            <button
+              onClick={() => window.print()}
+              className="print-hide text-gray-400 hover:text-gray-600 text-sm px-2 py-1 border border-gray-200 rounded-lg"
+              aria-label={t.history.printButton}
+            >
+              🖨
+            </button>
+            <button
+              onClick={onClose}
+              className="print-hide text-gray-400 hover:text-gray-600 text-xl leading-none"
+              aria-label={t.history.closeButton}
+            >
+              ✕
+            </button>
+          </div>
         </div>
 
         {/* テーブル（横スクロール対応） */}

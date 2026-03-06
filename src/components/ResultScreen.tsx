@@ -2,15 +2,19 @@ import { useState, useCallback } from 'react'
 import { useGame } from '../context/GameContext'
 import { useTranslation } from '../utils/i18n'
 import { buildShareText, shareResult, buildRanking } from '../utils/share'
+import { loadHistory } from '../utils/historyStorage'
 import { ScreenHeader } from './ui/ScreenHeader'
 import { Toast } from './ui/Toast'
+import { ScoreSheetModal } from './ui/ScoreSheetModal'
 import type { Game } from '../types/game'
 
 function ResultScreenContent({ game }: { game: Game }) {
   const { dispatch } = useGame()
   const { t } = useTranslation()
   const [toastMessage, setToastMessage] = useState<string | null>(null)
+  const [showScoreSheet, setShowScoreSheet] = useState(false)
   const handleCloseToast = useCallback(() => setToastMessage(null), [])
+  const latestRecord = loadHistory()[0] ?? null
 
   const winners = game.players.filter(p => p.status === 'winner')
   const winner = winners.length === 1 ? winners[0] : null
@@ -98,6 +102,14 @@ function ResultScreenContent({ game }: { game: Game }) {
         >
           📤 {t.result.share}
         </button>
+        {latestRecord && (
+          <button
+            onClick={() => setShowScoreSheet(true)}
+            className="w-full py-3 rounded-2xl border border-gray-300 text-gray-700 font-semibold active:bg-gray-50"
+          >
+            🖨 {t.history.printScoreSheet}
+          </button>
+        )}
         <div className="flex gap-3">
           <button
             onClick={() => dispatch({ type: 'REMATCH_SETUP' })}
@@ -122,6 +134,9 @@ function ResultScreenContent({ game }: { game: Game }) {
 
       {toastMessage && (
         <Toast message={toastMessage} onClose={handleCloseToast} />
+      )}
+      {showScoreSheet && latestRecord && (
+        <ScoreSheetModal record={latestRecord} onClose={() => setShowScoreSheet(false)} />
       )}
     </div>
   )
