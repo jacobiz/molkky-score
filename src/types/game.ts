@@ -126,6 +126,7 @@ export type Screen =
   | 'result'
   | 'molkkout-setup'
   | 'molkkout-game'
+  | 'history'
 
 // ─────────────────────────────────────────
 // Root State（Context の root）

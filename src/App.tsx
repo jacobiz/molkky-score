@@ -5,6 +5,7 @@ import { GameScreen } from './components/GameScreen'
 import { ResultScreen } from './components/ResultScreen'
 import { MolkkoutSetupScreen } from './components/MolkkoutSetupScreen'
 import { MolkkoutScreen } from './components/MolkkoutScreen'
+import { HistoryScreen } from './components/HistoryScreen'
 
 function App() {
   const { state } = useGame()
@@ -17,6 +18,7 @@ function App() {
       {state.screen === 'result' && <ResultScreen />}
       {state.screen === 'molkkout-setup' && <MolkkoutSetupScreen />}
       {state.screen === 'molkkout-game' && <MolkkoutScreen />}
+      {state.screen === 'history' && <HistoryScreen />}
     </>
   )
 }

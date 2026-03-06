@@ -112,6 +112,17 @@ export const en: Messages = {
       resetNote: 'Stand fallen pins back at their original position',
     },
   },
+  history: {
+    title: 'History',
+    empty: 'No game history yet',
+    deleteButton: 'Delete',
+    deleteConfirm: 'Delete this history entry?',
+    scoreSheet: 'Scoresheet',
+    closeButton: 'Close',
+    turns: 'Turn',
+    timeoutBadge: '⏱ Time Limit',
+    drawLabel: 'Draw',
+  },
   licenses: {
     title: "Open Source Licenses",
     backLabel: "Back",
