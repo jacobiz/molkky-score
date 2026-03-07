@@ -25,6 +25,8 @@
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "^4.0.18",
     "jsdom": "^28.1.0",
+    "puppeteer": "^24.38.0",
+    "sharp": "^0.34.5",
     "typescript": "~5.7.2",
     "vite": "^6.1.0",
     "vite-plugin-pwa": "^0.21.1",
