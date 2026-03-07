@@ -59,7 +59,7 @@ export function ScoreSheetModal({ record, onClose }: ScoreSheetModalProps) {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-t-2xl sm:rounded-2xl shadow-xl w-full max-w-lg max-h-[85dvh] flex flex-col scoresheet-print-area"
+        className="bg-white rounded-t-2xl sm:rounded-2xl shadow-xl w-full max-w-lg max-h-[85dvh] flex flex-col scoresheet-print-area safe-bottom"
         onClick={e => e.stopPropagation()}
       >
         {/* ヘッダー */}

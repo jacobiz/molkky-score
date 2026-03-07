@@ -32,7 +32,7 @@ export function HistoryScreen() {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col bg-gray-50">
+    <div className="min-h-dvh flex flex-col bg-gray-50 safe-x">
       <ScreenHeader
         title={t.history.title}
         onGoHome={() => dispatch({ type: 'NAVIGATE', screen: 'home' })}

@@ -28,7 +28,7 @@ export function ScreenHeader({
 
   return (
     <>
-      <header className="bg-white border-b flex items-center gap-2 px-4 h-14 shrink-0">
+      <header className="bg-white border-b flex items-end gap-2 px-4 pb-3 shrink-0 safe-top">
         <button
           onClick={handleHomeClick}
           className="text-sm text-blue-600 font-medium py-1 pr-2 shrink-0"

@@ -41,7 +41,7 @@ export function MolkkoutSetupScreen() {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col bg-gray-50">
+    <div className="min-h-dvh flex flex-col bg-gray-50 safe-x">
       <ScreenHeader
         title={t.molkkout.title}
         requireConfirm={false}

@@ -30,7 +30,7 @@ function ResultScreenContent({ game }: { game: Game }) {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col bg-gray-50">
+    <div className="min-h-dvh flex flex-col bg-gray-50 safe-x">
       <ScreenHeader
         title={t.result.title}
         requireConfirm={false}
