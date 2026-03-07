@@ -80,6 +80,8 @@ npm run dev     # Dev server
 - TypeScript 5.7 (strict mode) + React 19、TailwindCSS v4 (`@tailwindcss/vite`)、vite-plugin-pwa 0.21、Vite 6.1 (019-safe-area-insets)
 - TypeScript 5.7 (strict mode) + React 19 + TailwindCSS v4 (`@tailwindcss/vite`) — arbitrary values, CSS env() variables (020-ui-layout-fixes)
 - N/A（データ変更なし） (020-ui-layout-fixes)
+- TypeScript 5.7 (strict mode) + React 19 + `URLSearchParams` / `history.replaceState`（ブラウザネイティブ API） (021-url-lang-routing)
+- N/A（URL パラメータは非永続。localStorage 変更なし） (021-url-lang-routing)
 
 ## Recent Changes
 - 012-fix-review-issues: Added TypeScript 5.7 (strict mode) + React 19, Vite 6.1, vite-plugin-pwa 0.21, TailwindCSS v4

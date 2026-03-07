@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer, useEffect, useRef, type ReactNod
 import { gameReducer, initialState } from '../reducers/gameReducer'
 import { saveState, loadState } from '../utils/storage'
 import { addRecord, buildHistoryRecord } from '../utils/historyStorage'
-import { detectLocale } from '../utils/i18n'
+import { detectLocale, getLangFromUrl } from '../utils/i18n'
 import type { GameState, GameAction } from '../types/game'
 
 interface GameContextValue {
@@ -15,8 +15,9 @@ const GameContext = createContext<GameContextValue | null>(null)
 export function GameProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(gameReducer, initialState, (init) => {
     const saved = loadState()
-    if (!saved) return { ...init, settings: { language: detectLocale() } }
-    return { ...init, ...saved }
+    const urlLang = getLangFromUrl()
+    if (!saved) return { ...init, settings: { language: urlLang ?? detectLocale() } }
+    return { ...init, ...saved, settings: { ...saved.settings, language: urlLang ?? saved.settings.language } }
   })
 
   // ゲームが 'active' → 'finished' に遷移したときのみ履歴を保存する
@@ -30,6 +31,20 @@ export function GameProvider({ children }: { children: ReactNode }) {
     }
     prevGameStatusRef.current = currentStatus
   }, [state.game])
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (state.settings.language === 'ja') {
+      params.delete('lang')
+    } else {
+      params.set('lang', state.settings.language)
+    }
+    const newSearch = params.toString()
+    const newUrl = newSearch
+      ? `${window.location.pathname}?${newSearch}`
+      : window.location.pathname
+    history.replaceState(null, '', newUrl)
+  }, [state.settings.language])
 
   useEffect(() => {
     saveState(state)
