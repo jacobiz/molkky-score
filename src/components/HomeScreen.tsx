@@ -37,7 +37,7 @@ export function HomeScreen() {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center bg-gray-50 px-6 py-12">
+    <div className="min-h-dvh flex flex-col items-center justify-center bg-gray-50 px-6 pt-12 pb-12 safe-top safe-bottom">
       <div className="w-full max-w-sm flex flex-col gap-6">
         {/* Title */}
         <div className="text-center">

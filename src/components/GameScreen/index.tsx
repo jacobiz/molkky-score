@@ -48,7 +48,7 @@ function GameScreenContent({ game }: { game: Game }) {
   }
 
   return (
-    <div className="h-dvh flex flex-col">
+    <div className="h-dvh flex flex-col safe-x">
       <ScreenHeader
         title={t.game.title}
         requireConfirm={true}
@@ -103,7 +103,7 @@ function GameScreenContent({ game }: { game: Game }) {
       </div>
 
       {/* Bottom / Right: NumberInput */}
-      <div className="flex-1 min-h-0 flex flex-col bg-white border-t border-gray-200 md:flex-none md:border-t-0 md:border-l md:w-2/5 md:justify-center">
+      <div className="flex-1 min-h-0 flex flex-col bg-white border-t border-gray-200 md:flex-none md:border-t-0 md:border-l md:w-2/5 md:justify-center safe-bottom">
         {/* Re-mount on each new turn to reset step state */}
         <NumberInput key={game.totalTurns} onSubmit={handlePinSubmit} variant="game" />
       </div>

@@ -37,7 +37,7 @@ export function MolkkoutScreen() {
     const isDraw = mg.winnerId === null
     const winner = isDraw ? null : mg.teams.find(tm => tm.id === mg.winnerId)
     return (
-      <div className="min-h-dvh flex flex-col bg-gray-50">
+      <div className="min-h-dvh flex flex-col bg-gray-50 safe-x">
         <ScreenHeader
           title={t.molkkout.title}
           requireConfirm={false}
@@ -98,7 +98,7 @@ export function MolkkoutScreen() {
   }
 
   return (
-    <div className="h-dvh flex flex-col">
+    <div className="h-dvh flex flex-col safe-x">
       <ScreenHeader
         title={t.molkkout.title}
         requireConfirm={mg.status === 'active' || mg.status === 'overtime'}
@@ -156,7 +156,7 @@ export function MolkkoutScreen() {
       </div>
 
       {/* Bottom / Right: MolkkoutInput + Undo + Early Settlement */}
-      <div className="flex-1 min-h-0 flex flex-col bg-white border-t border-gray-200 md:flex-none md:border-t-0 md:border-l md:w-80 md:justify-center">
+      <div className="flex-1 min-h-0 flex flex-col bg-white border-t border-gray-200 md:flex-none md:border-t-0 md:border-l md:w-80 md:justify-center safe-bottom">
         <NumberInput
           key={mg.turns.length}
           onSubmit={handleSubmit}

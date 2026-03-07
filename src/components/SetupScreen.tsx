@@ -68,7 +68,7 @@ export function SetupScreen() {
   }
 
   return (
-    <div className="min-h-dvh bg-gray-50 flex flex-col">
+    <div className="min-h-dvh bg-gray-50 flex flex-col safe-x">
       <ScreenHeader
         title={t.setup.title}
         requireConfirm={true}
