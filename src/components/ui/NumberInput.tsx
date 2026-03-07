@@ -12,7 +12,7 @@ export function NumberInput({ onSubmit, variant = 'game' }: NumberInputProps) {
   const isMolkkout = variant === 'molkkout'
 
   return (
-    <div className={`flex flex-col h-full ${isMolkkout ? 'gap-3 p-4' : 'gap-2 p-3'}`}>
+    <div className={`flex flex-col h-full ${isMolkkout ? 'gap-3 p-4' : 'gap-3 p-4 pb-6'}`}>
       <p className="text-center text-base font-medium text-gray-700">
         {t.game.howMany}
       </p>

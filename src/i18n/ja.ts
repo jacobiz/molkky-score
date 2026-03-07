@@ -114,7 +114,7 @@ export const ja = {
     deleteConfirm: 'この履歴を削除しますか？',
     scoreSheet: 'スコアシート',
     closeButton: '閉じる',
-    turns: 'ターン',
+    rounds: 'ラウンド',
     timeoutBadge: '⏱ 時間切れ',
     drawLabel: '引き分け',
     printButton: '印刷',

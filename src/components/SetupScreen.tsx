@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useGame } from '../context/GameContext'
 import { useTranslation } from '../utils/i18n'
-import { LanguageSelector } from './ui/LanguageSelector'
 import { ScreenHeader } from './ui/ScreenHeader'
 
 export function SetupScreen() {
@@ -73,12 +72,6 @@ export function SetupScreen() {
         title={t.setup.title}
         requireConfirm={true}
         onGoHome={() => dispatch({ type: 'NAVIGATE', screen: 'home' })}
-        rightContent={
-          <LanguageSelector
-            current={state.settings.language}
-            onSelect={(lang) => dispatch({ type: 'SET_LANGUAGE', language: lang })}
-          />
-        }
       />
 
       <div className="flex-1 flex flex-col gap-4 p-4">

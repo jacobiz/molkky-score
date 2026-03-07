@@ -120,7 +120,7 @@ export const fi: Messages = {
     deleteConfirm: 'Poistetaanko tämä historia?',
     scoreSheet: 'Pistetaulukko',
     closeButton: 'Sulje',
-    turns: 'Vuoro',
+    rounds: 'Kierrosta',
     timeoutBadge: '⏱ Aikaraja',
     drawLabel: 'Tasapeli',
     printButton: 'Tulosta',

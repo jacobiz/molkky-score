@@ -123,7 +123,7 @@ export const en: Messages = {
     deleteConfirm: 'Delete this history entry?',
     scoreSheet: 'Scoresheet',
     closeButton: 'Close',
-    turns: 'Turn',
+    rounds: 'Rounds',
     timeoutBadge: '⏱ Time Limit',
     drawLabel: 'Draw',
     printButton: 'Print',

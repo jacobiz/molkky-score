@@ -24,16 +24,16 @@ export function ScoreBoard({ players, currentPlayerIndex }: ScoreBoardProps) {
             key={player.id}
             className={`
               flex items-center gap-3 px-4 py-2 transition-colors
-              ${isCurrent ? 'bg-blue-50' : ''}
+              ${isCurrent ? 'bg-blue-100' : ''}
               ${isEliminated ? 'bg-gray-50 opacity-60' : ''}
               ${isMissWarning && !isEliminated ? 'bg-amber-50' : ''}
               ${isWinner ? 'bg-green-50' : ''}
             `}
           >
             {/* Current turn indicator */}
-            <div className="w-2">
+            <div className="w-3">
               {isCurrent && (
-                <div className="w-2 h-2 rounded-full bg-blue-500" />
+                <div className="w-3 h-3 rounded-full bg-blue-500" />
               )}
             </div>
 

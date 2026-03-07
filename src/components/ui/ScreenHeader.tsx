@@ -28,17 +28,17 @@ export function ScreenHeader({
 
   return (
     <>
-      <header className="bg-white border-b flex items-end gap-2 px-4 pb-3 shrink-0 safe-top">
+      <header className="relative bg-white border-b flex items-end px-4 pb-3 pt-[calc(env(safe-area-inset-top,0px)+0.75rem)] shrink-0">
         <button
           onClick={handleHomeClick}
-          className="text-sm text-blue-600 font-medium py-1 pr-2 shrink-0"
+          className="text-sm text-blue-600 font-medium py-1 pr-2 shrink-0 z-10"
         >
           ← {t.common.backToHome}
         </button>
-        <span className="flex-1 text-base font-semibold text-gray-800 truncate text-center">
+        <span className="absolute inset-x-0 bottom-3 text-xl font-semibold text-gray-800 text-center pointer-events-none px-20 truncate">
           {title}
         </span>
-        {rightContent && <div className="shrink-0">{rightContent}</div>}
+        {rightContent && <div className="ml-auto shrink-0 z-10">{rightContent}</div>}
       </header>
       {showConfirm && (
         <ConfirmDialog
