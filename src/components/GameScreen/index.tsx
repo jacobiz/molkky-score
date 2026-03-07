@@ -56,7 +56,7 @@ function GameScreenContent({ game }: { game: Game }) {
         rightContent={
           <button
             onClick={() => setShowPinGuide(true)}
-            className="text-gray-500 hover:text-gray-700 p-1"
+            className="text-gray-500 hover:text-gray-700 p-1 text-xl"
             aria-label={t.pinGuide.buttonAriaLabel}
           >
             🎯
@@ -65,7 +65,7 @@ function GameScreenContent({ game }: { game: Game }) {
       />
       {/* Top / Left: header + ScoreBoard */}
       <div className="flex-1 min-h-0 flex flex-col bg-gray-50 md:flex-row">
-      <div className="flex-none flex flex-col md:flex-1 md:min-h-0 md:overflow-y-auto">
+      <div className="flex-1 min-h-0 flex flex-col md:overflow-y-auto">
         <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between sticky top-0 z-10">
           <div className="flex flex-col min-w-0">
             <p className="text-base font-semibold text-gray-900 truncate">
@@ -94,7 +94,7 @@ function GameScreenContent({ game }: { game: Game }) {
           </div>
         </header>
 
-        <div className="h-[272px] overflow-y-auto md:h-auto md:flex-1 md:min-h-0">
+        <div className="flex-1 min-h-0 overflow-y-auto">
           <ScoreBoard
             players={game.players}
             currentPlayerIndex={game.currentPlayerIndex}
@@ -103,7 +103,7 @@ function GameScreenContent({ game }: { game: Game }) {
       </div>
 
       {/* Bottom / Right: NumberInput */}
-      <div className="flex-1 min-h-0 flex flex-col bg-white border-t border-gray-200 md:flex-none md:border-t-0 md:border-l md:w-2/5 md:justify-center safe-bottom">
+      <div className="mt-auto shrink-0 max-h-[calc(40dvh-env(safe-area-inset-bottom,0px))] overflow-y-auto flex flex-col bg-white border-t border-gray-200 md:mt-0 md:flex-none md:border-t-0 md:border-l md:w-2/5 md:max-h-none md:overflow-visible md:justify-center safe-bottom">
         {/* Re-mount on each new turn to reset step state */}
         <NumberInput key={game.totalTurns} onSubmit={handlePinSubmit} variant="game" />
       </div>

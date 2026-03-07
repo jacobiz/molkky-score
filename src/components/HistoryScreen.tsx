@@ -88,6 +88,12 @@ function HistoryCard({ record, formattedDate, onOpen, onDelete }: HistoryCardPro
     ? record.players.find(p => p.id === record.winnerId)?.name ?? ''
     : t.history.drawLabel
 
+  const roundCount = record.turns.reduce((map, turn) => {
+    map.set(turn.playerId, (map.get(turn.playerId) ?? 0) + 1)
+    return map
+  }, new Map<string, number>())
+  const rounds = Math.max(0, ...roundCount.values())
+
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
       <button
@@ -106,7 +112,7 @@ function HistoryCard({ record, formattedDate, onOpen, onDelete }: HistoryCardPro
           </div>
           <div className="flex flex-col items-end gap-1 shrink-0">
             <span className="text-xs text-gray-500">
-              {record.totalTurns} {t.history.turns}
+              {rounds} {t.history.rounds}
             </span>
             {record.finishReason === 'timeout' && (
               <span className="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full font-medium">

@@ -76,7 +76,7 @@ export function ScoreSheetModal({ record, onClose }: ScoreSheetModalProps) {
               {new Date(record.finishedAt).toLocaleString()} &nbsp;·&nbsp; {record.players.map(p => p.name).join(' → ')}
             </p>
           </div>
-          <div className="flex items-center gap-1 ml-4 shrink-0">
+          <div className="flex items-center gap-3 ml-4 shrink-0">
             <button
               onClick={() => window.print()}
               className="print-hide text-gray-400 hover:text-gray-600 text-sm px-2 py-1 border border-gray-200 rounded-lg"
@@ -100,7 +100,7 @@ export function ScoreSheetModal({ record, onClose }: ScoreSheetModalProps) {
             <thead>
               <tr className="bg-gray-50 sticky top-0 z-10">
                 <th className="text-left px-3 py-2 text-gray-500 font-medium border-b border-r border-gray-100 min-w-[3rem]">
-                  {t.history.turns}
+                  {t.history.rounds}
                 </th>
                 {record.players.map(p => (
                   <th
@@ -149,12 +149,13 @@ export function ScoreSheetModal({ record, onClose }: ScoreSheetModalProps) {
                             'px-3 py-2 text-center',
                             entry.isBust ? 'bg-red-50 text-red-600' : '',
                             entry.isEliminated ? 'bg-orange-50 text-orange-600' : '',
+                            entry.scoreAfter === 50 ? 'bg-green-100' : '',
                           ].join(' ')}
                         >
                           <span className="block font-semibold">
                             {entry.isMiss ? '✕' : `+${entry.points}`}
                           </span>
-                          <span className={['block text-gray-500', entry.isBust ? 'text-red-400' : ''].join(' ')}>
+                          <span className={['block text-gray-500', entry.isBust ? 'text-red-400' : '', entry.scoreAfter === 50 ? 'text-green-700 font-bold' : ''].join(' ')}>
                             {entry.scoreAfter}
                           </span>
                           {entry.isBust && (

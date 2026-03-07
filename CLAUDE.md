@@ -78,6 +78,8 @@ npm run dev     # Dev server
 - TypeScript 5.7 (strict mode) + React 19 + TailwindCSS v4（`@tailwindcss/vite`）、既存コンポーネント流用 (018-scoresheet-print)
 - N/A（印刷は表示専用、永続データなし） (018-scoresheet-print)
 - TypeScript 5.7 (strict mode) + React 19、TailwindCSS v4 (`@tailwindcss/vite`)、vite-plugin-pwa 0.21、Vite 6.1 (019-safe-area-insets)
+- TypeScript 5.7 (strict mode) + React 19 + TailwindCSS v4 (`@tailwindcss/vite`) — arbitrary values, CSS env() variables (020-ui-layout-fixes)
+- N/A（データ変更なし） (020-ui-layout-fixes)
 
 ## Recent Changes
 - 012-fix-review-issues: Added TypeScript 5.7 (strict mode) + React 19, Vite 6.1, vite-plugin-pwa 0.21, TailwindCSS v4
