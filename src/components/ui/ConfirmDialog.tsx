@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useId, useRef } from 'react'
 
 interface ConfirmDialogProps {
   message: string
@@ -15,6 +15,7 @@ export function ConfirmDialog({
   onConfirm,
   onCancel,
 }: ConfirmDialogProps) {
+  const labelId = useId()
   const dialogRef = useRef<HTMLDivElement>(null)
   const cancelRef = useRef<HTMLButtonElement>(null)
 
@@ -50,11 +51,11 @@ export function ConfirmDialog({
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="confirm-dialog-msg"
+        aria-labelledby={labelId}
         className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6 flex flex-col gap-4"
         onClick={e => e.stopPropagation()}
       >
-        <p id="confirm-dialog-msg" className="text-base text-gray-800 text-center">{message}</p>
+        <p id={labelId} className="text-base text-gray-800 text-center">{message}</p>
         <div className="flex gap-3">
           <button
             ref={cancelRef}

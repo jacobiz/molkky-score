@@ -1,4 +1,5 @@
 import { useTranslation } from '../../utils/i18n'
+import { useEscapeKey } from '../../hooks/useEscapeKey'
 
 interface InstallHelpModalProps {
   onClose: () => void
@@ -6,6 +7,7 @@ interface InstallHelpModalProps {
 
 export function InstallHelpModal({ onClose }: InstallHelpModalProps) {
   const { t } = useTranslation()
+  useEscapeKey(onClose)
 
   return (
     <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4">

@@ -1,5 +1,6 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useTranslation } from '../../utils/i18n'
+import { useEscapeKey } from '../../hooks/useEscapeKey'
 import type { GameHistoryRecord } from '../../types/history'
 
 interface ScoreSheetModalProps {
@@ -10,13 +11,7 @@ interface ScoreSheetModalProps {
 export function ScoreSheetModal({ record, onClose }: ScoreSheetModalProps) {
   const { t } = useTranslation()
 
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [onClose])
+  useEscapeKey(onClose)
 
   const winnerName = record.winnerId
     ? record.players.find(p => p.id === record.winnerId)?.name ?? ''
@@ -26,7 +21,7 @@ export function ScoreSheetModal({ record, onClose }: ScoreSheetModalProps) {
   // ラウンド = 各プレイヤーがそれぞれ何投目か（プレイヤーの投球順ではなく投球回数で集約）
   type CellData = { points: number; scoreAfter: number; isBust: boolean; isMiss: boolean; isEliminated: boolean }
 
-  const { roundMap, roundNumbers } = useMemo(() => {
+  const { roundMap, roundNumbers, eliminatedByRound } = useMemo(() => {
     const roundMap = new Map<number, Map<string, CellData>>()
     const playerThrowCounts = new Map<string, number>()
 
@@ -44,11 +39,19 @@ export function ScoreSheetModal({ record, onClose }: ScoreSheetModalProps) {
     }
 
     const roundNumbers = Array.from(roundMap.keys()).sort((a, b) => a - b)
-    return { roundMap, roundNumbers }
-  }, [record.id])
 
-  // 脱落済みプレイヤーを追跡（ラウンドごとに累積）
-  const eliminatedByRound = new Map<string, number>() // playerId → 脱落したroundNum
+    // 脱落済みプレイヤーを事前計算（playerId → 脱落したroundNum）
+    const eliminatedByRound = new Map<string, number>()
+    for (const roundNum of roundNumbers) {
+      for (const [playerId, entry] of roundMap.get(roundNum)!.entries()) {
+        if (entry.isEliminated && !eliminatedByRound.has(playerId)) {
+          eliminatedByRound.set(playerId, roundNum)
+        }
+      }
+    }
+
+    return { roundMap, roundNumbers, eliminatedByRound }
+  }, [record.id])
 
   return (
     <div
@@ -119,12 +122,7 @@ export function ScoreSheetModal({ record, onClose }: ScoreSheetModalProps) {
                     </td>
                     {record.players.map(p => {
                       const entry = roundData.get(p.id)
-                      const alreadyEliminated = eliminatedByRound.has(p.id)
-
-                      // このラウンドで脱落したか記録
-                      if (entry?.isEliminated) {
-                        eliminatedByRound.set(p.id, roundNum)
-                      }
+                      const alreadyEliminated = (eliminatedByRound.get(p.id) ?? Infinity) < roundNum
 
                       if (!entry) {
                         // このターンに投球なし（脱落済み or ラウンド未到達）

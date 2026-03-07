@@ -72,6 +72,10 @@ export const fi: Messages = {
     overtime: "Tasapeli! Jatkoaika",
     errorTeamRequired: "Täytä kaikki joukkuenimet",
     errorDuplicateTeam: "Joukkuenimet eivät saa toistua",
+    teamNamePlaceholder: (n: number) => `Joukkue ${n} nimi`,
+    addTeam: 'Lisää joukkue',
+    decreaseThrows: 'Vähennä heittoja',
+    increaseThrows: 'Lisää heittoja',
   },
   common: {
     ok: "OK",

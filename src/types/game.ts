@@ -161,7 +161,6 @@ export type GameAction =
   | { type: 'UNDO_TURN' }
 
   // ─ ゲーム終了後 ─
-  | { type: 'RESTART_GAME' }
   | { type: 'NEW_GAME' }
   | { type: 'REMATCH_SETUP' }
 

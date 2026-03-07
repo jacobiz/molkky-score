@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
 import { useTranslation } from '../../utils/i18n'
+import { useEscapeKey } from '../../hooks/useEscapeKey'
 
 interface PinSetupGuideModalProps {
   mode: 'regular' | 'molkkout'
@@ -9,13 +9,7 @@ interface PinSetupGuideModalProps {
 export function PinSetupGuideModal({ mode, onClose }: PinSetupGuideModalProps) {
   const { t } = useTranslation()
 
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [onClose])
+  useEscapeKey(onClose)
 
   return (
     <div

@@ -75,6 +75,10 @@ export const en: Messages = {
     overtime: "Tie! Overtime",
     errorTeamRequired: "Please fill in all team names",
     errorDuplicateTeam: "Team names must be unique",
+    teamNamePlaceholder: (n: number) => `Team ${n} name`,
+    addTeam: 'Add team',
+    decreaseThrows: 'Decrease throws',
+    increaseThrows: 'Increase throws',
   },
   common: {
     ok: "OK",

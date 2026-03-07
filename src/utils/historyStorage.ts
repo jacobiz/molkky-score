@@ -1,4 +1,5 @@
 import type { Game } from '../types/game'
+import { applyBustRule } from './scoring'
 import type { GameHistoryRecord, StoredHistory } from '../types/history'
 
 export const HISTORY_STORAGE_KEY = 'molkky-score-history'
@@ -51,9 +52,7 @@ export function removeRecord(id: string): void {
 
 export function buildHistoryRecord(game: Game): GameHistoryRecord {
   const turns = game.turnHistory.map((turn, index) => {
-    const scoreAfter = turn.isBust
-      ? 25
-      : turn.playerSnapshotBefore.score + turn.points
+    const scoreAfter = applyBustRule(turn.playerSnapshotBefore.score, turn.points)
     const isEliminated = turn.isMiss && turn.playerSnapshotBefore.consecutiveMisses === 2
 
     return {

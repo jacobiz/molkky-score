@@ -1,15 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { gameReducer, initialState } from '../../src/reducers/gameReducer'
-import type { GameState } from '../../src/types/game'
-
-// ─── helpers ───────────────────────────────────────────────
-function startGame(names: string[]): GameState {
-  return gameReducer(initialState, { type: 'START_GAME', playerNames: names })
-}
-
-function recordTurn(state: GameState, points: number): GameState {
-  return gameReducer(state, { type: 'RECORD_TURN', points })
-}
+import { gameReducer } from '../../src/reducers/gameReducer'
+import { startGame, recordTurn } from './helpers'
 
 // ─── START_GAME ────────────────────────────────────────────
 describe('START_GAME', () => {
@@ -201,20 +192,6 @@ describe('UNDO_TURN', () => {
     const s0 = startGame(['Alice', 'Bob'])
     const s1 = gameReducer(s0, { type: 'UNDO_TURN' })
     expect(s1).toEqual(s0)
-  })
-})
-
-// ─── RESTART_GAME ─────────────────────────────────────────
-describe('RESTART_GAME', () => {
-  it('同じプレイヤー構成でスコアをリセットする', () => {
-    const s0 = startGame(['Alice', 'Bob'])
-    const s1 = recordTurn(s0, 12)
-    const s2 = gameReducer(s1, { type: 'RESTART_GAME' })
-    expect(s2.screen).toBe('game')
-    expect(s2.game!.players.map(p => p.name)).toEqual(['Alice', 'Bob'])
-    expect(s2.game!.players[0].score).toBe(0)
-    expect(s2.game!.totalTurns).toBe(0)
-    expect(s2.game!.turnHistory).toHaveLength(0)
   })
 })
 

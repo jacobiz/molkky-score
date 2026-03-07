@@ -1,16 +1,9 @@
 import { describe, it, expect } from 'vitest'
 import { gameReducer, initialState } from '../../src/reducers/gameReducer'
 import type { GameState } from '../../src/types/game'
+import { startGame, recordTurn } from './helpers'
 
 // ─── helpers ───────────────────────────────────────────────
-
-function startGame(names: string[]): GameState {
-  return gameReducer(initialState, { type: 'START_GAME', playerNames: names })
-}
-
-function recordTurn(state: GameState, points: number): GameState {
-  return gameReducer(state, { type: 'RECORD_TURN', points })
-}
 
 function startMolkkout(teams: string[], totalThrows = 3): GameState {
   return gameReducer(initialState, {

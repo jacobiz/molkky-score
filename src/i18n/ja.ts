@@ -66,6 +66,10 @@ export const ja = {
     overtime: "同点！延長戦",
     errorTeamRequired: "チーム名をすべて入力してください",
     errorDuplicateTeam: "チーム名が重複しています",
+    teamNamePlaceholder: (n: number) => `チーム ${n} の名前`,
+    addTeam: 'チームを追加',
+    decreaseThrows: '投球数を減らす',
+    increaseThrows: '投球数を増やす',
   },
   common: {
     ok: "OK",

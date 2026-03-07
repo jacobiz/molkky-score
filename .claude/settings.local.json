@@ -22,7 +22,8 @@
       "Bash(npx vitest:*)",
       "Bash(wait:*)",
       "Bash(gh release:*)",
-      "Bash(git fetch:*)"
+      "Bash(git fetch:*)",
+      "Bash(grep:*)"
     ]
   },
   "enabledPlugins": {

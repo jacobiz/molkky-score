@@ -177,28 +177,6 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       return { ...state, screen: prevScreen, game: updatedGame }
     }
 
-    case 'RESTART_GAME': {
-      const game = state.game
-      if (!game) return state
-
-      const resetPlayers: Player[] = game.players.map(p => ({
-        ...p,
-        score: 0,
-        consecutiveMisses: 0,
-        status: 'active',
-      }))
-      const restartedGame: Game = {
-        players: resetPlayers,
-        currentPlayerIndex: 0,
-        status: 'active',
-        winnerId: null,
-        finishReason: 'normal',
-        totalTurns: 0,
-        turnHistory: [],
-      }
-      return { ...state, screen: 'game', game: restartedGame }
-    }
-
     case 'NEW_GAME':
       return { ...state, screen: 'setup', game: null }
 

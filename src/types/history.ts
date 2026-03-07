@@ -1,3 +1,5 @@
+import type { FinishReason } from './game'
+
 // ─────────────────────────────────────────
 // History（ゲーム結果履歴）
 // ─────────────────────────────────────────
@@ -29,7 +31,7 @@ export interface GameHistoryRecord {
   /** 勝者ID（引き分けは null） */
   winnerId: string | null
   /** 終了理由 */
-  finishReason: 'normal' | 'timeout'
+  finishReason: FinishReason
   /** 総ターン数 */
   totalTurns: number
   /** 全ターンの投球記録 */

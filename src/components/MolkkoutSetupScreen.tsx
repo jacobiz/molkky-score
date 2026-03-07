@@ -61,7 +61,7 @@ export function MolkkoutSetupScreen() {
               type="text"
               value={name}
               onChange={e => updateTeamName(idx, e.target.value)}
-              placeholder={`チーム ${idx + 1} の名前`}
+              placeholder={t.molkkout.teamNamePlaceholder(idx + 1)}
               maxLength={12}
               className="w-full px-3 py-2.5 rounded-xl border border-gray-300 text-base font-semibold focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
@@ -73,7 +73,7 @@ export function MolkkoutSetupScreen() {
             onClick={addTeam}
             className="py-3 rounded-2xl border border-dashed border-gray-300 text-gray-500 text-sm"
           >
-            + チームを追加
+            + {t.molkkout.addTeam}
           </button>
         )}
 
@@ -85,7 +85,7 @@ export function MolkkoutSetupScreen() {
               onClick={() => setTotalThrows(v => v - 1)}
               disabled={totalThrows <= 1}
               className="w-12 h-12 rounded-full border border-gray-300 text-2xl font-semibold text-gray-700 disabled:opacity-30 active:bg-gray-100"
-              aria-label="投球数を減らす"
+              aria-label={t.molkkout.decreaseThrows}
             >
               −
             </button>
@@ -96,7 +96,7 @@ export function MolkkoutSetupScreen() {
               onClick={() => setTotalThrows(v => v + 1)}
               disabled={totalThrows >= 10}
               className="w-12 h-12 rounded-full border border-gray-300 text-2xl font-semibold text-gray-700 disabled:opacity-30 active:bg-gray-100"
-              aria-label="投球数を増やす"
+              aria-label={t.molkkout.increaseThrows}
             >
               +
             </button>
