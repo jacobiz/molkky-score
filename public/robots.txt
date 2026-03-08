@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://jacobiz.github.io/molkky-score/sitemap.xml
