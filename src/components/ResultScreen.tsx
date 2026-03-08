@@ -14,18 +14,15 @@ function ResultScreenContent({ game }: { game: Game }) {
   const [toastMessage, setToastMessage] = useState<string | null>(null)
   const [showScoreSheet, setShowScoreSheet] = useState(false)
   const handleCloseToast = useCallback(() => setToastMessage(null), [])
-  const currentRecord = useMemo(() => buildHistoryRecord(game), [game.totalTurns])
+  const currentRecord = useMemo(() => buildHistoryRecord(game), [game])
 
   const winners = game.players.filter(p => p.status === 'winner')
   const winner = winners.length === 1 ? winners[0] : null
   const isDraw = winners.length > 1
   const ranked = buildRanking(game.players)
-  const roundCount = Math.max(0, ...game.players.map(p =>
-    game.turnHistory.filter(turn => turn.playerId === p.id).length
-  ))
 
   async function handleShare() {
-    const text = buildShareText({ players: game.players, totalTurns: roundCount, t })
+    const text = buildShareText({ players: game.players, totalTurns: game.totalTurns, t })
     await shareResult(text, () => setToastMessage(t.common.copied))
   }
 
@@ -53,7 +50,7 @@ function ResultScreenContent({ game }: { game: Game }) {
           </p>
         )}
         <p className="text-sm text-gray-400 mt-1">
-          {t.result.totalTurns.replace('{n}', String(roundCount))}
+          {t.result.totalTurns.replace('{n}', String(game.totalTurns))}
         </p>
       </header>
 
