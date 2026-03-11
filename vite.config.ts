@@ -43,7 +43,8 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,xml,txt}']
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,xml,txt}'],
+        navigateFallbackDenylist: [/sitemap\.xml/, /robots\.txt/],
       }
     })
   ],
